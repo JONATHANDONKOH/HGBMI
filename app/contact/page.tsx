@@ -1,0 +1,288 @@
+"use client"
+
+import React from "react"
+import { Navbar } from "@/components/navbar"
+import { Button } from '@/components/ui/button'
+import { Phone, Mail, MapPin, Clock, Heart, MessageSquare, Users, Star } from "lucide-react"
+import Image from "next/image"
+import Footer from "@/components/Footer"
+
+export default function ContactPage() {
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: '#4A90E2' }}>
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="relative min-h-[80vh] flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a]/80 to-[#2563eb]/60" />
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+            Contact Us
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+            We'd love to hear from you. Get in touch with our team for any questions, prayer requests, or support.
+            Every message is important to us and we'll respond as soon as possible.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none"
+              style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+            >
+              Send a Message
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 bg-transparent animate-bounce hover:animate-none"
+              style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+            >
+              024 681 9964
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Methods Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+              Get In Touch
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Multiple ways to connect with our ministry team and community
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Phone Contact */}
+            <div className="bg-gradient-to-br from-[#1e3a8a] to-[#2563eb] rounded-2xl p-8 text-center text-white shadow-lg hover:shadow-xl transition-shadow">
+              <Phone className="w-12 h-12 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Phone Support</h3>
+              <p className="text-lg mb-4">Call us for immediate assistance</p>
+              <div className="space-y-2">
+                <p className="font-semibold">Main Line: (024) 681-9964</p>
+                <p className="text-sm opacity-90">Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</p>
+              </div>
+            </div>
+
+            {/* Email Contact */}
+            <div className="bg-gradient-to-br from-[#2563eb] to-[#3b82f6] rounded-2xl p-8 text-center text-white shadow-lg hover:shadow-xl transition-shadow">
+              <Mail className="w-12 h-12 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Email Support</h3>
+              <p className="text-lg mb-4">Send us an email anytime</p>
+              <div className="space-y-2">
+                <p className="font-semibold">support@hgbmi.org</p>
+                <p className="text-sm opacity-90">We respond within 24 hours</p>
+              </div>
+            </div>
+
+            {/* Prayer Requests */}
+            <div className="bg-gradient-to-br from-[#3b82f6] to-[#60a5fa] rounded-2xl p-8 text-center text-white shadow-lg hover:shadow-xl transition-shadow">
+              <Heart className="w-12 h-12 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Prayer Requests</h3>
+              <p className="text-lg mb-4">Submit your prayer needs</p>
+              <div className="space-y-2">
+                <p className="font-semibold">Dedicated Prayer Team</p>
+                <p className="text-sm opacity-90">Your requests are confidential</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Information Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+              How We Can Help
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Our team is here to support you in your spiritual journey and community needs
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-[#1e3a8a] rounded-full flex items-center justify-center mx-auto mb-4">
+                <MessageSquare className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>General Inquiries</h3>
+              <p className="text-gray-600">Questions about our church, services, or community</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-[#2563eb] rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Ministry Support</h3>
+              <p className="text-gray-600">Connect with our ministry teams and volunteers</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-[#3b82f6] rounded-full flex items-center justify-center mx-auto mb-4">
+                <Star className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Event Information</h3>
+              <p className="text-gray-600">Details about upcoming services and special events</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-[#60a5fa] rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Location & Directions</h3>
+              <p className="text-gray-600">Find us and get directions to our facilities</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location & Contact Form */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+                Visit Our Location
+              </h2>
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-6 h-6 text-[#2563eb] mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-800">Main Sanctuary</p>
+                    <p className="text-gray-600">123 Faith Street<br />Lashibi, Accra, Ghana</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock className="w-6 h-6 text-[#2563eb] mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-800">Service Times</p>
+                    <p className="text-gray-600">Sunday: 9:00 AM - 12:00 PM<br />Wednesday: 7:00 PM - 9:00 PM</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone className="w-6 h-6 text-[#2563eb] mt-1" />
+                  <div>
+                    <p className="font-semibold text-gray-800">Contact Info</p>
+                    <p className="text-gray-600">Phone: (024) 681-9964<br />Email: support@hgbmi.org</p>
+                  </div>
+                </div>
+              </div>
+              <Button
+                size="lg"
+                className="bg-[#1e3a8a] hover:bg-[#1d4ed8] text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105 animate-bounce hover:animate-none"
+                style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+              >
+                Get Directions
+              </Button>
+            </div>
+
+            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/cong.jpg"
+                alt="Church building"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/60 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="py-16 bg-gradient-to-br from-[#1e3a8a] to-[#2563eb] text-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+              Send Us a Message
+            </h2>
+            <p className="text-xl mb-8 opacity-90">
+              Have a question or need support? We'd love to hear from you. Fill out the form below and we'll get back to you soon.
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12">
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-white mb-2">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
+                  placeholder="Your first name"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white mb-2">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
+                  placeholder="Your last name"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-white mb-2">
+                  Phone
+                </label>
+                <input
+                  type="tel"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
+                  placeholder="(555) 123-4567"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-white mb-2">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
+                  placeholder="How can we help you?"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-white mb-2">
+                  Message
+                </label>
+                <textarea
+                  rows={6}
+                  className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
+                  placeholder="Tell us more about your inquiry..."
+                ></textarea>
+              </div>
+              <div className="md:col-span-2 text-center">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none"
+                  style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+                >
+                  Send Message
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  )
+}
