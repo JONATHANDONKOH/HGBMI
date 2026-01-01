@@ -1,7 +1,10 @@
+"use client"
 import React from "react"
+import dynamic from 'next/dynamic'
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
-import LocationMotion from "./LocationMotion"
+
+const LocationMotion = dynamic(() => import('./LocationMotion'), { ssr: false })
 
 export default function LocationPage() {
   return (
