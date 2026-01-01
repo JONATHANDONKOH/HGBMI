@@ -1,13 +1,71 @@
 "use client"
 
-import React from "react"
+import React, { useRef, useState } from "react"
 import { Navbar } from "@/components/navbar"
 import { Button } from '@/components/ui/button'
 import { Phone, Mail, MapPin, Clock, Heart, MessageSquare, Users, Star } from "lucide-react"
 import Image from "next/image"
 import Footer from "@/components/Footer"
+import emailjs from '@emailjs/browser'
 
 export default function ContactPage() {
+  const form = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!form.current) {
+      setError('Form not properly initialized');
+      return;
+    }
+    
+    const formData = new FormData(form.current);
+    const email = formData.get('user_email') as string;
+    const message = formData.get('message') as string;
+    
+    if (!email || !email.includes('@')) {
+      setError('Please enter a valid email address');
+      return;
+    }
+    
+    if (!message || message.trim().length < 10) {
+      setError('Please enter a message of at least 10 characters');
+      return;
+    }
+    
+    setIsLoading(true);
+    setError('');
+    setSuccess(false);
+    
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        form.current,
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '',
+        }
+      )
+      .then(
+        () => {
+          setSuccess(true);
+          setIsLoading(false);
+          if (form.current) {
+            form.current.reset();
+          }
+        },
+        (error) => {
+          console.error('EmailJS Error:', error);
+          setError('Failed to send message. Please try again or contact us directly at support@hgbmi.org');
+          setIsLoading(false);
+        },
+      );
+  };
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#4A90E2' }}>
       <Navbar />
@@ -20,17 +78,10 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-            We'd love to hear from you. Get in touch with our team for any questions, prayer requests, or support.
-            Every message is important to us and we'll respond as soon as possible.
+            We&apos;d love to hear from you. Get in touch with our team for any questions, prayer requests, or support.
+            Every message is important to us and we&apos;ll respond as soon as possible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none"
-              style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-            >
-              Send a Message
-            </Button>
             <Button
               size="lg"
               variant="outline"
@@ -183,9 +234,13 @@ export default function ContactPage() {
             <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-lg">
               <Image
                 src="/cong.jpg"
-                alt="Church building"
+                alt="HGBMI Church building in Lashibi, Accra"
                 fill
                 className="object-cover"
+                priority={false}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAADAAQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/60 to-transparent" />
             </div>
@@ -201,82 +256,120 @@ export default function ContactPage() {
               Send Us a Message
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Have a question or need support? We'd love to hear from you. Fill out the form below and we'll get back to you soon.
+              Have a question or need support? We&apos;d love to hear from you. Fill out the form below and we&apos;ll get back to you soon.
             </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12">
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <style jsx>{`
+              input:invalid, textarea:invalid {
+                border-color: rgba(255, 255, 255, 0.3) !important;
+                box-shadow: none !important;
+              }
+            `}</style>
+            <form 
+              ref={form} 
+              onSubmit={sendEmail} 
+              noValidate 
+              className="grid grid-cols-1 md:grid-cols-2 gap-6" 
+              style={{ border: 'none', outline: 'none' }}
+              aria-label="Contact form"
+            >
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-white mb-2" htmlFor="first_name">
                   First Name
                 </label>
                 <input
+                  id="first_name"
                   type="text"
+                  name="first_name"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
                   placeholder="Your first name"
+                  required
+                  aria-required="true"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-white mb-2" htmlFor="last_name">
                   Last Name
                 </label>
                 <input
+                  id="last_name"
                   type="text"
+                  name="last_name"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
                   placeholder="Your last name"
+                  required
+                  aria-required="true"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-white mb-2" htmlFor="user_email">
                   Email
                 </label>
                 <input
+                  id="user_email"
                   type="email"
+                  name="user_email"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
                   placeholder="your.email@example.com"
+                  required
+                  aria-required="true"
+                  aria-describedby="email-error"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-white mb-2">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
-                  placeholder="(555) 123-4567"
-                />
-              </div>
+             
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-white mb-2" htmlFor="subject">
                   Subject
                 </label>
                 <input
+                  id="subject"
                   type="text"
+                  name="subject"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
                   placeholder="How can we help you?"
+                  required
+                  aria-required="true"
                 />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium text-white mb-2" htmlFor="message">
                   Message
                 </label>
                 <textarea
+                  id="message"
                   rows={6}
+                  name="message"
                   className="w-full px-4 py-3 border border-white/30 rounded-lg focus:ring-2 focus:ring-[#FCCB06] focus:border-transparent bg-white/10 text-white placeholder-white/70"
                   placeholder="Tell us more about your inquiry..."
+                  required
+                  aria-required="true"
+                  minLength={10}
                 ></textarea>
               </div>
               <div className="md:col-span-2 text-center">
                 <Button
                   type="submit"
                   size="lg"
-                  className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none"
+                  disabled={isLoading}
+                  className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+                  aria-label={isLoading ? 'Sending message...' : 'Send message'}
                 >
-                  Send Message
+                  {isLoading ? 'Sending...' : 'Send Message'}
                 </Button>
               </div>
+              {success && (
+                <div className="md:col-span-2 text-center">
+                  <p className="text-green-400 text-lg font-semibold">Message sent successfully! We&apos;ll get back to you soon.</p>
+                </div>
+              )}
+              {error && (
+                <div className="md:col-span-2 text-center">
+                  <p className="text-red-300 text-lg font-semibold">{error}</p>
+                </div>
+              )}
             </form>
           </div>
         </div>
