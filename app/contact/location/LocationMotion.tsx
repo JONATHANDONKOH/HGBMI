@@ -1,7 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
 import { MapPin, Clock, Car, Train } from "lucide-react"
-
 export default function LocationMotion() {
   return (
     <main className="container mx-auto px-6 py-20">
