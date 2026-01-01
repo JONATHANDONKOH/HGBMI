@@ -1,10 +1,17 @@
-import dynamic from 'next/dynamic'
+"use client";
 
-const PaymentPage = dynamic(() => import('./PaymentComponent'), { ssr: false })
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getFirestore, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
-export default function Page() {
-  return <PaymentPage />
+declare global {
+  interface Window {
+    PaystackPop: any;
+  }
 }
+
+export default function PaymentComponent() {
   const searchParams = useSearchParams();
   const email = searchParams.get("email");
   const amount = searchParams.get("amount");
