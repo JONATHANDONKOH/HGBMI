@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Button } from '@/components/ui/button';
 
 export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
@@ -11,61 +10,30 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-6 text-center">
         {/* Header */}
-        <motion.div
-          className="mb-8 sm:mb-10 md:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
+        <div className="mb-8 sm:mb-10 md:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-5 md:mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif', position: 'relative', bottom: '30px' }}>
             Why You Must Give
           </h2>
-        </motion.div>
+        </div>
 
         {/* Call to Action */}
-        <motion.div
-          className="bg-white rounded-xl shadow-xl p-6 sm:p-7 md:p-8 max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
+        <div className="bg-white rounded-xl shadow-xl p-6 sm:p-7 md:p-8 max-w-2xl mx-auto mb-8 sm:mb-10 md:mb-12">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-900 mb-3 sm:mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
             Your Giving Makes Eternal Impact
           </h3>
           <p className="text-gray-600 mb-0 text-base sm:text-base md:text-lg">
             Experience the joy of giving and witness God's blessings overflow in your life. Your gift today is an investment in eternal impact that will echo through eternity.
           </p>
-        </motion.div>
+        </div>
 
         {/* Images Container - Church Projects */}
-        <motion.div
-          className="w-full max-w-6xl mb-8 sm:mb-10 md:mb-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <motion.h3
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-7 md:mb-8"
-            style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            viewport={{ once: true }}
-          >
+        <div className="w-full max-w-6xl mb-8 sm:mb-10 md:mb-12">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-7 md:mb-8" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
             Our Church Projects
-          </motion.h3>
+          </h3>
 
           {/* Inline Image Layout */}
-          <motion.div
-            className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-4 sm:gap-5 md:gap-6 lg:gap-6 justify-center items-center mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            viewport={{ once: true }}
-          >
+          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-4 sm:gap-5 md:gap-6 lg:gap-6 justify-center items-center mb-8">
             <div className="relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 w-full sm:w-auto max-w-[400px] md:max-w-[450px] lg:w-[280px] h-[240px] sm:h-[260px] md:h-[300px] lg:h-[220px]" style={{ border: '5px solid white' }}>
               <div
                 className="p-6 text-center h-full"
@@ -157,24 +125,19 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-            viewport={{ once: true }}
-          >
+          <div className="text-center">
             <p
               className="px-6 sm:px-7 md:px-8 py-3 sm:py-3 md:py-4 text-base sm:text-base md:text-lg font-bold text-white animate-bounce"
               style={{ fontFamily: '"Bebas Neue", sans-serif' }}
             >
               Give Generously Today
             </p>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
+

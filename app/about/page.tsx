@@ -4,7 +4,6 @@ import React, { useState } from "react"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 import { Church, Users, Heart, BookOpen, ChevronDown, ChevronUp } from "lucide-react"
-import { motion } from "framer-motion"
 import {
   Dialog,
   DialogContent,
@@ -114,20 +113,14 @@ export default function AboutPage() {
 
       <main className="container mx-auto px-6 py-20">
         {/* Hero Section */}
-        <motion.section
+        <section
           className="text-center mb-16 relative"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
         >
           <div className="relative inline-block mb-8">
-            <motion.img
+            <img
               src="/church_loog-removebg-preview.png"
               alt="Church Logo"
               className="w-64 h-64 md:w-80 md:h-80 object-contain rounded-full shadow-2xl border-4 border-white bg-white/10"
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
             />
             <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent"></div>
           </div>
@@ -137,15 +130,11 @@ export default function AboutPage() {
           <p className="text-xl text-[#374151] max-w-3xl mx-auto leading-relaxed">
             Welcome to Hour of Grace Believers Ministry International. We are a community of faith dedicated to spreading God's love and grace.
           </p>
-        </motion.section>
+        </section>
 
         {/* Mission Section */}
-        <motion.section
+        <section
           className="mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
         >
           <div className="bg-white rounded-2xl p-12 shadow-lg">
             <h2 className="text-4xl font-bold text-[#1e3a8a] mb-8 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
@@ -161,44 +150,22 @@ export default function AboutPage() {
                 }}
               >
                 {visionTexts[visionTextIndex].text.split(" ").map((word, index) => (
-                  <motion.span
+                  <span
                     key={`${visionTextIndex}-${index}`}
                     className="inline-block mr-2"
                     style={{ color: visionTexts[visionTextIndex].color }}
-                    initial={{ opacity: 0, y: 20, rotateX: -90, scale: 0 }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                      rotateX: 0,
-                      scale: [0, 1.2, 1],
-                      textShadow: ['2px 2px 4px rgba(0,0,0,0.3)', '4px 4px 8px rgba(0,0,0,0.5)', '2px 2px 4px rgba(0,0,0,0.3)']
-                    }}
-                    transition={{
-                      duration: 0.8,
-                      delay: index * 0.15,
-                      ease: "easeOut",
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      repeatDelay: 3
-                    }}
-                    whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-                    viewport={{ once: true }}
                   >
                     {word}
-                  </motion.span>
+                  </span>
                 ))}
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Gallery First Row Section */}
-        <motion.section
+        <section
           className="mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold text-white mb-12 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
             Our Community in Action
@@ -207,53 +174,28 @@ export default function AboutPage() {
             {galleryBoxes.slice(0, 4).map((imageArray, index) => {
               const currentImageIndex = getImageIndex(index, false)
               return (
-                <motion.div
+                <div
                   key={index}
                   className="relative overflow-hidden rounded-lg shadow-lg h-48 cursor-pointer border-4 border-white/20"
-                  initial={{ scale: 0, rotate: -10 }}
-                  whileInView={{
-                    scale: 1,
-                    rotate: 0,
-                    transition: { duration: 0.6, delay: index * 0.1 }
-                  }}
-                  viewport={{ once: true }}
                 >
-                  <motion.img
+                  <img
                     key={`img-${index}-${currentImageIndex}`}
                     src={imageArray[currentImageIndex]}
                     alt={`Community image ${index + 1}`}
                     className="w-full h-full object-cover"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{
-                      opacity: 1,
-                      scale: [0.8, 1.05, 1],
-                      rotate: [0, 2, 0]
-                    }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{
-                      duration: 1.5,
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      repeatDelay: 2
-                    }}
-                    whileHover={{ scale: 1.1, rotate: 0 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <motion.div
+                    <div
                       className="text-white text-sm font-semibold"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
                     >
                       Church Life
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
-        </motion.section>
+        </section>
 
         {/* Values Section */}
         <section className="mb-16">
@@ -297,72 +239,39 @@ export default function AboutPage() {
         </section>
 
         {/* Image Gallery Section - Second Row */}
-        <motion.section
+        <section
           className="mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {galleryBoxes.slice(4, 8).map((imageArray, index) => {
               const currentImageIndex = getImageIndex(index, true)
               return (
-                <motion.div
+                <div
                   key={index + 4}
                   className="relative overflow-hidden rounded-lg shadow-lg h-48 cursor-pointer border-4 border-white/20"
-                  initial={{ scale: 0, rotate: -10 }}
-                  whileInView={{
-                    scale: 1,
-                    rotate: 0,
-                    transition: { duration: 0.6, delay: index * 0.1 }
-                  }}
-                  viewport={{ once: true }}
                 >
-                  <motion.img
+                  <img
                     key={`img-${index + 4}-${currentImageIndex}`}
                     src={imageArray[currentImageIndex]}
                     alt={`Community image ${index + 5}`}
                     className="w-full h-full object-cover"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{
-                      opacity: 1,
-                      scale: [0.8, 1.05, 1],
-                      rotate: [0, 2, 0]
-                    }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    transition={{
-                      duration: 1.5,
-                      ease: "easeInOut",
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      repeatDelay: 2
-                    }}
-                    whileHover={{ scale: 1.1, rotate: 0 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <motion.div
+                    <div
                       className="text-white text-sm font-semibold"
-                      initial={{ y: 20, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.3 }}
                     >
                       Church Life
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
-        </motion.section>
+        </section>
 
         {/* History Section */}
-        <motion.section
+        <section
           className="mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
         >
           <div className="bg-[#1e3a8a] rounded-2xl p-12 text-white">
             <h2 className="text-4xl font-bold mb-8 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
@@ -396,10 +305,11 @@ export default function AboutPage() {
               </button>
             </div>
           </div>
-        </motion.section>
+        </section>
       </main>
 
       <Footer />
     </div>
   )
 }
+

@@ -1,7 +1,5 @@
 "use client"
-
 import React, { useState, useEffect, FormEvent } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from '@/components/ui/button'
@@ -70,9 +68,6 @@ export default function HomePage() {
 	const [showLogin, setShowLogin] = useState(false)
 	const [bookstoreCurrentSlide, setBookstoreCurrentSlide] = useState(0)
 
-	const { scrollYProgress } = useScroll()
-	const videoY = useTransform(scrollYProgress, [0, 1], [0, -200]) // Parallax effect
-
 	// Auto-play carousel
 	useEffect(() => {
 		if (isHovering) return // Don't auto-play when hovering over arrows
@@ -122,9 +117,8 @@ export default function HomePage() {
 			<Navbar />
 
 			<div className="relative min-h-[70vh]">
-				<motion.div
+				<div
 					className="absolute top-0 left-0 w-full h-full z-0"
-					style={{ y: videoY }}
 				>
 					<video
 						autoPlay
@@ -139,14 +133,11 @@ export default function HomePage() {
 					>
 						<source src="/videos/WEEKLY INTRO.m4v" type="video/mp4" />
 					</video>
-				</motion.div>
+				</div>
 
 				<div className="absolute inset-0 flex flex-col items-center justify-start z-10 pt-32 md:pt-[170px] lg:pt-40">
-					<motion.div
+					<div
 						className="flex flex-col items-center"
-						initial={{ y: 50, opacity: 0 }}
-						animate={{ y: 0, opacity: 1 }}
-						transition={{ duration: 1, delay: 0.5 }}
 					>
 						<h1
 							className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center mb-4"
@@ -174,11 +165,8 @@ export default function HomePage() {
 						>
 							Experience community, worship, and inspiration every week. All are welcome!
 						</p>
-						<motion.div
+						<div
 						  className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 w-full items-center justify-center"
-						  initial={{ scale: 0.8, opacity: 0 }}
-						  animate={{ scale: 1, opacity: 1 }}
-						  transition={{ duration: 0.5, delay: 1.5 }}
 						>
 						  <Link href="/affirmation">
 						    <Button className="px-16 sm:px-20 py-3 text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-200 bebas-neue-regular animate-bounce hover:animate-none" style={{ borderRadius: '7px', fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}>
@@ -190,8 +178,8 @@ export default function HomePage() {
 						      Messages
 						    </Button>
 						  </Link>
-						</motion.div>
-					</motion.div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -451,92 +439,60 @@ export default function HomePage() {
 				</div>
 			</div>
 
-			<motion.div
-				initial={{ opacity: 0, x: -100 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 1, ease: "easeOut" }}
-				viewport={{ once: true, margin: "-100px" }}
+			<div
 				className="mb-4 w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden"
 			>
 				<div className="max-w-7xl mx-auto">
 					<Verse />
 				</div>
-			</motion.div>
-			<motion.div
-				initial={{ opacity: 0, x: -100 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-				viewport={{ once: true, margin: "-100px" }}
+			</div>
+			<div
 				className="mb-4 w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden"
 			>
 				<div className="max-w-7xl mx-auto">
 					<Ministry />
 				</div>
-			</motion.div>
-			<motion.div
-				initial={{ opacity: 0, x: -100 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-				viewport={{ once: true, margin: "-100px" }}
+			</div>
+			<div
 				className="mb-4 w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden"
 			>
 				<div className="max-w-7xl mx-auto">
 					<Pastor />
 				</div>
-			</motion.div>
-			<motion.div
-				initial={{ opacity: 0, x: -100 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-				viewport={{ once: true, margin: "-100px" }}
+			</div>
+			<div
 				className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden"
 				style={{ borderRadius: '16px' }}
 			>
 				<div className="max-w-7xl mx-auto">
 					<YouthPastor />
 				</div>
-			</motion.div>
-<motion.div
-  initial={{ opacity: 0, x: -100 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
-  viewport={{ once: true, margin: "-100px" }}
-  className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden"
+			</div>
+<div
+		className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden"
 >
-  <div className="max-w-7xl mx-auto">
-    <Give />
-  </div>
-</motion.div>
-<motion.div
-  initial={{ opacity: 0, x: -100 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1, ease: "easeOut", delay: 1.0 }}
-  viewport={{ once: true, margin: "-100px" }}
-  className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden mb-10 md:mb-0 -mt-12 md:-mt-16 relative z-10"
+		<div className="max-w-7xl mx-auto">
+			 <Give />
+		</div>
+</div>
+<div
+		className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden mb-10 md:mb-0 -mt-12 md:-mt-16 relative z-10"
 >
-  <div className="max-w-7xl mx-auto">
-    <Congregation />
-  </div>
-</motion.div>
-			<motion.div
-				initial={{ opacity: 0, x: -100 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 1, ease: "easeOut", delay: 1.2 }}
-				viewport={{ once: true, margin: "-100px" }}
+		<div className="max-w-7xl mx-auto">
+			 <Congregation />
+		</div>
+</div>
+			<div
 				className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl mb-[50px] mt-5 lg:mt-0 lg:z-20 lg:relative"
 			>
 				<div className="max-w-7xl mx-auto">
 					<Events limit={3} />
 				</div>
-			</motion.div>
+			</div>
 
 			{/* Find Us on the Map Section */}
-			<motion.section
+			<section
 				className="w-screen -ml-[calc((100vw-100%)/2)] py-8 md:py-12 lg:py-16 shadow-2xl overflow-hidden"
-				initial={{ opacity: 0, x: -100 }}
-				whileInView={{ opacity: 1, x: 0 }}
-				transition={{ duration: 1, ease: "easeOut", delay: 1.4 }}
-				viewport={{ once: true, margin: "-100px" }}
 			>
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="bg-white rounded-lg sm:rounded-xl p-6 sm:p-8 shadow-lg">
@@ -599,9 +555,10 @@ export default function HomePage() {
 						</div>
 					</div>
 				</div>
-			</motion.section>
+			</section>
 
 			<Footer />
 		</div>
 	)
 }
+

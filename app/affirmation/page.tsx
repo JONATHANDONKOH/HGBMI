@@ -40,3 +40,4 @@ export default function AffirmationPage() {
     </div>
   )
 }
+

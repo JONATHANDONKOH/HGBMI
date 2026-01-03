@@ -16,39 +16,46 @@ import { Menu, Church, Calendar, Book, Phone, Info, Heart, Facebook, Youtube, In
 import { cn } from "@/lib/utils"
 import { useAuth } from "@/context/AuthContext"
 import { useRouter, usePathname } from "next/navigation"
+import Image from "next/image"
 
 const navigationItems = [
   {
     title: "Home",
     href: "/",
     icon: Church,
+    hasDropdown: false,
   },
   {
     title: "About",
     href: "/about",
     icon: Info,
     description: "Learn about our church community and mission",
+    hasDropdown: false,
   },
   {
     title: "Events",
     href: "/events",
     icon: Calendar,
     description: "Monday, Wednesday, and Sunday services",
+    hasDropdown: false,
   },
   {
     title: "Fellowship",
     href: "/fellowship",
     icon: Users,
+    hasDropdown: false,
   },
   {
     title: "Give",
     href: "/give",
     icon: Heart,
+    hasDropdown: false,
   },
   {
     title: "Contact",
     href: "/contact",
     icon: Phone,
+    hasDropdown: false,
   },
 ]
 
@@ -98,7 +105,11 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
               <div className="flex h-12 w-12 items-center justify-center text-white">
-                <img src="/church loog.jpg" alt="Church Logo" className="h-10 w-30" />
+                <img 
+                  src="/church loog.jpg" 
+                  alt="Church Logo" 
+                  className="h-10 w-30 object-contain"
+                />
               </div>
               <span 
                 className="text-[18px] text-white"
@@ -120,45 +131,35 @@ export function Navbar() {
                     <NavigationMenuItem key={item.title}>
                       {item.hasDropdown ? (
                         <>
-                          <Link href={item.href}>
-                            <NavigationMenuTrigger
-                              className={cn(
-                                "text-xl font-bold text-white bg-transparent hover:bg-white/10 data-[state=open]:bg-white/10",
-                              )}
-                              style={{
-                                fontFamily: '"Bebas Neue", sans-serif',
-                                fontWeight: '400',
-                                fontStyle: 'normal'
-                              }}
-                            >
-                              {item.title === "Contact" && (
-                                <>
-                                  {item.title}
-                                  <img src="/ghana-flag.jpg" alt="Ghana Flag" className="h-6 w-10 ml-2 rounded-sm inline-block" />
-                                </>
-                              )}
-                              {item.title !== "Contact" && <><item.icon className="mr-2 h-4 w-4" />{item.title}</>}
-                            </NavigationMenuTrigger>
-                          </Link>
+                          <NavigationMenuTrigger
+                            className={cn(
+                              "text-xl font-bold text-white bg-transparent hover:bg-white/10 data-[state=open]:bg-white/10",
+                            )}
+                            style={{
+                              fontFamily: '"Bebas Neue", sans-serif',
+                              fontWeight: '400',
+                              fontStyle: 'normal'
+                            }}
+                          >
+                            {item.title === "Contact" ? (
+                              <>
+                                {item.title}
+                                <img 
+                                  src="/ghana-flag.jpg" 
+                                  alt="Ghana Flag" 
+                                  className="h-6 w-10 ml-2 rounded-sm inline-block" 
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <item.icon className="mr-2 h-4 w-4" />
+                                {item.title}
+                              </>
+                            )}
+                          </NavigationMenuTrigger>
                           <NavigationMenuContent>
                             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                              {item.items?.map((subItem) => (
-                                <li key={subItem.title}>
-                                  <NavigationMenuLink asChild>
-                                    <Link
-                                      href={subItem.href}
-                                      className={cn(
-                                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                                      )}
-                                    >
-                                      <div className="text-sm font-medium leading-none">{subItem.title}</div>
-                                      <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                        {subItem.description}
-                                      </p>
-                                    </Link>
-                                  </NavigationMenuLink>
-                                </li>
-                              ))}
+                              {/* Add your dropdown items here */}
                             </ul>
                           </NavigationMenuContent>
                         </>
@@ -178,7 +179,11 @@ export function Navbar() {
                             <item.icon className="mr-2 h-4 w-4" />
                             {item.title}
                             {item.title === "Contact" && (
-                              <img src="/ghana-flag.jpg" alt="Ghana Flag" className="h-6 w-10 ml-2 rounded-sm inline-block" />
+                              <img 
+                                src="/ghana-flag.jpg" 
+                                alt="Ghana Flag" 
+                                className="h-6 w-10 ml-2 rounded-sm inline-block" 
+                              />
                             )}
                           </Link>
                         </NavigationMenuLink>
@@ -201,7 +206,11 @@ export function Navbar() {
                 <div className="flex flex-col space-y-4 mt-4">
                   <div className="flex items-center space-x-2 pb-4 border-b">
                     <div className="flex h-12 w-12 items-center justify-center text-primary">
-                      <img src="/church_loog-removebg-preview.png" alt="Church Logo" className="h-7 w-7" />
+                      <img 
+                        src="/church_loog-removebg-preview.png" 
+                        alt="Church Logo" 
+                        className="h-7 w-7 object-contain" 
+                      />
                     </div>
                     <span 
                       className="text-xl font-bold"
@@ -242,25 +251,9 @@ export function Navbar() {
                           </span>
                         </Link>
 
-                        {item.hasDropdown && item.items && (
+                        {item.hasDropdown && (
                           <div className="ml-7 mt-2 space-y-1">
-                            {item.items.map((subItem) => (
-                              <Link
-                                key={subItem.title}
-                                href={subItem.href}
-                                className={cn(
-                                  "block px-3 py-2 text-base text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors font-bold",
-                                )}
-                                style={{
-                                  fontFamily: '"Bebas Neue", sans-serif',
-                                  fontWeight: '400',
-                                  fontStyle: 'normal'
-                                }}
-                                onClick={() => setIsOpen(false)}
-                              >
-                                {subItem.title}
-                              </Link>
-                            ))}
+                            {/* Add mobile dropdown items here */}
                           </div>
                         )}
                       </div>
@@ -301,7 +294,7 @@ export function Navbar() {
         </div>
       </div>
 
-  <div className="bg-[#000080] h-[40px] w-full flex items-center justify-between px-4">
+      <div className="bg-[#000080] h-[40px] w-full flex items-center justify-between px-4">
         <div className="container mx-auto flex justify-between items-center w-full">
           <div className="flex items-center space-x-2">
             {user && (

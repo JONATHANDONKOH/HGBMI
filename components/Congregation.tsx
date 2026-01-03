@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
@@ -9,27 +8,15 @@ export default function Congregation() {
 <section className="w-full py-10 mt-8">
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+          <div className="text-center mb-16">
             <h2 className="text-5xl md:text-6xl font-serif text-white mb-6 text-balance" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Our Congregation</h2>
             <p className="text-lg text-white max-w-2xl mx-auto leading-relaxed">
               A diverse community of believers united in faith, love, and service. Join us on this spiritual journey.
             </p>
-          </motion.div>
+          </div>
 
           {/* Image Grid */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             {/* Large featured image */}
             <div className="md:col-span-2 relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden group" style={{ border: '5px solid white', boxShadow: '0 4px 8px rgba(0,0,0,0.3)' }}>
               <Image
@@ -66,7 +53,7 @@ export default function Congregation() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Congregation Info Card */}
           <div className="mb-16" style={{ perspective: '1500px' }}>
@@ -199,3 +186,4 @@ export default function Congregation() {
     </main>
   )
 }
+

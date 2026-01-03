@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { motion } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 import Give from "@/components/Give"
@@ -15,33 +14,20 @@ export default function GivePage() {
 
       <main className="container mx-auto px-6 py-20">
         {/* Hero Section */}
-        <motion.section
+        <section
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true, margin: "-100px" }}
         >
           
-        </motion.section>
+        </section>
 
         {/* Give Component */}
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <div>
           <Give />
-        </motion.div>
+        </div>
 
         {/* Payment Information Section */}
-        <motion.section
+        <section
           className="mt-16 mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: true, margin: "-100px" }}
         >
           <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto">
             <div className="text-center mb-8">
@@ -101,10 +87,11 @@ export default function GivePage() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
       </main>
 
       <Footer />
     </div>
   )
 }
+

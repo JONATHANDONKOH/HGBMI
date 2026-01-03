@@ -8,3 +8,4 @@ const PaymentPage = nextDynamic(() => import('./PaymentComponent'), { ssr: false
 export default function Page() {
   return <PaymentPage />
 }
+

@@ -1,16 +1,11 @@
 "use client"
-import { motion } from "framer-motion"
 import { MapPin, Clock, Car, Train } from "lucide-react"
 export default function LocationMotion() {
   return (
     <main className="container mx-auto px-6 py-20">
       {/* Hero Section */}
-      <motion.section
+      <section
         className="text-center mb-16"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-100px" }}
       >
         <h1 className="text-5xl md:text-7xl font-bold text-[#1e3a8a] mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
           Our Location
@@ -18,15 +13,11 @@ export default function LocationMotion() {
         <p className="text-xl text-[#374151] max-w-3xl mx-auto leading-relaxed">
           Find us and join our community. We're located in the heart of the city, easily accessible by car or public transport.
         </p>
-      </motion.section>
+      </section>
 
       {/* Address and Service Times */}
-      <motion.section
+      <section
         className="mb-16"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        viewport={{ once: true, margin: "-100px" }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -83,15 +74,11 @@ export default function LocationMotion() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Map and Directions */}
-      <motion.section
+      <section
         className="mb-16"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-        viewport={{ once: true, margin: "-100px" }}
       >
         <div className="bg-white rounded-xl p-8 shadow-lg">
           <h2 className="text-3xl font-bold text-[#1e3a8a] mb-8 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
@@ -152,15 +139,11 @@ export default function LocationMotion() {
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Directions */}
-      <motion.section
+      <section
         className="mb-16"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-        viewport={{ once: true, margin: "-100px" }}
       >
         <h2 className="text-4xl font-bold text-[#1e3a8a] mb-12 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
           Getting Here
@@ -200,15 +183,11 @@ export default function LocationMotion() {
             </ul>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Facilities */}
-      <motion.section
+      <section
         className="mb-16"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
-        viewport={{ once: true, margin: "-100px" }}
       >
         <h2 className="text-4xl font-bold text-[#1e3a8a] mb-12 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
           Our Facilities
@@ -239,15 +218,11 @@ export default function LocationMotion() {
             </p>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* CTA Section */}
-      <motion.section
+      <section
         className="bg-[#1e3a8a] rounded-2xl p-12 text-white text-center"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 1.0 }}
-        viewport={{ once: true, margin: "-100px" }}
       >
         <h2 className="text-4xl font-bold mb-8" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
           Plan Your Visit
@@ -263,7 +238,8 @@ export default function LocationMotion() {
             Get Directions
           </button>
         </div>
-      </motion.section>
+      </section>
     </main>
   )
 }
+

@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion } from "framer-motion"
 import {
   Calendar,
   MapPin,
@@ -92,10 +91,7 @@ export default function Events({ limit }: { limit?: number }) {
         {/* MAIN CONTENT GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* LEFT SIDE: IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+          <div
             className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl shadow-black/50"
           >
             <img
@@ -113,22 +109,14 @@ export default function Events({ limit }: { limit?: number }) {
                 Join our vibrant community for powerful worship and teachings
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* RIGHT SIDE: EVENTS LIST */}
           <div className="space-y-6">
             {events.slice(0, limit).map((event, index) => (
-              <motion.div
+              <div
                 key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
                 onClick={() => setSelectedEvent(index)}
-                whileHover={{ 
-                  scale: 1.02, 
-                  y: -4,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(250, 204, 21, 0.3)"
-                }}
                 className={`
                   cursor-pointer
                   rounded-xl
@@ -219,29 +207,23 @@ export default function Events({ limit }: { limit?: number }) {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
 
         {/* CTA BUTTON */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+        <div
           className="text-center mt-16"
         >
           <Link href="/events">
-           
+
           </Link>
-        </motion.div>
+        </div>
 
         {/* CTA BUTTON - Only show on homepage */}
         {limit && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+          <div
             className="text-center mt-16"
           >
             <Link href="/events">
@@ -256,9 +238,10 @@ export default function Events({ limit }: { limit?: number }) {
                 View All Events
               </Button>
             </Link>
-          </motion.div>
+          </div>
         )}
       </div>
     </section>
   )
 }
+

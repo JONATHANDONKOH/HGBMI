@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 export default function YouthPastor() {
   return (
     <section className="relative w-full min-h-[30vh] overflow-hidden">
@@ -22,37 +20,19 @@ export default function YouthPastor() {
         <div className="absolute bottom-10 right-10 w-56 h-56 bg-gradient-to-br from-teal-400/10 to-green-500/10 rounded-full blur-2xl" style={{ transform: 'translateZ(60px) rotateX(25deg) rotateY(-15deg)', animationDelay: '3s' }} />
       </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-24 lg:py-32">
+      <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-24 lg:py-32">
         <div className="flex flex-col gap-12 lg:gap-16">
           {/* Header */}
-          <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+          <div className="text-center">
             <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
               Your Church. Your Stories. Your Channel.
             </h2>
-          </motion.div>
+          </div>
 
           {/* Video Flexboxes */}
-          <motion.div
-            className="flex justify-center items-start relative"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
+          <div className="flex justify-center items-start relative">
             <div className="max-w-lg relative z-10" style={{ boxShadow: '0 8px 16px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.2)', border: '2px solid rgba(255,255,255,0.1)', borderRadius: '12px', transform: 'perspective(1000px) rotateX(-5deg) rotateY(-5deg)', transformStyle: 'preserve-3d', transition: 'transform 0.3s ease' }}>
-              <motion.div
-                className="rounded-lg overflow-hidden mb-6 relative group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-              >
+              <div className="rounded-lg overflow-hidden mb-6 relative group">
                 <video
                   src="/videos/Hgbmi-1.m4v"
                   autoPlay
@@ -63,41 +43,22 @@ export default function YouthPastor() {
                   style={{ aspectRatio: '16/9' }}
                 />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 pointer-events-none"></div>
-              </motion.div>
-              <div className="text-center">
-                <motion.p
-                  className="text-lg text-white leading-relaxed mb-3"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                  viewport={{ once: true }}
-                >
+              </div>
+              <div className="text-center p-6">
+                <p className="text-lg text-white leading-relaxed mb-3">
                   Witness the culmination of fervent prayer and prophetic revelation that characterized this remarkable church event, setting the stage for unprecedented spiritual manifestations.
-                </motion.p>
-                <motion.p
-                  className="text-lg text-white leading-relaxed mb-3"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.9 }}
-                  viewport={{ once: true }}
-                >
+                </p>
+                <p className="text-lg text-white leading-relaxed mb-3">
                   Lives were forever changed as the Holy Spirit moved powerfully, bringing healing, deliverance, and a renewed sense of destiny to all who participated.
-                </motion.p>
-                <motion.p
-                  className="text-lg text-white leading-relaxed"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.1 }}
-                  viewport={{ once: true }}
-                >
-"Miracle Arena was just the beginning—greater works and deeper encounters await our faithful community. please! dont miss the next time."
-                </motion.p>
+                </p>
+                <p className="text-lg text-white leading-relaxed">
+                  "Miracle Arena was just the beginning—greater works and deeper encounters await our faithful community. please! dont miss the next time."
+                </p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
   )
-}                                     
-
+}

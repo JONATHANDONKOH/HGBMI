@@ -1,12 +1,11 @@
+"use client"
+
 import React from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 import { Users, BookOpen, Heart, GraduationCap } from "lucide-react"
 
 export default function CampusFellowshipPage() {
-  const { scrollYProgress } = useScroll()
-  const bgY = useTransform(scrollYProgress, [0, 1], [0, -200]) // Parallax effect
 
   return (
     <div className="min-h-screen" style={{ background: 'radial-gradient(circle at center, #aeccf3ff 0%, #e6b2dfff 25%, #fec7f2ff 50%, #90a0ee91 75%, #818cf8 100%)' }}>
@@ -14,15 +13,14 @@ export default function CampusFellowshipPage() {
 
       {/* Hero Section with Background Image */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <motion.div
+        <div
           className="absolute inset-0"
           style={{
             backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/campus.jpg')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            y: bgY
+            backgroundPosition: 'center'
           }}
-        />
+        ></div>
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
           <h1 className="text-6xl md:text-9xl lg:text-8xl font-bold mb-6 animate-fade-in" style={{ fontFamily: '"Bebas Neue", sans-serif', textShadow: '4px 4px 8px rgba(0,0,0,0.8)' }}>
@@ -45,12 +43,8 @@ export default function CampusFellowshipPage() {
       <main className="container mx-auto px-6 py-20">
 
         {/* Fellowship Info */}
-        <motion.section
+        <section
           className="mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true, margin: "-100px" }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -107,15 +101,11 @@ export default function CampusFellowshipPage() {
               </div>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Activities */}
-        <motion.section
+        <section
           className="mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-4xl font-bold text-[#1e3a8a] mb-12 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
             Our Activities
@@ -149,15 +139,11 @@ export default function CampusFellowshipPage() {
               <p className="text-sm text-[#6b7280]">Monthly projects</p>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* Testimonial */}
-        <motion.section
+        <section
           className="mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: true, margin: "-100px" }}
         >
           <div className="bg-[#1e3a8a] rounded-2xl p-12 text-white">
             <div className="max-w-4xl mx-auto text-center">
@@ -171,15 +157,11 @@ export default function CampusFellowshipPage() {
               <p className="text-lg">- Ama, University Student</p>
             </div>
           </div>
-        </motion.section>
+        </section>
 
         {/* CTA Section */}
-        <motion.section
+        <section
           className="bg-gradient-to-r from-[#2563eb] to-[#1e3a8a] rounded-2xl p-12 text-white text-center"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
         >
           <h2 className="text-4xl font-bold mb-8" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
             Join Our Campus Community
@@ -196,10 +178,11 @@ export default function CampusFellowshipPage() {
               Learn More
             </button>
           </div>
-        </motion.section>
+        </section>
       </main>
 
       <Footer />
     </div>
   )
 }
+

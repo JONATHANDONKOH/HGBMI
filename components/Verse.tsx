@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Play, Youtube, Calendar, Clock } from "lucide-react";
@@ -45,76 +44,48 @@ export default function Verse() {
 
       <div className="relative z-10 container mx-auto px-4 py-12">
         <div className="text-center mb-8 sm:mb-12">
-          <motion.div
+          <div
             className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
           >
             <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
             <span className="text-sm sm:text-base text-white font-medium">Live & On-Demand</span>
-          </motion.div>
-          <motion.h1
+          </div>
+          
+          <h1
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6"
             style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
           >
             Online Worship Center
-          </motion.h1>
-          <motion.p
+          </h1>
+          
+          <p
             className="text-lg sm:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed px-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
           >
             Welcome to our digital sanctuary where faith comes alive. Experience past live sermons, join upcoming services,
             and connect with God's word anytime, anywhere through our comprehensive online platform.
-          </motion.p>
+          </p>
         </div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Featured Video Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <Card className="bg-white/95 backdrop-blur-sm border-white/20 shadow-2xl mb-12 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2">
               <CardHeader className="text-center pb-6">
-                <motion.div
+                <div
                   className="mx-auto mb-4 p-4 bg-gradient-to-r from-red-100 to-red-200 rounded-full w-fit"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.9 }}
-                  viewport={{ once: true }}
                 >
                   <Youtube className="h-8 w-8 sm:h-10 sm:w-10 text-red-600" />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.1 }}
-                  viewport={{ once: true }}
-                >
+                </div>
+                <div>
                   <CardTitle className="text-2xl sm:text-3xl text-gray-800 font-bold">Past Live Sermon</CardTitle>
                   <CardDescription className="text-base sm:text-lg text-gray-600">
                     Revisit our recent live service and experience the power of God's word
                   </CardDescription>
-                </motion.div>
+                </div>
               </CardHeader>
               <CardContent className="px-4 sm:px-6 lg:px-8 pb-8">
-                <motion.div
+                <div
                   className="relative max-w-4xl mx-auto"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 1.3 }}
-                  viewport={{ once: true }}
                 >
                   <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800" style={{ height: '500px' }}>
                     <iframe
@@ -126,10 +97,10 @@ export default function Verse() {
                       className="w-full h-full"
                     ></iframe>
                   </div>
-                </motion.div>
+                </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
