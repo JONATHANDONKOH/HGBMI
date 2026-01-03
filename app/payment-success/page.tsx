@@ -1,10 +1,11 @@
 "use client";
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 export const dynamic = 'force-dynamic';
 
-export default function PaymentSuccess() {
+function PaymentSuccessContent() {
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref');
 
@@ -14,6 +15,14 @@ export default function PaymentSuccess() {
       <p>Thank you for your offering.</p>
       {ref && <p>Reference: <strong>{ref}</strong></p>}
     </div>
+  );
+}
+
+export default function PaymentSuccess() {
+  return (
+    <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center', minHeight: '100vh' }}>Loading...</div>}>
+      <PaymentSuccessContent />
+    </Suspense>
   );
 }
 
