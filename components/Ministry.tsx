@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button'
 
 const ministries = [
   {
-    title: "Spintex Fellowship",
-    slug: "spintex",
-    image: "/vhh.jpg",
+    title: "Pleroma Fellowship",
+    slug: "pleroma",
+    image: "/quire.jpg",
     about: "Uplifting worship through music and praise.",
   },
   {
-    title: "Campus Fellowship",
+    title: "Light Fellowship",
     slug: "campus",
     image: "/campus.jpg",
     about: "Guiding young hearts in faith and joy.",
@@ -20,7 +20,7 @@ const ministries = [
   {
     title: "Klagon Fellowship",
     slug: "klagon",
-    image: "/quire.jpg",
+    image: "/vhh.jpg",
     about: "Empowering students with spiritual growth.",
   },
   {
@@ -131,7 +131,7 @@ export default function Ministry() {
         </div>
         
         {/* Scroll Indicators */}
-        <div className="flex justify-center gap-2 mt-6">
+        <div className="flex md:hidden justify-center gap-2 mt-6">
           {ministries.map((_, index) => (
             <button
               key={index}

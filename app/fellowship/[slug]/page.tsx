@@ -8,35 +8,35 @@ import Footer from "@/components/Footer"
 const fellowships = [
   // First 4 fellowships match the ministry section on homepage
   {
-    name: "Spintex Fellowship",
-    slug: "spintex",
-    location: "Spintex",
-    address: "Spintex, Accra",
-    image: "/vhh.jpg",
-    communityImage: "/vhh.jpg",
+    name: "Pleroma Fellowship",
+    slug: "pleroma",
+    location: "Lashibi",
+    address: "Lashibi, Accra",
+    image: "/quire.jpg",
+    communityImage: "/quire.jpg",
     description: "Uplifting worship through music and praise.",
-    whatsapp: "+233 123 456 789",
-    phone: "+233 123 456 780",
+    whatsapp: "+233 271645202",
+    phone: "+233 271645202",
     email: "spintex@hgbmi.org",
     policies: "Open to all. Focus on worship and praise.",
     meetingDays: "Every Sunday, 9:00 AM",
     teachings: ["Worship", "Music Ministry", "Praise"],
     foundationSchool: {
       time: "Saturdays, 10:00 AM - 12:00 PM",
-      location: "Spintex Hall"
+      location: "Lashibi Hall"
     },
     googleMeetId: "abc-defg-hij"
   },
   {
-    name: "Campus Fellowship",
+    name: "Light Fellowship",
     slug: "campus",
-    location: "Campus Ministry",
-    address: "University Campus, Accra",
+    location: "Light Ministry",
+    address: "ATU, Accra",
     image: "/campus.jpg",
-    communityImage: "/campus.jpg",
+    communityImage: "/lll.jpg",
     description: "Guiding young hearts in faith and joy.",
-    whatsapp: "+233 209169568",
-    phone: "+233 209169568",
+    whatsapp: "+233 509772930",
+    phone: "+233 509772930",
     email: "campus@hgbmi.org",
     policies: "Open to students. Focus on youth ministry.",
     meetingDays: "Every Thursday, 6:00 PM",
@@ -52,11 +52,11 @@ const fellowships = [
     slug: "klagon",
     location: "Klagon",
     address: "Klagon, Accra",
-    image: "/quire.jpg",
-    communityImage: "/quire.jpg",
+    image: "/vhh.jpg",
+    communityImage: "/vhh.jpg",
     description: "Empowering students with spiritual growth.",
-    whatsapp: "+233 201159482",
-    phone: "+233 201159482",
+    whatsapp: "+233 206821255",
+    phone: "+233 206821255",
     email: "klagon@hgbmi.org",
     policies: "Open to all students. Focus on spiritual empowerment.",
     meetingDays: "Every Wednesday, 7:00 PM",
@@ -75,8 +75,8 @@ const fellowships = [
     image: "/kyt.jpg",
     communityImage: "/kyt.jpg",
     description: "Building community through shared faith.",
-    whatsapp: "+233 538746203",
-    phone: "+233 538746203",
+    whatsapp: "+233 246148032",
+    phone: "+233 246148032",
     email: "nungua@hgbmi.org",
     policies: "Open to all. Focus on community building.",
     meetingDays: "Every Tuesday, 5:30 PM",
@@ -96,8 +96,8 @@ const fellowships = [
     image: "/worldlove.jpg",
     communityImage: "/mem-world.jpg",
     description: "Spreading God's love to the world through vibrant community and spiritual growth.",
-    whatsapp: "+233 123 456 789",
-    phone: "+233 123 456 780",
+    whatsapp: "+233 271645202",
+    phone: "+233 271645202",
     email: "ekowdadzie1234@gmail.com",
     policies: "Members must be between 18-35 years old. Regular attendance required.",
     meetingDays: "Every Tuesday, 7:00 PM - 8:00pm",
@@ -154,6 +154,7 @@ const fellowships = [
     location: "Accra Technical university",
     address: "accra, Accra",
     image: "/spirit.jpg",
+    communityImage: "/oma.jpg",
     description: "Filled with the Holy Spirit, nurturing hearts with God's love and faith-based activities.",
     whatsapp: "+233 538746203",
     phone: "+233 538746203",
@@ -325,12 +326,12 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
             </div>
 
             <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-lg">
-              <img src={fellowship.communityImage || '/life comm.jpg'} alt="Community Image" className="w-full h-full object-cover" />
+              <img src={fellowship.communityImage || '/life comm.jpg'} alt={`${fellowship.name} Community`} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/60 to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center text-white">
                   <h3 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-                    Fellowship Family
+                    {fellowship.name}
                   </h3>
                   <p className="text-lg opacity-90">Building relationships that last a lifetime</p>
                 </div>
