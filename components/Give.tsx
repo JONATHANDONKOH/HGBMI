@@ -33,8 +33,8 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
             Our Church Projects
           </h3>
 
-          {/* Inline Image Layout */}
-          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row gap-4 sm:gap-5 md:gap-6 lg:gap-6 justify-center items-center mb-8">
+          {/* Responsive Image Layout */}
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 justify-center items-center mb-8">
             <div className="relative overflow-hidden rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 w-full sm:w-auto max-w-[400px] md:max-w-[450px] lg:w-[280px] h-[240px] sm:h-[260px] md:h-[300px] lg:h-[220px]" style={{ border: '5px solid white' }}>
               <div
                 className="p-6 text-center h-full"
@@ -128,16 +128,18 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
             </div>
           </div>
 
-          <div className="text-center">
-            <Link href="/give">
-              <Button
-                className="px-6 sm:px-7 md:px-8 py-3 sm:py-3 md:py-4 text-base sm:text-base md:text-lg font-bold text-white animate-bounce hover:animate-none hover:scale-105 transition-transform duration-200"
-                style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-              >
-                Give Generously Today
-              </Button>
-            </Link>
-          </div>
+          {isHomepage && (
+            <div className="text-center">
+              <Link href="/give">
+                <Button
+                  className="px-6 sm:px-7 md:px-8 py-3 sm:py-3 md:py-4 text-base sm:text-base md:text-lg font-bold text-white animate-bounce hover:animate-none hover:scale-105 transition-transform duration-200"
+                  style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+                >
+                  Give Generously Today
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </section>

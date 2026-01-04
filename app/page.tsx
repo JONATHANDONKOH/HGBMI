@@ -472,7 +472,7 @@ export default function HomePage() {
 		className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden"
 >
 		<div className="max-w-7xl mx-auto">
-			 <Give />
+			 <Give isHomepage={true} />
 		</div>
 </div>
 <div
