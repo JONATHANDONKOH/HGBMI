@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react";
+import Link from "next/link";
 import { Button } from '@/components/ui/button';
 
 export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
@@ -128,12 +129,14 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
           </div>
 
           <div className="text-center">
-            <p
-              className="px-6 sm:px-7 md:px-8 py-3 sm:py-3 md:py-4 text-base sm:text-base md:text-lg font-bold text-white animate-bounce"
-              style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-            >
-              Give Generously Today
-            </p>
+            <Link href="/give">
+              <Button
+                className="px-6 sm:px-7 md:px-8 py-3 sm:py-3 md:py-4 text-base sm:text-base md:text-lg font-bold text-white animate-bounce hover:animate-none hover:scale-105 transition-transform duration-200"
+                style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+              >
+                Give Generously Today
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

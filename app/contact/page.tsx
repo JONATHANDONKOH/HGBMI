@@ -81,14 +81,16 @@ export default function ContactPage() {
             Every message is important to us and we&apos;ll respond as soon as possible.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 bg-transparent animate-bounce hover:animate-none"
-              style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-            >
-              024 681 9964
-            </Button>
+            <a href="tel:0246819964">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 bg-transparent animate-bounce hover:animate-none"
+                style={{ fontFamily: '"Bebas Neue", sans-serif' }}
+              >
+                024 681 9964
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -112,7 +114,7 @@ export default function ContactPage() {
               <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Phone Support</h3>
               <p className="text-lg mb-4">Call us for immediate assistance</p>
               <div className="space-y-2">
-                <p className="font-semibold">Main Line: (024) 681-9964</p>
+                <p className="font-semibold">Main Line: <a href="tel:0246819964" className="hover:underline">(024) 681-9964</a></p>
                 <p className="text-sm opacity-90">Mon-Fri: 9AM-6PM, Sat: 10AM-4PM</p>
               </div>
             </div>
@@ -217,7 +219,7 @@ export default function ContactPage() {
                   <Phone className="w-6 h-6 text-[#2563eb] mt-1" />
                   <div>
                     <p className="font-semibold text-gray-800">Contact Info</p>
-                    <p className="text-gray-600">Phone: (024) 681-9964<br />Email: support@hgbmi.org</p>
+                    <p className="text-gray-600">Phone: <a href="tel:0246819964" className="text-[#2563eb] hover:underline">(024) 681-9964</a><br />Email: <a href="mailto:support@hgbmi.org" className="text-[#2563eb] hover:underline">support@hgbmi.org</a></p>
                   </div>
                 </div>
               </div>

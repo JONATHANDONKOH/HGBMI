@@ -5,8 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Play, Youtube, Calendar, Clock } from "lucide-react";
 
 export default function Verse() {
-  // YouTube video URL
-  const videoUrl = "https://www.youtube.com/embed/N0ncEHIccf4?start=468&autoplay=1&mute=1";
+  // YouTube video URL with controls enabled
+  const videoUrl = "https://www.youtube.com/embed/N0ncEHIccf4?start=468&autoplay=1&mute=1&controls=1&modestbranding=1";
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -83,18 +83,23 @@ export default function Verse() {
                   </CardDescription>
                 </div>
               </CardHeader>
-              <CardContent className="px-4 sm:px-6 lg:px-8 pb-8">
+              <CardContent className="px-0 sm:px-6 lg:px-8 pb-8">
                 <div
-                  className="relative max-w-4xl mx-auto"
+                  className="relative w-full max-w-full sm:max-w-4xl mx-auto"
                 >
-                  <div className="relative bg-black rounded-lg overflow-hidden shadow-2xl border-4 border-gray-800" style={{ height: '500px' }}>
+                  {/* Mobile Helper Text */}
+                  <div className="block sm:hidden bg-blue-100 text-blue-800 text-xs px-3 py-2 mb-2 text-center rounded">
+                    💡 Tip: If you can't see the volume controls, tap the maximize button to view in fullscreen to see it
+                  </div>
+                  
+                  <div className="relative bg-black rounded-none sm:rounded-lg overflow-hidden shadow-2xl border-0 sm:border-4 border-gray-800" style={{ paddingBottom: '56.25%', height: 0 }}>
                     <iframe
                       src={videoUrl}
                       title="Church Video"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                       allowFullScreen
-                      className="w-full h-full"
+                      className="absolute top-0 left-0 w-full h-full"
                     ></iframe>
                   </div>
                 </div>

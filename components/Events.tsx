@@ -99,16 +99,6 @@ export default function Events({ limit }: { limit?: number }) {
               alt="Church Service"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                Experience God's Presence
-              </h3>
-              <p className="text-slate-200">
-                Join our vibrant community for powerful worship and teachings
-              </p>
-            </div>
           </div>
 
           {/* RIGHT SIDE: EVENTS LIST */}

@@ -29,7 +29,6 @@ const quickLinks = [
   { title: "Home", href: "/" },
   { title: "About", href: "/about" },
   { title: "Events", href: "/events" },
-  { title: "Bookstore", href: "/bookstore" },
   { title: "Give", href: "/give" },
   { title: "Contact", href: "/contact" },
 ];
@@ -76,11 +75,11 @@ export default function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>(0246819964) APOSTLE PRINCE OFOSU HENE</span>
+                <a href="tel:0246819964" className="hover:text-blue-200 transition-colors">(0246819964) APOSTLE PRINCE OFOSU HENE</a>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>support@hgbmi.org</span>
+                <a href="mailto:support@hgbmi.org" className="hover:text-blue-200 transition-colors">support@hgbmi.org</a>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />

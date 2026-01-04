@@ -6,6 +6,84 @@ import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 
 const fellowships = [
+  // First 4 fellowships match the ministry section on homepage
+  {
+    name: "Spintex Fellowship",
+    slug: "spintex",
+    location: "Spintex",
+    address: "Spintex, Accra",
+    image: "/vhh.jpg",
+    description: "Uplifting worship through music and praise.",
+    whatsapp: "+233 123 456 789",
+    phone: "+233 123 456 780",
+    email: "spintex@hgbmi.org",
+    policies: "Open to all. Focus on worship and praise.",
+    meetingDays: "Every Sunday, 9:00 AM",
+    teachings: ["Worship", "Music Ministry", "Praise"],
+    foundationSchool: {
+      time: "Saturdays, 10:00 AM - 12:00 PM",
+      location: "Spintex Hall"
+    },
+    googleMeetId: "abc-defg-hij"
+  },
+  {
+    name: "Campus Fellowship",
+    slug: "campus",
+    location: "Campus Ministry",
+    address: "University Campus, Accra",
+    image: "/campus.jpg",
+    description: "Guiding young hearts in faith and joy.",
+    whatsapp: "+233 209169568",
+    phone: "+233 209169568",
+    email: "campus@hgbmi.org",
+    policies: "Open to students. Focus on youth ministry.",
+    meetingDays: "Every Thursday, 6:00 PM",
+    teachings: ["Youth Ministry", "Faith Development", "Campus Outreach"],
+    foundationSchool: {
+      time: "Sundays, 2:00 PM - 4:00 PM",
+      location: "Campus Hall"
+    },
+    googleMeetId: "def-ghij-klm"
+  },
+  {
+    name: "Klagon Fellowship",
+    slug: "klagon",
+    location: "Klagon",
+    address: "Klagon, Accra",
+    image: "/quire.jpg",
+    description: "Empowering students with spiritual growth.",
+    whatsapp: "+233 201159482",
+    phone: "+233 201159482",
+    email: "klagon@hgbmi.org",
+    policies: "Open to all students. Focus on spiritual empowerment.",
+    meetingDays: "Every Wednesday, 7:00 PM",
+    teachings: ["Spiritual Growth", "Student Ministry", "Academic Excellence"],
+    foundationSchool: {
+      time: "Saturdays, 9:00 AM - 11:00 AM",
+      location: "Klagon Hall"
+    },
+    googleMeetId: "ghi-jklm-nop"
+  },
+  {
+    name: "Nungua Fellowship",
+    slug: "nungua",
+    location: "Nungua",
+    address: "Nungua, Accra",
+    image: "/kyt.jpg",
+    description: "Building community through shared faith.",
+    whatsapp: "+233 538746203",
+    phone: "+233 538746203",
+    email: "nungua@hgbmi.org",
+    policies: "Open to all. Focus on community building.",
+    meetingDays: "Every Tuesday, 5:30 PM",
+    teachings: ["Community", "Fellowship", "Faith Building"],
+    foundationSchool: {
+      time: "Saturdays, 3:00 PM - 5:00 PM",
+      location: "Nungua Hall"
+    },
+    googleMeetId: "jkl-mnop-qrs"
+  },
+  // Additional fellowships
   {
     name: "WorldLove Fellowship",
     slug: "youth-fellowship",
@@ -82,82 +160,6 @@ const fellowships = [
     },
     googleMeetId: "jkl-mnop-qrs"
   },
-  {
-    name: "Senior Fellowship",
-    slug: "senior-fellowship",
-    location: "Community Center",
-    address: "HGBMI Community Center, Accra",
-    image: "/placeholder.jpg",
-    description: "A place for our senior members to share wisdom and continue growing in faith.",
-    whatsapp: "+233 123 456 793",
-    phone: "+233 123 456 793",
-    email: "senior@hgbmi.org",
-    policies: "Open to seniors 60+. Focus on fellowship and wisdom sharing.",
-    meetingDays: "Every Tuesday, 4:00 PM",
-    teachings: ["Life Wisdom", "Prayer", "Community Support"],
-    foundationSchool: {
-      time: "Wednesdays, 3:00 PM - 5:00 PM",
-      location: "Community Center"
-    },
-    googleMeetId: "mno-pqrs-tuv"
-  },
-  {
-    name: "Young Adult Fellowship",
-    slug: "young-adult-fellowship",
-    location: "Youth Center",
-    address: "HGBMI Youth Center, Accra",
-    image: "/kyt.jpg",
-    description: "Connecting young professionals through faith, fellowship, and service.",
-    whatsapp: "+233 123 456 794",
-    phone: "+233 123 456 794",
-    email: "youngadult@hgbmi.org",
-    policies: "Ages 25-40. Career and faith integration.",
-    meetingDays: "Every Saturday, 5:00 PM",
-    teachings: ["Professional Ethics", "Marriage Preparation", "Service"],
-    foundationSchool: {
-      time: "Sundays, 1:00 PM - 3:00 PM",
-      location: "Youth Center"
-    },
-    googleMeetId: "opq-rstu-vwx"
-  },
-  {
-    name: "Prayer Fellowship",
-    slug: "prayer-fellowship",
-    location: "Prayer Room",
-    address: "HGBMI Prayer Room, Accra",
-    image: "/placeholder.jpg",
-    description: "Dedicated to intercessory prayer and deepening our prayer life together.",
-    whatsapp: "+233 123 456 795",
-    phone: "+233 123 456 795",
-    email: "prayer@hgbmi.org",
-    policies: "All welcome. Focus on prayer and spiritual disciplines.",
-    meetingDays: "Every Monday, 6:00 PM",
-    teachings: ["Prayer Techniques", "Intercession", "Spiritual Warfare"],
-    foundationSchool: {
-      time: "Fridays, 7:00 PM - 9:00 PM",
-      location: "Prayer Room"
-    },
-    googleMeetId: "qrs-tuvw-xyz"
-  },
-  {
-    name: "Music Fellowship",
-    slug: "music-fellowship",
-    location: "Worship Hall",
-    address: "HGBMI Worship Hall, Accra",
-    image: "/placeholder.jpg",
-    description: "Uniting through music and worship to glorify God and uplift our spirits.",
-    whatsapp: "+233 123 456 796",
-    phone: "+233 123 456 796",
-    email: "music@hgbmi.org",
-    policies: "Musicians and singers welcome. Auditions required.",
-    meetingDays: "Every Sunday, 8:00 AM",
-    teachings: ["Worship Leading", "Music Theory", "Spiritual Songs"],
-    foundationSchool: {
-      time: "Saturdays, 2:00 PM - 4:00 PM",
-      location: "Worship Hall"
-    },
-    googleMeetId: "stu-vwxy-abc"
-  }
 ]
 
 export default function FellowshipPage() {
@@ -215,7 +217,7 @@ export default function FellowshipPage() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
               {fellowships.map((fellowship, index) => (
                 <Link key={index} href={`/fellowship/${fellowship.slug}`}>
-                  <Card className="bg-[#2563eb] border-2 border-white/20 hover:border-white hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer w-80">
+                  <Card className="bg-white border-2 border-gray-200 hover:border-[#2563eb] hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer w-80">
                     <CardHeader className="text-center">
                       <div className="mx-auto mb-4 w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-[#2563eb]">
                         <img src={fellowship.image} alt={fellowship.name} className="w-full h-full object-cover" />
@@ -317,13 +319,7 @@ export default function FellowshipPage() {
                 </div>
               </div>
 
-              <Button
-                size="lg"
-                className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none"
-                style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-              >
-                Explore Fellowships
-              </Button>
+              
             </div>
           </div>
         </section>

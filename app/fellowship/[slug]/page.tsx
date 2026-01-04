@@ -6,6 +6,88 @@ import { ArrowLeft, Phone, Mail, MessageCircle, Calendar, MapPin, BookOpen, Cloc
 import Footer from "@/components/Footer"
 
 const fellowships = [
+  // First 4 fellowships match the ministry section on homepage
+  {
+    name: "Spintex Fellowship",
+    slug: "spintex",
+    location: "Spintex",
+    address: "Spintex, Accra",
+    image: "/vhh.jpg",
+    communityImage: "/vhh.jpg",
+    description: "Uplifting worship through music and praise.",
+    whatsapp: "+233 123 456 789",
+    phone: "+233 123 456 780",
+    email: "spintex@hgbmi.org",
+    policies: "Open to all. Focus on worship and praise.",
+    meetingDays: "Every Sunday, 9:00 AM",
+    teachings: ["Worship", "Music Ministry", "Praise"],
+    foundationSchool: {
+      time: "Saturdays, 10:00 AM - 12:00 PM",
+      location: "Spintex Hall"
+    },
+    googleMeetId: "abc-defg-hij"
+  },
+  {
+    name: "Campus Fellowship",
+    slug: "campus",
+    location: "Campus Ministry",
+    address: "University Campus, Accra",
+    image: "/campus.jpg",
+    communityImage: "/campus.jpg",
+    description: "Guiding young hearts in faith and joy.",
+    whatsapp: "+233 209169568",
+    phone: "+233 209169568",
+    email: "campus@hgbmi.org",
+    policies: "Open to students. Focus on youth ministry.",
+    meetingDays: "Every Thursday, 6:00 PM",
+    teachings: ["Youth Ministry", "Faith Development", "Campus Outreach"],
+    foundationSchool: {
+      time: "Sundays, 2:00 PM - 4:00 PM",
+      location: "Campus Hall"
+    },
+    googleMeetId: "def-ghij-klm"
+  },
+  {
+    name: "Klagon Fellowship",
+    slug: "klagon",
+    location: "Klagon",
+    address: "Klagon, Accra",
+    image: "/quire.jpg",
+    communityImage: "/quire.jpg",
+    description: "Empowering students with spiritual growth.",
+    whatsapp: "+233 201159482",
+    phone: "+233 201159482",
+    email: "klagon@hgbmi.org",
+    policies: "Open to all students. Focus on spiritual empowerment.",
+    meetingDays: "Every Wednesday, 7:00 PM",
+    teachings: ["Spiritual Growth", "Student Ministry", "Academic Excellence"],
+    foundationSchool: {
+      time: "Saturdays, 9:00 AM - 11:00 AM",
+      location: "Klagon Hall"
+    },
+    googleMeetId: "ghi-jklm-nop"
+  },
+  {
+    name: "Nungua Fellowship",
+    slug: "nungua",
+    location: "Nungua",
+    address: "Nungua, Accra",
+    image: "/kyt.jpg",
+    communityImage: "/kyt.jpg",
+    description: "Building community through shared faith.",
+    whatsapp: "+233 538746203",
+    phone: "+233 538746203",
+    email: "nungua@hgbmi.org",
+    policies: "Open to all. Focus on community building.",
+    meetingDays: "Every Tuesday, 5:30 PM",
+    teachings: ["Community", "Fellowship", "Faith Building"],
+    foundationSchool: {
+      time: "Saturdays, 3:00 PM - 5:00 PM",
+      location: "Nungua Hall"
+    },
+    googleMeetId: "jkl-mnop-qrs"
+  },
+  // Additional fellowships
   {
     name: "WorldLove Fellowship",
     slug: "youth-fellowship",
@@ -292,7 +374,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
                 <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Contact Info</h3>
                 <div className="text-gray-600 space-y-1 text-sm">
                   <p><strong>WhatsApp:</strong> {fellowship.whatsapp}</p>
-                  <p><strong>Phone:</strong> {fellowship.phone}</p>
+                  <p><strong>Phone:</strong> <a href={`tel:${fellowship.phone}`} className="text-[#2563eb] hover:underline">{fellowship.phone}</a></p>
                   <p><strong>Email:</strong> {fellowship.email || 'N/A'}</p>
                 </div>
               </div>

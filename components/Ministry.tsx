@@ -48,12 +48,13 @@ export default function Ministry() {
         </div>
       </div>
       <div
-        className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row items-stretch justify-center gap-4 sm:gap-5 md:gap-6 lg:gap-8 w-full max-w-7xl px-4 sm:px-5 md:px-6 lg:px-6"
+        className="flex overflow-x-auto gap-4 sm:gap-5 md:gap-6 lg:gap-8 w-full max-w-7xl px-4 sm:px-5 md:px-6 lg:px-6 pb-4 snap-x snap-mandatory scrollbar-hide"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {ministries.map((ministry, index) => (
           <div
             key={ministry.title}
-            className={`flex flex-col items-center bg-white rounded-xl shadow-md p-6 sm:p-5 md:p-6 w-full sm:w-auto lg:w-[340px] xl:w-[280px] 2xl:w-[320px] min-h-[400px] sm:min-h-[420px] md:min-h-[450px] lg:min-h-[360px] ${index === 0 ? 'lg:rotate-y-[10deg]' : index === 3 ? 'lg:rotate-y-[-10deg]' : ''} hover:rotate-y-0 transition-all duration-300`}
+            className={`flex flex-col items-center bg-white rounded-xl shadow-md p-6 sm:p-5 md:p-6 flex-shrink-0 w-[280px] sm:w-[300px] md:w-[320px] lg:w-[340px] xl:w-[280px] 2xl:w-[320px] min-h-[400px] sm:min-h-[420px] md:min-h-[450px] lg:min-h-[360px] snap-center ${index === 0 ? 'lg:rotate-y-[10deg]' : index === 3 ? 'lg:rotate-y-[-10deg]' : ''} hover:rotate-y-0 transition-all duration-300`}
             style={{
               backfaceVisibility: 'hidden',
               WebkitBackfaceVisibility: 'hidden',
