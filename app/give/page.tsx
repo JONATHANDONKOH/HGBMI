@@ -70,9 +70,9 @@ export default function GivePage() {
                         Bank Account
                       </h4>
                       <div className="bg-gray-50 p-4 rounded-lg">
-                        <p className="text-sm text-gray-600">Bank: <span className="font-bold">GT Bank</span></p>
-                        <p className="text-sm text-gray-600">Account Number: <span className="font-mono font-bold">1234567890</span></p>
-                        <p className="text-sm text-gray-600">Account Name: <span className="font-bold">HGBMI</span></p>
+                        <p className="text-sm text-gray-600">Bank: <span className="font-bold">Stanbic Bank</span></p>
+                        <p className="text-sm text-gray-600">Account Number: <span className="font-mono font-bold">9040002232337</span></p>
+                        <p className="text-sm text-gray-600">Account Name: <span className="font-bold"> PRINCE OFOSU HENE</span></p>
                       </div>
                     </div>
 

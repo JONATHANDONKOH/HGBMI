@@ -111,7 +111,7 @@ const fellowships = [
   {
     name: "FAITH  Fellowship",
     slug: "FAITH-fellowship",
-    location: "Ghana Telecom University",
+    location: "Ghana communication Technology University",
     address: "HGBMI Main Church, Lashibi, Accra",
     image: "/faith.jpg",
     communityImage: "/faith comm.jpg",
@@ -144,7 +144,7 @@ const fellowships = [
     teachings: ["Biblical Manhood", "Leadership", "Family Responsibilities"],
     foundationSchool: {
       time: "Saturdays, 9:00 AM - 11:00 AM",
-      location: "Fellowship Hall"
+      location: "university of professional studies"
     },
     googleMeetId: "ghi-jklm-nop"
   },
