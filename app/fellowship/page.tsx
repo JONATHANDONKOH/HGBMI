@@ -217,7 +217,7 @@ export default function FellowshipPage() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
               {fellowships.map((fellowship, index) => (
                 <Link key={index} href={`/fellowship/${fellowship.slug}`}>
-                  <Card className="bg-white border-2 border-gray-200 hover:border-[#2563eb] hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer w-80">
+                  <Card className="bg-white border-2 border-gray-200 hover:border-[#2563eb] hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer w-full max-w-sm">
                     <CardHeader className="text-center">
                       <div className="mx-auto mb-4 w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-[#2563eb]">
                         <img src={fellowship.image} alt={fellowship.name} className="w-full h-full object-cover" />

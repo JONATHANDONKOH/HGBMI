@@ -12,7 +12,7 @@ export default function GivePage() {
     <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #000000ff 0%, #4e1bc5ff 100%)' }}>
       <Navbar />
 
-      <main className="container mx-auto px-6 py-20">
+      <main className="container mx-auto px-6 py-20 overflow-x-hidden">
         {/* Hero Section */}
         <section
           className="text-center mb-16"

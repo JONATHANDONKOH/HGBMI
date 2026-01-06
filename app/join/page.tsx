@@ -22,23 +22,6 @@ export default function JoinPage() {
             Experience the warmth of community, the power of worship, and the joy of fellowship.
             Every Sunday is an opportunity to grow closer to God and to each other.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none"
-              style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-            >
-              Plan Your Visit
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 bg-transparent animate-bounce hover:animate-none"
-              style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-            >
-              Connect With Us
-            </Button>
-          </div>
         </div>
       </section>
 
@@ -61,8 +44,7 @@ export default function JoinPage() {
               <h3 className="text-2xl font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Sunday Worship</h3>
               <p className="text-lg mb-4">Every Sunday</p>
               <div className="space-y-2">
-                <p className="font-semibold">Main Service: 9:00 AM</p>
-                <p className="font-semibold">Second Service: 11:00 AM</p>
+                <p className="font-semibold">9:00 AM - 12:00 PM</p>
                 <p className="text-sm opacity-90">Children's Ministry Available</p>
               </div>
             </div>
@@ -196,7 +178,7 @@ export default function JoinPage() {
             We're excited to meet you! Here's what you can expect on your first visit.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
               <h3 className="text-2xl font-bold mb-3" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Arrival</h3>
               <p>Arrive 15 minutes early. Our welcome team will greet you and help you find your way.</p>
@@ -210,14 +192,6 @@ export default function JoinPage() {
               <p>Stay for fellowship, coffee, and conversation. We'd love to get to know you!</p>
             </div>
           </div>
-
-          <Button
-            size="lg"
-            className="bg-[#FCCB06] hover:bg-[#e6b805] text-[#1e3a8a] px-8 py-4 text-xl font-bold rounded-full transition-all duration-300 hover:scale-105 shadow-lg animate-bounce hover:animate-none"
-            style={{ fontFamily: '"Bebas Neue", sans-serif' }}
-          >
-            I'm Planning to Visit
-          </Button>
         </div>
       </section>
 
