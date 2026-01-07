@@ -24,6 +24,26 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Bitter:ital,wght@0,100..900;1,100..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dancing+Script:wght@400..700&family=Gidole&family=Lilita+One&family=Oswald:wght@200..700&family=Pattaya&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=SUSE+Mono:ital,wght@0,100..800;1,100..800&family=Yeseva+One&display=swap" rel="stylesheet" />
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+        {/* Natural Stars Background */}
+        <div className="fixed inset-0 pointer-events-none z-0">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute animate-pulse text-yellow-200 text-opacity-80"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                fontSize: `${Math.random() * 12 + 8}px`,
+                animationDelay: `${Math.random() * 3}s`,
+                animationDuration: `${Math.random() * 2 + 2}s`,
+                opacity: Math.random() * 0.6 + 0.3,
+                transform: `rotate(${Math.random() * 360}deg)`,
+              }}
+            >
+              ⭐
+            </div>
+          ))}
+        </div>
         <AuthProvider>
           {children}
           <Analytics />

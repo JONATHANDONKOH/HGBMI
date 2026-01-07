@@ -31,7 +31,7 @@ const fellowships = [
     slug: "light",
     location: "Accra Technical University",
     address: "UPSA, Accra",
-    image: "/campus.jpg",
+    image: "/attuu.jpeg",
     description: "Guiding young hearts in faith and joy.",
     whatsapp: "+233 246148032",
     phone: "+233 246148032",
