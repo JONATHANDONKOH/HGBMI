@@ -172,11 +172,11 @@ export default function FellowshipPage() {
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              className="absolute animate-pulse text-yellow-200 text-opacity-80"
+              className="absolute animate-pulse animate-spin text-yellow-200 text-opacity-80"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                fontSize: `${Math.random() * 12 + 8}px`,
+                fontSize: `${Math.random() * 6 + 4}px`,
                 animationDelay: `${Math.random() * 3}s`,
                 animationDuration: `${Math.random() * 2 + 2}s`,
                 opacity: Math.random() * 0.6 + 0.3,
@@ -230,7 +230,7 @@ export default function FellowshipPage() {
                     </CardHeader>
                     <CardContent className="text-center">
                       <p className="text-sm text-gray-700 mb-6">{fellowship.description}</p>
-                      <Button className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold shadow-lg hover:scale-105 transition-all duration-200 rounded-full" style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}>
+                      <Button className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold shadow-lg animate-bounce hover:animate-none hover:scale-105 transition-all duration-200 rounded-full" style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}>
                         Read More
                         <Users className="ml-2 h-4 w-4" />
                       </Button>

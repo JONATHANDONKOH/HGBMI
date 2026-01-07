@@ -128,7 +128,7 @@ export default function Ministry() {
                 {ministry.about}
               </p>
 
-              <Button asChild className="mx-auto block font-bold">
+              <Button asChild className="mx-auto block font-bold animate-bounce hover:animate-none hover:scale-105 transition-transform duration-200">
                 <Link href={`/fellowship/${ministry.slug}`}>
                   Read More
                 </Link>
