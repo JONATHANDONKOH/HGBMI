@@ -28,7 +28,7 @@ const fellowships = [
   },
   {
     name: "Light Fellowship",
-    slug: "campus",
+    slug: "light",
     location: "Accra Technical University",
     address: "UPSA, Accra",
     image: "/campus.jpg",
