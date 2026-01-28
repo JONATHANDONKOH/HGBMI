@@ -1,4 +1,8 @@
 export default function YouthPastor() {
+  const { useScrollAnimation } = require("@/hooks/useScrollAnimation");
+  const headerRef = useScrollAnimation('fadeInUp');
+  const contentRef = useScrollAnimation('fadeInUp', 0.2);
+
   return (
     <section className="relative w-full min-h-[30vh] overflow-hidden">
       {/* 3D Background decorative elements for content creation theme */}
@@ -23,14 +27,14 @@ export default function YouthPastor() {
       <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-24 lg:py-32">
         <div className="flex flex-col gap-12 lg:gap-16">
           {/* Header */}
-          <div className="text-center">
-            <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+          <div className="text-center" ref={headerRef}>
+            <h2 className="text-4xl font-bold text-white mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Your Church. Your Stories. Your Channel.
             </h2>
           </div>
 
           {/* Video Flexboxes */}
-          <div className="flex justify-center items-start relative">
+          <div className="flex justify-center items-start relative" ref={contentRef}>
             <div className="max-w-lg relative z-10" style={{ boxShadow: '0 8px 16px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.2)', border: '2px solid rgba(255,255,255,0.1)', borderRadius: '12px', transform: 'perspective(1000px) rotateX(-5deg) rotateY(-5deg)', transformStyle: 'preserve-3d', transition: 'transform 0.3s ease' }}>
               <div className="rounded-lg overflow-hidden mb-6 relative group">
                 <video

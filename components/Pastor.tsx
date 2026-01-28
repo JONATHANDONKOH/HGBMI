@@ -1,7 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function Pastor() {
+  const imgRef = useScrollAnimation('fadeInLeft');
+  const textRef = useScrollAnimation('fadeInRight', 0.2);
+
   return (
     <section
       className="w-full min-h-screen md:min-h-[100vh] relative flex items-center justify-center py-8 md:py-0"
@@ -11,7 +15,7 @@ export default function Pastor() {
 
       {/* Image and Text layout */}
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center w-full h-full px-4 sm:px-8 lg:px-16 gap-6 lg:gap-12">
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0" ref={imgRef}>
           <img
             src="/myp.png"
             alt="Apostle Prince Ofosu Hene"
@@ -20,6 +24,7 @@ export default function Pastor() {
         </div>
         <div
           className="bg-black/60 backdrop-blur-sm border-l-4 border-yellow-500 p-6 sm:p-8 lg:p-12 w-full max-w-2xl shadow-2xl transform lg:-skew-x-3 lg:hover:skew-x-0 transition-transform duration-500"
+          ref={textRef}
         >
           <h1
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 lg:mb-6 text-white transform lg:skew-x-3 text-center lg:text-left"

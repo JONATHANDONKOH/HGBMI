@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const ministries = [
   {
@@ -12,10 +13,10 @@ const ministries = [
     about: "Uplifting worship through music and praise.",
   },
   {
-    title: "Light Fellowship",
-    slug: "campus",
-    image: "/campus.jpg",
-    about: "Guiding young hearts in faith and joy.",
+    title: "FAITH Fellowship",
+    slug: "FAITH-fellowship",
+    image: "/faith.jpg",
+    about: "Empowering believers through prayer, study, and mutual support in faith.",
   },
   {
     title: "Klagon Fellowship",
@@ -34,6 +35,8 @@ const ministries = [
 export default function Ministry() {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useScrollAnimation('fadeInUp');
+  const cardsRef = useScrollAnimation('fadeInRight', 0.2);
 
   // 🔒 Only track scroll on MOBILE
   useEffect(() => {
@@ -72,7 +75,7 @@ export default function Ministry() {
       }}
     >
       {/* HEADER */}
-      <div className="w-full max-w-5xl px-4 sm:px-6 mb-10">
+      <div className="w-full max-w-5xl px-4 sm:px-6 mb-10" ref={headerRef}>
         <h2
           className="text-4xl sm:text-5xl lg:text-6xl font-bold"
           style={{ fontFamily: '"Bebas Neue", sans-serif', color: "#1560BD" }}
@@ -87,7 +90,7 @@ export default function Ministry() {
       </div>
 
       {/* CONTENT */}
-      <div className="w-full max-w-7xl">
+      <div className="w-full max-w-7xl" ref={cardsRef}>
         <div
           ref={scrollContainerRef}
           className="
@@ -97,6 +100,7 @@ export default function Ministry() {
             px-4
             overflow-x-auto lg:overflow-visible
             snap-x snap-mandatory
+            animate-fade-in-up-stagger
           "
         >
           {ministries.map((ministry) => (
@@ -128,7 +132,7 @@ export default function Ministry() {
                 {ministry.about}
               </p>
 
-              <Button asChild className="mx-auto block font-bold animate-bounce hover:animate-none hover:scale-105 transition-transform duration-200">
+              <Button asChild className="mx-auto block font-bold animate-bounce hover:animate-none hover:scale-105 transition-transform duration-200" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
                 <Link href={`/fellowship/${ministry.slug}`}>
                   Read More
                 </Link>

@@ -35,31 +35,33 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-black text-white py-16 border-t border-gray-800">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          
           {/* About Section */}
-          <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <Church className="h-6 w-6" />
-              <span className="text-xl font-bold" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+          <div className="lg:col-span-1">
+            <div className="mb-6">
+              <h3 className="text-lg font-bold text-white mb-3" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
                 HGBMI
-              </span>
+              </h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Hour of Grace Believers Ministry International is dedicated to spreading God's word and fostering spiritual growth.
+              </p>
             </div>
-            <p className="text-sm mb-4">
-              Hour of Grace Believers Ministry International is dedicated to spreading God's word, building community, and fostering spiritual growth.
-            </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+            <h3 className="text-lg font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
               Quick Links
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.title}>
-                  <Link href={link.href} className="text-sm hover:text-blue-200 transition-colors">
+                  <Link href={link.href} className="text-sm text-gray-400 hover:text-blue-200 transition-colors">
                     {link.title}
                   </Link>
                 </li>
@@ -67,54 +69,81 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Service Times */}
           <div>
-            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-              Contact Us
+            <h3 className="text-lg font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+              Service Times
             </h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
-                <a href="tel:0246819964" className="hover:text-blue-200 transition-colors">(0246819964) APOSTLE PRINCE OFOSU HENE</a>
+            <div className="space-y-4 text-sm">
+              <div>
+                <p className="font-semibold text-white mb-1">Sunday Services</p>
+                <p className="text-gray-400">9:00 AM - 12:00 PM</p>
               </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
-                <a href="mailto:Heous2020@yahoo.com" className="hover:text-blue-200 transition-colors">Heous2020@yahoo.com</a>
+              <div>
+                <p className="font-semibold text-white mb-1">Wednesday</p>
+                <p className="text-gray-400">7:00 PM</p>
               </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
-                <span>5°38'53.4"N 0°03, 21 3rd Avenue, Accra</span>
+              <div>
+                <p className="font-semibold text-white mb-1">Friday</p>
+                <p className="text-gray-400">7:00 PM</p>
               </div>
             </div>
           </div>
 
-          {/* Social Media */}
+          {/* Connect With Us */}
           <div>
-            <h3 className="text-lg font-bold mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-              Follow Us
+            <h3 className="text-lg font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+              Connect With Us
             </h3>
-            <div className="flex space-x-3">
-              {socialMediaLinks.map((social) => (
-                <Link
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-8 w-8 items-center justify-center bg-white/10 hover:bg-white/20 transition-colors"
-                  title={social.name}
-                >
-                  <social.icon className="h-5 w-5" />
-                </Link>
-              ))}
+            <div className="space-y-3 text-sm">
+              <a href="tel:+233271645202" className="block text-gray-400 hover:text-blue-200 transition-colors">
+                +233 271 645 202
+              </a>
+              <a href="mailto:Heous2020@yahoo.com" className="block text-gray-400 hover:text-blue-200 transition-colors">
+                Heous2020@yahoo.com
+              </a>
+              <a href="/contact/location" className="block text-gray-400 hover:text-blue-200 transition-colors">
+                Lashibi, Accra
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-white/20 mt-8 pt-8 text-center">
-          <p className="text-sm">
-            © {new Date().getFullYear()} Hour of Grace Believers Ministry International. All rights reserved.
-          </p>
+        {/* Social Media & Copyright */}
+        <div className="border-t border-gray-800 pt-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            {/* Social Links */}
+            <div className="flex items-center space-x-4">
+              <span className="text-sm font-semibold text-gray-400">Follow Us</span>
+              <div className="flex space-x-4">
+                {socialMediaLinks.map((social) => {
+                  let iconColor = "text-gray-400 hover:text-gray-300";
+                  if (social.name === "Facebook") iconColor = "text-blue-600 hover:text-blue-500";
+                  if (social.name === "YouTube") iconColor = "text-red-600 hover:text-red-500";
+                  if (social.name === "Instagram") iconColor = "text-pink-600 hover:text-pink-500";
+                  if (social.name === "Location") iconColor = "text-green-600 hover:text-green-500";
+                  
+                  return (
+                    <Link
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`${iconColor} transition-colors`}
+                      title={social.name}
+                    >
+                      <social.icon className="h-5 w-5" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Copyright */}
+            <p className="text-xs text-gray-500">
+              © {new Date().getFullYear()} HGBMI. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

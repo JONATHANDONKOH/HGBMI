@@ -1,22 +1,26 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { useScrollAnimation } from "@/hooks/useScrollAnimation"
 
 export default function Congregation() {
+  const headerRef = useScrollAnimation('fadeInUp');
+  const gridRef = useScrollAnimation('fadeInUp', 0.2);
+
   return (
     <main>
 <section className="w-full py-10 mt-8">
         <div className="max-w-7xl mx-auto px-6">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-serif text-white mb-6 text-balance" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Our Congregation</h2>
+          <div className="text-center mb-16" ref={headerRef}>
+            <h2 className="text-5xl md:text-6xl font-serif text-white mb-6 text-balance" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Our Congregation</h2>
             <p className="text-lg text-white max-w-2xl mx-auto leading-relaxed">
               A diverse community of believers united in faith, love, and service. Join us on this spiritual journey.
             </p>
           </div>
 
           {/* Image Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 animate-fade-in-up-stagger" ref={gridRef}>
             {/* Large featured image */}
             <div className="md:col-span-2 relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden group" style={{ border: '5px solid white', boxShadow: '0 4px 8px rgba(0,0,0,0.3)' }}>
               <Image
@@ -145,7 +149,7 @@ export default function Congregation() {
               transform: 'translateZ(50px)',
               position: 'relative'
             }}>
-              <h3 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>About Our Congregation</h3>
+              <h3 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>About Our Congregation</h3>
               <p className="text-lg text-[#374151] leading-relaxed max-w-4xl mx-auto">
                 Our congregation is a vibrant community of over 500 members from all walks of life, united in faith and service.
                 With more than 25 active ministries and over 50 years of serving our community, we continue to grow and make
@@ -166,6 +170,7 @@ export default function Congregation() {
                 <Button
                   size="lg"
                   className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 animate-bounce hover:animate-none"
+                  style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
                 >
                   Join Us Sunday
                 </Button>
@@ -175,6 +180,7 @@ export default function Congregation() {
                 size="lg"
                 variant="outline"
                 className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-6 text-lg rounded-full transition-all duration-300 bg-transparent animate-bounce hover:animate-none"
+                style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
               >
                 Learn More
               </Button>

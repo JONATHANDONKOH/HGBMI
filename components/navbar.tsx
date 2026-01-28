@@ -168,7 +168,7 @@ export function Navbar() {
                           <Link
                             href={item.href}
                             className={cn(
-                              "group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-xl font-bold transition-colors hover:bg-white/10 focus:bg-white/10 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-white/10 data-[state=open]:bg-white/10 text-white hover:text-white",
+                              "nav-link group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-xl font-bold transition-colors focus:bg-white/10 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-white/10 data-[state=open]:bg-white/10 text-white hover:text-white relative",
                             )}
                             style={{
                               fontFamily: '"Bebas Neue", sans-serif',
@@ -311,18 +311,26 @@ export function Navbar() {
             )}
           </div>
           <div className="flex items-center space-x-2">
-            {socialMediaLinks.map((social) => (
-              <Link
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-8 w-8 items-center justify-center text-white hover:text-white hover:bg-white/20 transition-colors"
-                title={social.name}
-              >
-                <social.icon className="h-5 w-5" />
-              </Link>
-            ))}
+            {socialMediaLinks.map((social) => {
+              let iconColor = "text-white hover:text-gray-300";
+              if (social.name === "Facebook") iconColor = "text-blue-400 hover:text-blue-300";
+              if (social.name === "YouTube") iconColor = "text-red-500 hover:text-red-400";
+              if (social.name === "Instagram") iconColor = "text-pink-500 hover:text-pink-400";
+              if (social.name === "Location") iconColor = "text-green-500 hover:text-green-400";
+              
+              return (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex h-8 w-8 items-center justify-center ${iconColor} transition-colors`}
+                  title={social.name}
+                >
+                  <social.icon className="h-5 w-5" />
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

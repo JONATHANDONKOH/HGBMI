@@ -53,11 +53,11 @@ const fellowships = [
     location: "Klagon",
     address: "Klagon, Accra",
     image: "/vhh.jpg",
-    communityImage: "/vhh.jpg",
+    communityImage: "/klagg.jpeg",
     description: "Empowering students with spiritual growth.",
     whatsapp: "+233 206821255",
     phone: "+233 206821255",
-    email: "klagon@hgbmi.org",
+    email: "teikoteyem@gmail.com",
     policies: "Open to all students. Focus on spiritual empowerment.",
     meetingDays: "Every Wednesday, 7:00 PM",
     teachings: ["Spiritual Growth", "Student Ministry", "Academic Excellence"],
@@ -286,7 +286,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="mb-6">
           <Link href="/fellowship">
-            <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+            <Button variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Fellowships
             </Button>
@@ -300,7 +300,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
             <div className="mx-auto mb-6 w-32 h-32 rounded-full overflow-hidden shadow-2xl border-4 border-[#FCCB06]">
               <img src={fellowship.image} alt={fellowship.name} className="w-full h-full object-cover" />
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               {fellowship.name}
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-6 leading-relaxed">
@@ -330,7 +330,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
               <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/60 to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center text-white">
-                  <h3 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
                     {fellowship.name}
                   </h3>
                   <p className="text-lg opacity-90">Building relationships that last a lifetime</p>
@@ -357,7 +357,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
                 <div className="w-16 h-16 bg-[#1e3a8a] rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Our Teachings</h3>
+                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Our Teachings</h3>
                 <ul className="text-gray-600 space-y-1">
                   {(fellowship.teachings || []).map((teaching, index) => (
                     <li key={index} className="flex items-center gap-2">
@@ -372,7 +372,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
                 <div className="w-16 h-16 bg-[#2563eb] rounded-full flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Contact Info</h3>
+                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Contact Info</h3>
                 <div className="text-gray-600 space-y-1 text-sm">
                   <p><strong>WhatsApp:</strong> {fellowship.whatsapp}</p>
                   <p><strong>Phone:</strong> <a href={`tel:${fellowship.phone}`} className="text-[#2563eb] hover:underline">{fellowship.phone}</a></p>
@@ -384,7 +384,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
                 <div className="w-16 h-16 bg-[#3b82f6] rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Meeting Location</h3>
+                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Meeting Location</h3>
                 <p className="text-gray-600 text-sm">{fellowship.address}</p>
                 <p className="text-gray-600 text-sm mt-2"><strong>Time:</strong> {fellowship.meetingDays}</p>
               </div>

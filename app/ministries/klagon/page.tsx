@@ -20,17 +20,17 @@ export default function KlagonFellowshipPage() {
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-9xl lg:text-8xl font-bold mb-6 animate-fade-in" style={{ fontFamily: '"Bebas Neue", sans-serif', textShadow: '4px 4px 8px rgba(0,0,0,0.8)' }}>
+          <h1 className="text-6xl md:text-9xl lg:text-8xl font-bold mb-6 animate-fade-in" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700, textShadow: '4px 4px 8px rgba(0,0,0,0.8)' }}>
             Klagon Fellowship
           </h1>
           <p className="text-xl md:text-3xl lg:text-2xl mb-8 animate-fade-in delay-300" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
             Empowering students with spiritual growth. A place where faith meets academic excellence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-500">
-            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-10 py-7 md:px-12 md:py-8 lg:px-10 lg:py-7 rounded-lg font-semibold text-xl md:text-2xl lg:text-xl transition-all duration-300 transform hover:scale-105">
+            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-10 py-7 md:px-12 md:py-8 lg:px-10 lg:py-7 rounded-lg font-semibold text-xl md:text-2xl lg:text-xl transition-all duration-300 transform hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Join Our Community
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-10 py-7 md:px-12 md:py-8 lg:px-10 lg:py-7 rounded-lg font-semibold text-xl md:text-2xl lg:text-xl transition-all duration-300 transform hover:scale-105">
+            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-10 py-7 md:px-12 md:py-8 lg:px-10 lg:py-7 rounded-lg font-semibold text-xl md:text-2xl lg:text-xl transition-all duration-300 transform hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Learn More
             </button>
           </div>
@@ -173,10 +173,10 @@ export default function KlagonFellowshipPage() {
             and prepare you for a life of purpose and impact.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Join This Saturday
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 rounded-lg font-semibold text-lg transition-colors" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Meet Our Leaders
             </button>
           </div>

@@ -3,10 +3,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Play, Youtube, Calendar, Clock } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function Verse() {
   // YouTube video URL with controls enabled
   const videoUrl = "https://www.youtube.com/embed/N0ncEHIccf4?start=468&autoplay=1&mute=1&controls=1&modestbranding=1";
+  const headerRef = useScrollAnimation('fadeInUp');
+  const contentRef = useScrollAnimation('fadeInUp', 0.2);
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -60,13 +63,14 @@ export default function Verse() {
           
           <p
             className="text-lg sm:text-xl text-white/90 max-w-4xl mx-auto leading-relaxed px-4"
+            ref={headerRef}
           >
             Welcome to our digital sanctuary where faith comes alive. Experience past live sermons, join upcoming services,
             and connect with God's word anytime, anywhere through our comprehensive online platform.
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={contentRef}>
           {/* Featured Video Section */}
           <div>
             <Card className="bg-white/95 backdrop-blur-sm border-white/20 shadow-2xl mb-12 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2">

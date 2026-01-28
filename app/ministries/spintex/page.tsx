@@ -20,17 +20,17 @@ export default function SpintexFellowshipPage() {
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-fade-in" style={{ fontFamily: '"Bebas Neue", sans-serif', textShadow: '4px 4px 8px rgba(0,0,0,0.8)' }}>
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 animate-fade-in" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700, textShadow: '4px 4px 8px rgba(0,0,0,0.8)' }}>
             Spintex Fellowship
           </h1>
           <p className="text-xl md:text-2xl mb-8 animate-fade-in delay-300" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.6)' }}>
             Uplifting worship through music and praise. Join our vibrant community in Spintex.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in delay-500">
-            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Join Our Community
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Learn More
             </button>
           </div>
@@ -143,10 +143,10 @@ export default function SpintexFellowshipPage() {
             Become part of our loving community in Spintex. All are welcome to experience God's love and grace.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+            <button className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Visit Us This Sunday
             </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 rounded-lg font-semibold text-lg transition-colors">
+            <button className="border-2 border-white text-white hover:bg-white hover:text-[#1e3a8a] px-8 py-4 rounded-lg font-semibold text-lg transition-colors" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
               Contact Us
             </button>
           </div>

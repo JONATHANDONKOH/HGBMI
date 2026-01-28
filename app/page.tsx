@@ -14,6 +14,7 @@ import Footer from "@/components/Footer"
 import { useAuth } from "@/context/AuthContext"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { useScrollAnimation } from "@/hooks/useScrollAnimation"
 
 const books = [
 	{
@@ -67,6 +68,14 @@ export default function HomePage() {
 	const [isHovering, setIsHovering] = useState(false)
 	const [showLogin, setShowLogin] = useState(false)
 	const [bookstoreCurrentSlide, setBookstoreCurrentSlide] = useState(0)
+
+	// Animation refs
+	const heroTitleRef = useScrollAnimation('fadeInUp');
+	const heroSubtitleRef = useScrollAnimation('fadeInUp', 0.15);
+	const heroButtonsRef = useScrollAnimation('fadeInUp', 0.25);
+	const marqueeRef = useScrollAnimation('fadeInUp');
+	const bookstoreHeaderRef = useScrollAnimation('fadeInUp');
+	const bookstoreCardRef = useScrollAnimation('scaleIn', 0.2);
 
 	// Auto-play carousel
 	useEffect(() => {
@@ -141,6 +150,7 @@ export default function HomePage() {
 					>
 						<h1
 							className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center mb-4"
+							ref={heroTitleRef}
 							style={{
 								color: '#FCCB06',
 								filter: 'brightness(1.2) contrast(1.2) drop-shadow(0 2px 8px #0008)',
@@ -154,6 +164,7 @@ export default function HomePage() {
 						</h1>
 						<p
 							className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center max-w-2xl mb-6"
+							ref={heroSubtitleRef}
 							style={{
 								color: '#FCCB06',
 								filter: 'brightness(1.2) contrast(1.2) drop-shadow(0 1px 4px #0006)',
@@ -167,14 +178,15 @@ export default function HomePage() {
 						</p>
 						<div
 						  className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 w-full items-center justify-center"
+						  ref={heroButtonsRef}
 						>
 						  <Link href="/affirmation">
-						    <Button className="px-16 sm:px-20 py-3 text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-200 bebas-neue-regular animate-bounce hover:animate-none" style={{ borderRadius: '7px', fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}>
+						    <Button className="px-10 py-6 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 						      Daily Affirmation
 						    </Button>
 						  </Link>
 						  <Link href="/messages">
-						    <Button className="px-16 sm:px-20 py-3 text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-200 bebas-neue-regular animate-bounce hover:animate-none" style={{ borderRadius: '7px', fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}>
+						    <Button className="px-10 py-6 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 						      Messages
 						    </Button>
 						  </Link>
@@ -184,7 +196,7 @@ export default function HomePage() {
 			</div>
 
 			{/* Marquee Books Section */}
-			<div className="w-full overflow-hidden py-10 relative" style={{ backgroundColor: 'black', marginTop: '-20px', zIndex: 10 }}>
+			<div className="w-full overflow-hidden py-10 relative" style={{ backgroundColor: 'black', marginTop: '-20px', zIndex: 10 }} ref={marqueeRef}>
 				<div className="relative w-full" style={{ height: '120px' }}>
 					{/* Marquee container: duplicate books for seamless loop */}
 					<div className="marquee-track flex items-center gap-8 animate-marquee" style={{ minWidth: '200%', width: 'max-content' }}>
@@ -209,8 +221,8 @@ export default function HomePage() {
 					</div>
 					{user ? (
 						/* Bookstore Card - Shown when user is authenticated */
-						<div className="w-full max-w-7xl mx-auto px-4">
-							<h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8" style={{ color: 'white', fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}>
+						<div className="w-full max-w-7xl mx-auto px-4" ref={bookstoreCardRef}>
+							<h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8" ref={bookstoreHeaderRef} style={{ color: 'white', fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 								Bookstore
 							</h2>
 							<div className="relative px-4 sm:px-8 md:px-12 lg:px-16">
@@ -297,11 +309,9 @@ export default function HomePage() {
 							</div>
 						</div>
 					) : (
-						/* Sign Up/Login Forms - Shown when user is not authenticated */
-						<>
-							<h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-4" style={{ color: 'white', fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}>
-								Sign up to receive life changing hope and encouragement!
-							</h2>
+						/* Sign Up/Login Forms - Shown when user is not authenticated - HIDDEN */
+						<div style={{ display: 'none' }}>
+							<>
 							<div
 								className="flex flex-col items-center justify-center w-full"
 								style={{
@@ -434,7 +444,8 @@ export default function HomePage() {
 									<span className="text-gray-600 text-sm">Sign up to purchase the book</span>
 								</div>
 							</div>
-						</>
+							</>
+						</div>
 					)}
 				</div>
 			</div>
@@ -496,7 +507,7 @@ export default function HomePage() {
 			>
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="bg-white rounded-lg sm:rounded-xl p-6 sm:p-8 shadow-lg">
-						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1e3a8a] mb-6 sm:mb-8 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1e3a8a] mb-6 sm:mb-8 text-center" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 							Find Us on the Map
 						</h2>
 						<div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -518,7 +529,7 @@ export default function HomePage() {
 
 							{/* Text Directions */}
 							<div className="flex-1">
-								<h3 className="text-xl sm:text-2xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+								<h3 className="text-xl sm:text-2xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 									Directions to Our Church
 								</h3>
 								<div className="space-y-4 text-[#374151] text-sm sm:text-base">
