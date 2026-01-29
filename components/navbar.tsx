@@ -99,7 +99,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      <div className={pathname.startsWith('/fellowship') ? '' : 'bg-blue-600'} style={pathname.startsWith('/fellowship') ? { background: 'radial-gradient(circle, #2563eb, #1e40af)' } : {}}>
+      <div className={pathname.startsWith('/fellowship') ? '' : 'bg-[#000080]'} style={pathname.startsWith('/fellowship') ? { background: '#000080' } : {}}>
         <div className="container mx-auto px-4">
           <div className="flex h-24 items-center justify-between">
             {/* Logo */}

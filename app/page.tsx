@@ -181,12 +181,12 @@ export default function HomePage() {
 						  ref={heroButtonsRef}
 						>
 						  <Link href="/affirmation">
-						    <Button className="px-10 py-6 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+						    <Button className="px-10 py-2 lg:py-3 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 						      Daily Affirmation
 						    </Button>
 						  </Link>
 						  <Link href="/messages">
-						    <Button className="px-10 py-6 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+						    <Button className="px-10 py-2 lg:py-3 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 						      Messages
 						    </Button>
 						  </Link>
