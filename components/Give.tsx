@@ -76,26 +76,18 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
                 Choose how you'd like to support our ministry. Your gift makes a difference.
               </p>
               <div className="space-y-3">
-                <Link href="/give/tithe">
-                  <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-6 text-lg transition-all hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
-                    Tithe
-                  </button>
-                </Link>
-                <Link href="/give/offerings">
-                  <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-6 text-lg transition-all hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
-                    Offerings
-                  </button>
-                </Link>
-                <Link href="/give/partner">
-                  <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-6 text-lg transition-all hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
-                    Partner with Us
-                  </button>
-                </Link>
-                <Link href="/give/recurring">
-                  <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-6 text-lg transition-all hover:scale-105" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
-                    Recurring Giving
-                  </button>
-                </Link>
+                <button disabled className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-6 text-lg" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+                  Tithe
+                </button>
+                <button disabled className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-6 text-lg" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+                  Offerings
+                </button>
+                <button disabled className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-6 text-lg" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+                  Partner with Us
+                </button>
+                <button disabled className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold py-3 px-6 text-lg" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+                  Recurring Giving
+                </button>
               </div>
             </div>
 

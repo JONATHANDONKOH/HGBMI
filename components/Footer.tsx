@@ -96,8 +96,8 @@ export default function Footer() {
               Connect With Us
             </h3>
             <div className="space-y-3 text-sm">
-              <a href="tel:+233271645202" className="block text-gray-400 hover:text-blue-200 transition-colors">
-                +233 271 645 202
+              <a href="tel:0246819964" className="block text-gray-400 hover:text-blue-200 transition-colors">
+                0246819964
               </a>
               <a href="mailto:Heous2020@yahoo.com" className="block text-gray-400 hover:text-blue-200 transition-colors">
                 Heous2020@yahoo.com
