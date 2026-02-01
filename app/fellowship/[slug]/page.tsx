@@ -325,7 +325,7 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
               </p>
             </div>
 
-            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-lg">
+            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-lg border-4 border-blue-500 shadow-blue-500">
               <img src={fellowship.communityImage || '/life comm.jpg'} alt={`${fellowship.name} Community`} className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a8a]/60 to-transparent" />
               <div className="absolute inset-0 flex items-center justify-center">
@@ -341,52 +341,52 @@ export default async function FellowshipDetailPage({ params }: FellowshipPagePro
         </section>
 
         {/* Fellowship Details Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
                 Fellowship Details
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-lg text-white max-w-2xl mx-auto">
                 Everything you need to know about joining our fellowship community
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#1e3a8a] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center border-b-2 border-white md:border-r-2 md:border-b-0 lg:border-r-2 lg:border-b-0">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <BookOpen className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Our Teachings</h3>
-                <ul className="text-gray-600 space-y-1">
+                <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Our Teachings</h3>
+                <ul className="text-white space-y-1">
                   {(fellowship.teachings || []).map((teaching, index) => (
                     <li key={index} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-[#2563eb] rounded-full"></div>
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
                       {teaching}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#2563eb] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center border-b-2 border-white md:border-b-0 lg:border-r-2 lg:border-b-0">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MessageCircle className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Contact Info</h3>
-                <div className="text-gray-600 space-y-1 text-sm">
+                <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Contact Info</h3>
+                <div className="text-white space-y-1 text-sm">
                   <p><strong>WhatsApp:</strong> {fellowship.whatsapp}</p>
-                  <p><strong>Phone:</strong> <a href={`tel:${fellowship.phone}`} className="text-[#2563eb] hover:underline">{fellowship.phone}</a></p>
+                  <p><strong>Phone:</strong> <a href={`tel:${fellowship.phone}`} className="text-white hover:underline">{fellowship.phone}</a></p>
                   <p><strong>Email:</strong> {fellowship.email || 'N/A'}</p>
                 </div>
               </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#3b82f6] rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="text-center border-b-2 border-white lg:border-b-0">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Meeting Location</h3>
-                <p className="text-gray-600 text-sm">{fellowship.address}</p>
-                <p className="text-gray-600 text-sm mt-2"><strong>Time:</strong> {fellowship.meetingDays}</p>
+                <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>Meeting Location</h3>
+                <p className="text-white text-sm">{fellowship.address}</p>
+                <p className="text-white text-sm mt-2"><strong>Time:</strong> {fellowship.meetingDays}</p>
               </div>
             </div>
           </div>

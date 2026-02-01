@@ -37,26 +37,6 @@ export default function Events({ limit }: { limit?: number }) {
       flier: "/father.jpg"
     },
     {
-      id: 2,
-      title: "Friday Service",
-      date: "Every Friday",
-      time: "7:00 PM - 9:00 PM",
-      location: "Main Sanctuary, Lashibi",
-      attendees: 1200,
-      category: "Worship",
-      flier: "/kyt.jpg"
-    },
-    {
-      id: 3,
-      title: "Wednesday Service",
-      date: "Every Wednesday",
-      time: "7:00 PM - 9:00 PM",
-      location: "Main Sanctuary, Lashibi",
-      attendees: 1000,
-      category: "Worship",
-      flier: "/marry.jpg"
-    },
-    {
       id: 4,
       title: "Soul Wining",
       date: "Every Saturday",

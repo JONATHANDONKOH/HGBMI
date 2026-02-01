@@ -46,20 +46,20 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
                 Where Your Gift Goes
               </h3>
               <ul className="space-y-4 text-gray-300">
-                <li className="flex gap-3">
-                  <span className="text-blue-500 font-bold">•</span>
+                <li className="flex gap-3 items-center">
+                  <img src="/mission work.webp" alt="Ministry & Outreach" className="w-20 h-20 rounded object-cover" />
                   <span><strong>Ministry & Outreach</strong> - Reaching souls and spreading God's word</span>
                 </li>
-                <li className="flex gap-3">
-                  <span className="text-blue-500 font-bold">•</span>
+                <li className="flex gap-3 items-center">
+                  <img src="/comm support.webp" alt="Community Support" className="w-20 h-20 rounded object-cover" />
                   <span><strong>Community Support</strong> - Helping those in need within our community</span>
                 </li>
-                <li className="flex gap-3">
-                  <span className="text-blue-500 font-bold">•</span>
+                <li className="flex gap-3 items-center">
+                  <img src="/giveee.jpg" alt="Building & Facilities" className="w-20 h-20 rounded object-cover" />
                   <span><strong>Building & Facilities</strong> - Expanding our worship spaces</span>
                 </li>
-                <li className="flex gap-3">
-                  <span className="text-blue-500 font-bold">•</span>
+                <li className="flex gap-3 items-center">
+                  <img src="/education support.webp" alt="Education Programs" className="w-20 h-20 rounded object-cover" />
                   <span><strong>Education Programs</strong> - Nurturing spiritual growth</span>
                 </li>
               </ul>
@@ -119,7 +119,7 @@ export default function Give({ isHomepage = false }: { isHomepage?: boolean }) {
             </p>
             <Link href="/give">
               <Button
-                className="px-10 py-6 text-lg font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 animate-bounce hover:animate-none hover:scale-105 transition-transform"
+                className="px-6 sm:px-10 py-6 text-lg font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 animate-bounce hover:animate-none hover:scale-105 transition-transform"
                 style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
               >
                 Give Generously Today

@@ -4,28 +4,9 @@ import React, { useState } from "react"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 import { Church, Users, Heart, BookOpen, ChevronDown, ChevronUp } from "lucide-react"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 
 export default function AboutPage() {
   const [historyExpanded, setHistoryExpanded] = useState(false)
-  const [selectedValue, setSelectedValue] = useState(null)
-  const [imageIndices, setImageIndices] = useState({
-    row1_1: 0,
-    row1_2: 0,
-    row1_3: 0,
-    row1_4: 0,
-    row2_1: 0,
-    row2_2: 0,
-    row2_3: 0,
-    row2_4: 0
-  })
   const [visionTextIndex, setVisionTextIndex] = useState(0)
 
   const visionTexts = [
@@ -63,49 +44,15 @@ export default function AboutPage() {
     }
   ]
 
-  // Create arrays of 3 images for each gallery box
-  const galleryBoxes = [
-    // First row
-    ["/father.jpg", "/cong.jpg", "/worldlove.jpg"],
-    ["/grace-book-cover.jpg", "/papa.jpg", "/marry.jpg"],
-    ["/mem-world.jpg", "/campus.jpg", "/father.jpg"],
-    ["/cong.jpg", "/worldlove.jpg", "/grace-book-cover.jpg"],
-    // Second row
-    ["/papa.jpg", "/marry.jpg", "/mem-world.jpg"],
-    ["/campus.jpg", "/father.jpg", "/cong.jpg"],
-    ["/worldlove.jpg", "/grace-book-cover.jpg", "/papa.jpg"],
-    ["/marry.jpg", "/mem-world.jpg", "/campus.jpg"]
-  ]
-
   React.useEffect(() => {
-    const imageInterval = setInterval(() => {
-      setImageIndices(prev => ({
-        row1_1: (prev.row1_1 + 1) % 3,
-        row1_2: (prev.row1_2 + 1) % 3,
-        row1_3: (prev.row1_3 + 1) % 3,
-        row1_4: (prev.row1_4 + 1) % 3,
-        row2_1: (prev.row2_1 + 1) % 3,
-        row2_2: (prev.row2_2 + 1) % 3,
-        row2_3: (prev.row2_3 + 1) % 3,
-        row2_4: (prev.row2_4 + 1) % 3
-      }))
-    }, 5000) // Change image every 5 seconds
-
     const visionInterval = setInterval(() => {
       setVisionTextIndex(prev => (prev + 1) % visionTexts.length)
     }, 6000) // Change vision text color every 6 seconds
 
     return () => {
-      clearInterval(imageInterval)
       clearInterval(visionInterval)
     }
   }, [])
-
-  const getImageIndex = (boxIndex: number, isSecondRow: boolean = false): number => {
-    const baseIndex = isSecondRow ? 4 : 0
-    const key = `row${isSecondRow ? 2 : 1}_${boxIndex + 1}` as keyof typeof imageIndices
-    return imageIndices[key]
-  }
 
   return (
     <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #000000ff 0%, #4e1bc5ff 100%)' }}>
@@ -136,13 +83,13 @@ export default function AboutPage() {
         <section
           className="mb-16"
         >
-          <div className="bg-white rounded-2xl p-12 shadow-lg">
-            <h2 className="text-4xl font-bold text-[#1e3a8a] mb-8 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
+          <div className="bg-white rounded-2xl p-8 shadow-lg">
+            <h2 className="text-4xl font-bold text-[#1e3a8a] mb-6 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
               Our Vision
             </h2>
-            <div className="text-center max-w-4xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto">
               <div
-                className="leading-relaxed text-3xl md:text-5xl font-bold"
+                className="leading-relaxed text-2xl md:text-4xl font-bold"
                 style={{
                   fontFamily: '"Bebas Neue", sans-serif',
                   textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
@@ -163,39 +110,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Gallery First Row Section */}
-        <section
-          className="mb-16"
-        >
-          <h2 className="text-4xl font-bold text-white mb-12 text-center" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-            Our Community in Action
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {galleryBoxes.slice(0, 4).map((imageArray, index) => {
-              const currentImageIndex = getImageIndex(index, false)
-              return (
-                <div
-                  key={index}
-                  className="relative overflow-hidden rounded-lg shadow-lg h-48 cursor-pointer border-4 border-white/20"
-                >
-                  <img
-                    key={`img-${index}-${currentImageIndex}`}
-                    src={imageArray[currentImageIndex]}
-                    alt={`Community image ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <div
-                      className="text-white text-sm font-semibold"
-                    >
-                      Church Life
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </section>
+
 
         {/* Values Section */}
         <section className="mb-16">
@@ -206,7 +121,7 @@ export default function AboutPage() {
             {values.map((value, index) => {
               const IconComponent = value.icon
               return (
-                <div key={index} className="text-center">
+                <div key={index} className={`text-center ${index < 3 ? 'border-r-[5px] border-b-[5px] border-white' : ''}`}>
                   <IconComponent className="w-12 h-12 text-[#2563eb] mx-auto mb-4" />
                   <h3 className="text-xl font-bold text-white mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
                     {value.title}
@@ -214,60 +129,16 @@ export default function AboutPage() {
                   <p className="text-[#d1d5db] mb-4 leading-relaxed">
                     {value.description}
                   </p>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <button className="text-[#60a5fa] font-semibold hover:text-[#93c5fd] transition-colors">
-                        Learn More →
-                      </button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                          <DialogTitle className="flex items-center gap-2">
-                            <IconComponent className="w-6 h-6 text-[#2563eb]" />
-                            {value.title}
-                          </DialogTitle>
-                          <DialogDescription>
-                            {value.details}
-                          </DialogDescription>
-                        </DialogHeader>
-                      </DialogContent>
-                    </Dialog>
-                  </div>
-                )
-              })}
-            </div>
-        </section>
-
-        {/* Image Gallery Section - Second Row */}
-        <section
-          className="mb-16"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {galleryBoxes.slice(4, 8).map((imageArray, index) => {
-              const currentImageIndex = getImageIndex(index, true)
-              return (
-                <div
-                  key={index + 4}
-                  className="relative overflow-hidden rounded-lg shadow-lg h-48 cursor-pointer border-4 border-white/20"
-                >
-                  <img
-                    key={`img-${index + 4}-${currentImageIndex}`}
-                    src={imageArray[currentImageIndex]}
-                    alt={`Community image ${index + 5}`}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <div
-                      className="text-white text-sm font-semibold"
-                    >
-                      Church Life
-                    </div>
-                  </div>
+                  <p className="text-[#d1d5db] text-sm leading-relaxed">
+                    {value.details}
+                  </p>
                 </div>
               )
             })}
           </div>
         </section>
+
+
 
         {/* History Section */}
         <section
