@@ -1,9 +1,9 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
-import { Navbar } from "@/components/navbar"
-import Footer from "@/components/Footer"
-import { Play, Pause, Volume2, VolumeX } from "lucide-react"
+import React, { useState, useEffect } from 'react'
+import { Navbar } from '@/components/navbar'
+import Footer from '@/components/Footer'
+import { Play, Pause, Volume2, VolumeX } from 'lucide-react'
 
 interface MediaFile {
   id: string
@@ -42,6 +42,41 @@ const sampleMediaFiles: MediaFile[] = [
     type: 'audio',
     url: '/audio/power.mp3',
     duration: '52:18'
+  },
+  {
+    id: '5',
+    title: 'Sunday Church Service 30-11-2025',
+    type: 'audio',
+    url: '/audio/SUNDAY CHURCH SERVICE 30-11-2025 hgbmi.mp3',
+    duration: '60:00'
+  },
+  {
+    id: '6',
+    title: 'How to Live a Victorious Life Over Demons 28-09-2025',
+    type: 'audio',
+    url: '/audio/HOW TO LIVE A VICTORIOUS LIFE OVER DEMONS 28-09-2025 hgbmi.mp3',
+    duration: '45:00'
+  },
+  {
+    id: '7',
+    title: 'The Way to Success 19-10-2025',
+    type: 'audio',
+    url: '/audio/THE WAY TO SUCCESS 19-10-2025 hgbmi.mp3',
+    duration: '40:00'
+  },
+  {
+    id: '8',
+    title: 'Three Major Things to Establish Your Faith 21-09-2025',
+    type: 'audio',
+    url: '/audio/THREE MAJOR THINGS TO ESTABLISH YOUR FAITH 21-09-2025 hgbmi.mp3',
+    duration: '50:00'
+  },
+  {
+    id: '9',
+    title: 'The Perseverance of Faith 23-11-2025',
+    type: 'audio',
+    url: '/audio/THE PERSEVERANCE OF FAITH 23-11-2025 hgbmi.mp3',
+    duration: '55:00'
   }
 ]
 
@@ -165,4 +200,3 @@ export default function MessagesPage() {
     </div>
   )
 }
-

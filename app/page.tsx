@@ -70,54 +70,39 @@ export default function HomePage() {
 	const [bookstoreCurrentSlide, setBookstoreCurrentSlide] = useState(0)
 
 	// Animation refs
-	const heroTitleRef = useScrollAnimation('fadeInUp');
-	const heroSubtitleRef = useScrollAnimation('fadeInUp', 0.15);
-	const heroButtonsRef = useScrollAnimation('fadeInUp', 0.25);
-	const marqueeRef = useScrollAnimation('fadeInUp');
-	const bookstoreHeaderRef = useScrollAnimation('fadeInUp');
-	const bookstoreCardRef = useScrollAnimation('scaleIn', 0.2);
+	const heroTitleRef = useScrollAnimation('fadeInUp')
+	const heroSubtitleRef = useScrollAnimation('fadeInUp', 0.15)
+	const heroButtonsRef = useScrollAnimation('fadeInUp', 0.25)
+	const marqueeRef = useScrollAnimation('fadeInUp')
+	const bookstoreHeaderRef = useScrollAnimation('fadeInUp')
+	const bookstoreCardRef = useScrollAnimation('scaleIn', 0.2)
 
-	// Auto-play carousel
+	// Auto-play hero carousel
 	useEffect(() => {
-		if (isHovering) return // Don't auto-play when hovering over arrows
-
+		if (isHovering) return
 		const interval = setInterval(() => {
 			setCurrentSlide((prev) => (prev + 1) % books.length)
-		}, 5000) // Change slide every 5 seconds
-
+		}, 5000)
 		return () => clearInterval(interval)
 	}, [isHovering])
 
-	const nextSlide = () => {
-		setCurrentSlide((prev) => (prev + 1) % books.length)
-	}
-
-	const prevSlide = () => {
-		setCurrentSlide((prev) => (prev - 1 + books.length) % books.length)
-	}
-
-	const goToSlide = (index: number) => {
-		setCurrentSlide(index)
-	}
+	const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % books.length)
+	const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + books.length) % books.length)
+	const goToSlide = (index: number) => setCurrentSlide(index)
 
 	const bookstoreBooks = books.slice(0, 3)
 
-	const nextBookstoreSlide = () => {
+	const nextBookstoreSlide = () =>
 		setBookstoreCurrentSlide((prev) => (prev + 1) % bookstoreBooks.length)
-	}
-
-	const prevBookstoreSlide = () => {
+	const prevBookstoreSlide = () =>
 		setBookstoreCurrentSlide((prev) => (prev - 1 + bookstoreBooks.length) % bookstoreBooks.length)
-	}
 
-	// Auto-play bookstore carousel (no hover interruption)
+	// Auto-play bookstore carousel
 	useEffect(() => {
-		if (!user) return // Don't auto-play if user is not logged in
-
+		if (!user) return
 		const interval = setInterval(() => {
 			setBookstoreCurrentSlide((prev) => (prev + 1) % bookstoreBooks.length)
-		}, 5000) // Change slide every 5 seconds
-
+		}, 5000)
 		return () => clearInterval(interval)
 	}, [user, bookstoreBooks.length])
 
@@ -125,10 +110,9 @@ export default function HomePage() {
 		<div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #4A90E2 0%, #000000 50%, #4e1bc5 100%)' }}>
 			<Navbar />
 
+			{/* Hero Section */}
 			<div className="relative min-h-[70vh]">
-				<div
-					className="absolute top-0 left-0 w-full h-full z-0"
-				>
+				<div className="absolute top-0 left-0 w-full h-full z-0">
 					<video
 						autoPlay
 						muted
@@ -145,12 +129,10 @@ export default function HomePage() {
 				</div>
 
 				<div className="absolute inset-0 flex flex-col items-center justify-start z-10 pt-32 md:pt-[170px] lg:pt-40">
-					<div
-						className="flex flex-col items-center"
-					>
+					<div className="flex flex-col items-center">
 						<h1
-							className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center mb-4"
 							ref={heroTitleRef}
+							className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center mb-4"
 							style={{
 								color: '#FCCB06',
 								filter: 'brightness(1.2) contrast(1.2) drop-shadow(0 2px 8px #0008)',
@@ -163,8 +145,8 @@ export default function HomePage() {
 							You are invited to join us at church!
 						</h1>
 						<p
-							className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center max-w-2xl mb-6"
 							ref={heroSubtitleRef}
+							className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-center max-w-2xl mb-6"
 							style={{
 								color: '#FCCB06',
 								filter: 'brightness(1.2) contrast(1.2) drop-shadow(0 1px 4px #0006)',
@@ -177,31 +159,47 @@ export default function HomePage() {
 							Experience community, worship, and inspiration every week. All are welcome!
 						</p>
 						<div
-						  className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 w-full items-center justify-center"
-						  ref={heroButtonsRef}
+							ref={heroButtonsRef}
+							className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 w-full items-center justify-center"
 						>
-						  <Link href="/affirmation">
-						    <Button className="px-10 py-2 lg:py-3 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
-						      Daily Affirmation
-						    </Button>
-						  </Link>
-						  <Link href="/messages">
-						    <Button className="px-10 py-2 lg:py-3 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
-						      Messages
-						    </Button>
-						  </Link>
+							<Link href="/affirmation">
+								<Button
+									className="px-10 py-2 lg:py-3 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none"
+									style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+								>
+									Daily Affirmation
+								</Button>
+							</Link>
+							<Link href="/messages">
+								<Button
+									className="px-10 py-2 lg:py-3 text-lg text-white font-bold shadow-lg hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none"
+									style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+								>
+									Messages
+								</Button>
+							</Link>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			{/* Marquee Books Section */}
-			<div className="w-full overflow-hidden py-10 relative" style={{ backgroundColor: 'black', marginTop: '-20px', zIndex: 10 }} ref={marqueeRef}>
+			<div
+				ref={marqueeRef}
+				className="w-full overflow-hidden py-10 relative"
+				style={{ backgroundColor: 'black', marginTop: '-20px', zIndex: 10 }}
+			>
 				<div className="relative w-full" style={{ height: '120px' }}>
-					{/* Marquee container: duplicate books for seamless loop */}
-					<div className="marquee-track flex items-center gap-8 animate-marquee" style={{ minWidth: '200%', width: 'max-content' }}>
+					<div
+						className="marquee-track flex items-center gap-8 animate-marquee"
+						style={{ minWidth: '200%', width: 'max-content' }}
+					>
 						{[...books, ...books].map((book, idx) => (
-							<div key={idx} className="flex flex-col items-center min-w-[120px] p-2 rounded-lg shadow-md" style={{ backgroundColor: 'black' }}>
+							<div
+								key={idx}
+								className="flex flex-col items-center min-w-[120px] p-2 rounded-lg shadow-md"
+								style={{ backgroundColor: 'black' }}
+							>
 								<img
 									src={book.coverImage}
 									alt={book.title}
@@ -214,15 +212,24 @@ export default function HomePage() {
 						))}
 					</div>
 				</div>
+
 				<div className="w-full flex flex-col items-center justify-center mt-8">
 					{/* Animated Denim Blue Bar */}
 					<div className="w-full flex justify-center mb-6">
-						<div className="h-1.5 w-3/4 rounded-full animate-denim-bar" style={{ background: 'linear-gradient(90deg, #1560BD 0%, #1E90FF 100%)' }}></div>
+						<div
+							className="h-1.5 w-3/4 rounded-full animate-denim-bar"
+							style={{ background: 'linear-gradient(90deg, #1560BD 0%, #1E90FF 100%)' }}
+						/>
 					</div>
+
 					{user ? (
-						/* Bookstore Card - Shown when user is authenticated */
+						/* Bookstore Card */
 						<div className="w-full max-w-7xl mx-auto px-4" ref={bookstoreCardRef}>
-							<h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8" ref={bookstoreHeaderRef} style={{ color: 'white', fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+							<h2
+								ref={bookstoreHeaderRef}
+								className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8"
+								style={{ color: 'white', fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+							>
 								Bookstore
 							</h2>
 							<div className="relative px-4 sm:px-8 md:px-12 lg:px-16">
@@ -239,7 +246,7 @@ export default function HomePage() {
 											>
 												<div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-full max-w-full sm:max-w-[600px] md:max-w-[700px] lg:max-w-[900px] h-full">
 													<div className="flex flex-col lg:flex-row h-full">
-														{/* Book Cover Image */}
+														{/* Book Cover */}
 														<div className="w-full lg:w-[250px] xl:w-[300px] flex-shrink-0">
 															<div className="bg-gray-200 overflow-hidden h-[240px] sm:h-[260px] lg:h-full xl:h-[400px]">
 																<img
@@ -254,18 +261,20 @@ export default function HomePage() {
 															<div>
 																<h3
 																	className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-2 lg:mb-4 text-gray-800 text-center lg:text-left"
-																	style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
+																	style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
 																>
 																	{book.title}
 																</h3>
-																{/* About text - hidden on mobile, visible on lg and above */}
-																<p className="hidden lg:block text-gray-600 text-sm sm:text-base lg:text-lg xl:text-xl mb-4 lg:mb-6 leading-relaxed" style={{ maxHeight: '180px', overflow: 'auto' }}>
+																<p
+																	className="hidden lg:block text-gray-600 text-sm sm:text-base lg:text-lg xl:text-xl mb-4 lg:mb-6 leading-relaxed"
+																	style={{ maxHeight: '180px', overflow: 'auto' }}
+																>
 																	{book.about}
 																</p>
 															</div>
 															<Button
-																className="w-full mt-2 lg:mt-0 bebas-neue-regular text-sm sm:text-base lg:text-lg xl:text-xl py-2 lg:py-3"
-																style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
+																className="w-full mt-2 lg:mt-0 text-sm sm:text-base lg:text-lg xl:text-xl py-2 lg:py-3"
+																style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
 															>
 																Buy
 															</Button>
@@ -309,9 +318,8 @@ export default function HomePage() {
 							</div>
 						</div>
 					) : (
-						/* Sign Up/Login Forms - Shown when user is not authenticated - HIDDEN */
+						/* Auth Forms — hidden */
 						<div style={{ display: 'none' }}>
-							<>
 							<div
 								className="flex flex-col items-center justify-center w-full"
 								style={{
@@ -326,15 +334,15 @@ export default function HomePage() {
 								<div className="flex gap-4 mb-6">
 									<Button
 										onClick={() => setShowLogin(false)}
-										className={`px-6 py-2 text-base bebas-neue-regular ${!showLogin ? 'bg-blue-600' : 'bg-gray-400'}`}
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
+										className={`px-6 py-2 text-base ${!showLogin ? 'bg-blue-600' : 'bg-gray-400'}`}
+										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
 									>
 										Register
 									</Button>
 									<Button
 										onClick={() => setShowLogin(true)}
-										className={`px-6 py-2 text-base bebas-neue-regular ${showLogin ? 'bg-blue-600' : 'bg-gray-400'}`}
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
+										className={`px-6 py-2 text-base ${showLogin ? 'bg-blue-600' : 'bg-gray-400'}`}
+										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
 									>
 										Login
 									</Button>
@@ -350,13 +358,10 @@ export default function HomePage() {
 									onSubmit={async (e: FormEvent) => {
 										e.preventDefault()
 										const formData = new FormData(e.target as HTMLFormElement)
-										const name = formData.get('name') as string
 										const email = formData.get('email') as string
 										const password = formData.get('password') as string
-
 										try {
 											await signUp(email, password)
-											// User will see bookstore card immediately after signup
 										} catch (error) {
 											console.error('Signup error:', error)
 										}
@@ -368,14 +373,14 @@ export default function HomePage() {
 										name="name"
 										placeholder="Name"
 										required
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 truncate placeholder-white text-white bg-transparent"
+										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
 									/>
 									<input
 										type="email"
 										name="email"
 										placeholder="Email"
 										required
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 truncate placeholder-white text-white bg-transparent"
+										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
 									/>
 									<input
 										type="password"
@@ -383,12 +388,12 @@ export default function HomePage() {
 										placeholder="Password"
 										required
 										minLength={6}
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 truncate placeholder-white text-white bg-transparent"
+										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
 									/>
 									<Button
 										type="submit"
-										className="px-6 py-2 rounded-md text-base bebas-neue-regular w-full sm:w-80 animate-bounce hover:animate-none"
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
+										className="px-6 py-2 rounded-md text-base w-full sm:w-80 animate-bounce hover:animate-none"
+										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
 									>
 										Register
 									</Button>
@@ -406,10 +411,8 @@ export default function HomePage() {
 										const formData = new FormData(e.target as HTMLFormElement)
 										const email = formData.get('email') as string
 										const password = formData.get('password') as string
-
 										try {
 											await signIn(email, password)
-											// User will see bookstore card immediately after signin
 										} catch (error) {
 											console.error('Login error:', error)
 										}
@@ -421,7 +424,7 @@ export default function HomePage() {
 										name="email"
 										placeholder="Email"
 										required
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 truncate placeholder-white text-white bg-transparent"
+										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
 									/>
 									<input
 										type="password"
@@ -429,12 +432,12 @@ export default function HomePage() {
 										placeholder="Password"
 										required
 										minLength={6}
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 truncate placeholder-white text-white bg-transparent"
+										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
 									/>
 									<Button
 										type="submit"
-										className="px-6 py-2 rounded-md text-base bebas-neue-regular w-full sm:w-80 animate-bounce hover:animate-none"
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
+										className="px-6 py-2 rounded-md text-base w-full sm:w-80 animate-bounce hover:animate-none"
+										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
 									>
 										Login
 									</Button>
@@ -444,33 +447,33 @@ export default function HomePage() {
 									<span className="text-gray-600 text-sm">Sign up to purchase the book</span>
 								</div>
 							</div>
-							</>
 						</div>
 					)}
 				</div>
 			</div>
 
-			<div
-				className="mb-4 w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden"
-			>
+			{/* Verse Section */}
+			<div className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden mb-4">
 				<div className="max-w-7xl mx-auto">
 					<Verse />
 				</div>
 			</div>
-			<div
-				className="mb-4 w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden"
-			>
+
+			{/* Ministry Section */}
+			<div className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden mb-4">
 				<div className="max-w-7xl mx-auto">
 					<Ministry />
 				</div>
 			</div>
-			<div
-				className="mb-4 w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden"
-			>
+
+			{/* Pastor Section */}
+			<div className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden mb-4">
 				<div className="max-w-7xl mx-auto">
 					<Pastor />
 				</div>
 			</div>
+
+			{/* Youth Pastor Section */}
 			<div
 				className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden"
 				style={{ borderRadius: '16px' }}
@@ -479,35 +482,39 @@ export default function HomePage() {
 					<YouthPastor />
 				</div>
 			</div>
-<div
-		className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden"
->
-		<div className="max-w-7xl mx-auto">
-			 <Give isHomepage={true} />
-		</div>
-</div>
-<div
-		className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden mb-10 md:mb-0 -mt-12 md:-mt-16 relative z-10"
->
-		<div className="max-w-7xl mx-auto">
-			 <Congregation />
-		</div>
-</div>
+
+			{/* Give Section */}
+			<div className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden">
+				<div className="max-w-7xl mx-auto">
+					<Give isHomepage={true} />
+				</div>
+			</div>
+
+			{/* Congregation Section — fixed: single className, no duplicate props */}
 			<div
-				className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl mb-[50px] mt-5 lg:mt-0 lg:z-20 lg:relative"
+				className="give-section w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl overflow-hidden mb-10 md:mb-0 -mt-12 md:-mt-16 relative z-10"
+				style={{ backgroundColor: 'var(--card)' }}
 			>
+				<div className="max-w-7xl mx-auto">
+					<Congregation />
+				</div>
+			</div>
+
+			{/* Events Section */}
+			<div className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 shadow-xl mb-[50px] mt-5 lg:mt-0 lg:z-20 lg:relative">
 				<div className="max-w-7xl mx-auto">
 					<Events limit={3} />
 				</div>
 			</div>
 
 			{/* Find Us on the Map Section */}
-			<section
-				className="w-screen -ml-[calc((100vw-100%)/2)] py-8 md:py-12 lg:py-16 shadow-2xl overflow-hidden"
-			>
+			<section className="w-screen -ml-[calc((100vw-100%)/2)] py-8 md:py-12 lg:py-16 shadow-2xl overflow-hidden">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="rounded-lg sm:rounded-xl p-6 sm:p-8 shadow-lg">
-						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 sm:mb-8 text-center" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+						<h2
+							className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 sm:mb-8 text-center"
+							style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+						>
 							Find Us on the Map
 						</h2>
 						<div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -523,13 +530,16 @@ export default function HomePage() {
 										loading="lazy"
 										referrerPolicy="no-referrer-when-downgrade"
 										title="Church Location Map"
-									></iframe>
+									/>
 								</div>
 							</div>
 
 							{/* Text Directions */}
 							<div className="flex-1">
-								<h3 className="text-xl sm:text-2xl font-bold text-white mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+								<h3
+									className="text-xl sm:text-2xl font-bold text-white mb-4"
+									style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+								>
 									Directions to Our Church
 								</h3>
 								<div className="space-y-4 text-white text-sm sm:text-base">
@@ -572,4 +582,3 @@ export default function HomePage() {
 		</div>
 	)
 }
-
