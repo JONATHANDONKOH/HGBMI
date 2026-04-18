@@ -506,8 +506,8 @@ export default function HomePage() {
 				className="w-screen -ml-[calc((100vw-100%)/2)] py-8 md:py-12 lg:py-16 shadow-2xl overflow-hidden"
 			>
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-					<div className="bg-white rounded-lg sm:rounded-xl p-6 sm:p-8 shadow-lg">
-						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1e3a8a] mb-6 sm:mb-8 text-center" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+					<div className="rounded-lg sm:rounded-xl p-6 sm:p-8 shadow-lg">
+						<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6 sm:mb-8 text-center" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 							Find Us on the Map
 						</h2>
 						<div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
@@ -529,12 +529,12 @@ export default function HomePage() {
 
 							{/* Text Directions */}
 							<div className="flex-1">
-								<h3 className="text-xl sm:text-2xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+								<h3 className="text-xl sm:text-2xl font-bold text-white mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
 									Directions to Our Church
 								</h3>
-								<div className="space-y-4 text-[#374151] text-sm sm:text-base">
+								<div className="space-y-4 text-white text-sm sm:text-base">
 									<div>
-										<h4 className="font-semibold text-[#1e3a8a] mb-2">From Accra Central:</h4>
+										<h4 className="font-semibold text-white mb-2">From Accra Central:</h4>
 										<p className="leading-relaxed">
 											Take the Tema Motorway (N1) towards Tema. Exit at the Community 25 junction and turn left onto the main road.
 											Continue straight for approximately 2km until you reach the Hour of Grace Believers Ministries International building on your right.
@@ -542,7 +542,7 @@ export default function HomePage() {
 										</p>
 									</div>
 									<div>
-										<h4 className="font-semibold text-[#1e3a8a] mb-2">From Tema:</h4>
+										<h4 className="font-semibold text-white mb-2">From Tema:</h4>
 										<p className="leading-relaxed">
 											Head towards Accra on the Tema Motorway (N1). Take the Community 25 exit and turn right onto the access road.
 											Follow the road for about 1.5km. The church will be visible on your left with clear directional signs.
@@ -550,14 +550,14 @@ export default function HomePage() {
 										</p>
 									</div>
 									<div>
-										<h4 className="font-semibold text-[#1e3a8a] mb-2">Public Transport:</h4>
+										<h4 className="font-semibold text-white mb-2">Public Transport:</h4>
 										<p className="leading-relaxed">
 											Multiple tro-tro routes serve this area. Routes from Accra Central (37, 38, 39) and Tema (1, 2, 3) stop near Community 25.
 											From the tro-tro stop, it's a short 5-minute walk to the church. Taxis are also readily available in the area.
 										</p>
 									</div>
 									<div className="bg-blue-50 p-3 sm:p-4 rounded-lg">
-										<p className="text-xs sm:text-sm text-[#2563eb] font-medium">
+										<p className="text-xs sm:text-sm text-white font-medium">
 											<strong>Note:</strong> Free parking is available on-site. For large groups or special events, please contact us in advance for parking arrangements.
 										</p>
 									</div>

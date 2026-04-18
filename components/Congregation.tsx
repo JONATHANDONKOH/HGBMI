@@ -145,12 +145,12 @@ export default function Congregation() {
                 N
               </span>
             </div>
-            <div className="wall bg-white rounded-xl p-12 shadow-sm hover:shadow-md transition-shadow text-center" style={{
+            <div className="wall rounded-xl p-12 shadow-sm hover:shadow-md transition-shadow text-center" style={{
               transform: 'translateZ(50px)',
               position: 'relative'
             }}>
-              <h3 className="text-3xl md:text-4xl font-bold text-[#1e3a8a] mb-6" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>About Our Congregation</h3>
-              <p className="text-lg text-[#374151] leading-relaxed max-w-4xl mx-auto">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>About Our Congregation</h3>
+              <p className="text-lg text-white leading-relaxed max-w-4xl mx-auto">
                 Our congregation is a vibrant community of over 500 members from all walks of life, united in faith and service.
                 With more than 25 active ministries and over 50 years of serving our community, we continue to grow and make
                 a positive impact in the lives of those around us. Join us in our mission to spread God's love and grace to everyone.

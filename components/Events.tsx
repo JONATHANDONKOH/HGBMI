@@ -1,167 +1,102 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Link from "next/link"
-import {
-  Calendar,
-  MapPin,
-  Clock,
-  Users,
-  ChevronRight
-} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/useScrollAnimation"
 
 export default function Events({ limit }: { limit?: number }) {
-  const [selectedEvent, setSelectedEvent] = useState(0)
-  const [isLarge, setIsLarge] = useState(false)
-  const headerRef = useScrollAnimation('fadeInUp')
-  const cardsRef = useScrollAnimation('fadeInLeft', 0.2)
-
-  useEffect(() => {
-    const checkSize = () => setIsLarge(window.innerWidth >= 1024)
-    checkSize()
-    window.addEventListener('resize', checkSize)
-    return () => window.removeEventListener('resize', checkSize)
-  }, [])
-
-  const events = [
-    {
-      id: 1,
-      title: "Sunday Worship Service",
-      date: "Every Sunday",
-      time: "9:00 AM - 12:00 PM",
-      location: "Main Sanctuary, Lashibi",
-      attendees: 1500,
-      category: "Worship",
-      flier: "/father.jpg"
-    },
-    {
-      id: 4,
-      title: "Soul Wining",
-      date: "Every Saturday",
-      time: "5:00 PM - 7:00 PM",
-      location: "Accra",
-      attendees: 800,
-      category: "Fellowship",
-      flier: "/life.jpg"
-    },
-    {
-      id: 5,
-      title: "Foundation School",
-      date: "Every Tuesday",
-      time: "6:00 PM - 8:00 PM",
-      location: "Fellowship Hall, Lashibi",
-      attendees: 600,
-      category: "Study",
-      flier: "/faith.jpg"
-    }
-  ]
+  const headerRef = useScrollAnimation("fadeInUp")
+  const contentRef = useScrollAnimation("fadeInUp", 0.2)
 
   return (
-    <section className="w-full bg-gradient-to-b from-slate-900 to-black">
-      <div className="w-full max-w-6xl mx-auto px-4 py-16">
+    <section className="w-full bg-[#4a9fa5]">
+      <div className="w-full max-w-6xl mx-auto px-4 py-12">
+
         {/* HEADER */}
-        <div className="text-center mb-12" ref={headerRef}>
-          <h2 className="text-5xl sm:text-6xl font-bold text-white mb-4" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
+        <div className="text-center mb-10" ref={headerRef}>
+          <h2
+            className="text-4xl sm:text-5xl font-bold text-white mb-3"
+            style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+          >
             Upcoming Events
           </h2>
-          <p className="text-slate-300 text-lg" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400 }}>
+          <p
+            className="text-white/80 text-base"
+            style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400 }}
+          >
             Join us for worship, fellowship, and spiritual growth
           </p>
         </div>
 
-        {/* MAIN CONTENT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* LEFT SIDE: IMAGE */}
-          <div
-            className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl shadow-black/50"
-          >
+        {/* MAIN FLEXBOX BLOCK */}
+        <div
+          className="flex flex-col lg:flex-row gap-12 items-center lg:items-start"
+          ref={contentRef}
+        >
+          {/* IMAGE */}
+          <div className="w-full lg:w-1/2 h-[300px] sm:h-[380px] rounded-xl overflow-hidden shadow-2xl shadow-black/30">
             <img
-              src="/service.jpg"
-              alt="Church Service"
+src="/larbi.jpeg"
+              alt="Sunday Worship Service"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
             />
           </div>
 
-          {/* RIGHT SIDE: EVENTS LIST */}
-          <div className="space-y-6 animate-fade-in-up-stagger" ref={cardsRef}>
-            {events.slice(0, limit).map((event, index) => (
-              <div
-                key={event.id}
-                onClick={() => setSelectedEvent(index)}
-                className={`
-                  cursor-pointer
-                  p-8
-                  transition-all
-                  duration-300
-                  relative
-                  overflow-hidden
-                  border-b-2
-                  ${
-                    selectedEvent === index
-                      ? "border-purple-700 bg-black"
-                      : "border-slate-700 bg-black"
-                  }
-                `}
-              >
-                {/* HOVER EFFECT BACKGROUND */}
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/5 to-purple-500/0 opacity-0 hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="flex flex-col sm:flex-row justify-between gap-4 relative z-10">
-                  <div className="space-y-4 flex-1">
-                    <div>
-                      <h3 className="text-xl font-bold text-white" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 600 }}>
-                        {event.title}
-                      </h3>
-                    </div>
+          {/* TEXT */}
+          <div className="w-full lg:w-1/2 text-white space-y-5 text-center lg:text-left">
+            <span
+              className="inline-block text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider bg-white/20"
+              style={{ fontFamily: '"Poppins", sans-serif' }}
+            >
+              Worship
+            </span>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-                      <div>
-                        <p className="text-sm text-slate-400 mb-3" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 500 }}>Date</p>
-                        <p className="text-white text-lg font-semibold" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 500 }}>{event.date}</p>
-                      </div>
+            <h3
+              className="text-3xl sm:text-4xl font-bold leading-snug"
+              style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+            >
+              Sunday Worship Service
+            </h3>
 
-                      <div>
-                        <p className="text-sm text-slate-400 mb-3" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 500 }}>Time</p>
-                        <p className="text-white text-lg font-semibold" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 500 }}>{event.time}</p>
-                      </div>
+            <p
+              className="text-white/85 text-base sm:text-lg italic leading-relaxed"
+              style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400 }}
+            >
+              Every Sunday is a divine appointment. Join thousands as we gather
+              to worship, receive the Word, and experience the presence of God
+              together in one accord. Come expecting a miracle.
+            </p>
 
-                      <div>
-                        <p className="text-sm text-slate-400 mb-3" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 500 }}>Location</p>
-                        <p className="text-white text-lg font-semibold" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 500 }}>{event.location}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div
+              className="text-white/75 text-sm space-y-1"
+              style={{ fontFamily: '"Poppins", sans-serif' }}
+            >
+              <p>📅 Every Sunday &nbsp;·&nbsp; 🕐 9:00 AM – 12:00 PM</p>
+              <p>📍 Main Sanctuary, Lashibi</p>
+            </div>
+
+            <div className="pt-2">
+              <Link href="/events">
+                <button
+                  className="bg-[#1a5f6a] hover:bg-[#154f59] text-white font-semibold px-7 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-lg"
+                  style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 600 }}
+                >
+                  Learn More
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* CTA BUTTON */}
-        <div
-          className="text-center mt-16"
-        >
-          <Link href="/events">
-
-          </Link>
-        </div>
-
-        {/* CTA BUTTON - Only show on homepage */}
         {limit && (
-          <div
-            className="text-center mt-16"
-          >
+          <div className="text-center mt-12">
             <Link href="/events">
-              <Button className="
-                bg-gradient-to-r from-blue-500 to-purple-600
-                hover:from-blue-600 hover:to-purple-700
-                text-white font-bold px-10 py-6 rounded-mid
-                text-lg shadow-lg hover:shadow-xl hover:shadow-purple-500/25
-                transition-all duration-300
-                hover:scale-105
-              " style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 600 }}>
+              <Button
+                className="bg-white text-[#4a9fa5] hover:bg-white/90 font-bold px-10 py-6 rounded-full text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
+              >
                 View All Events
               </Button>
             </Link>
@@ -171,4 +106,3 @@ export default function Events({ limit }: { limit?: number }) {
     </section>
   )
 }
-

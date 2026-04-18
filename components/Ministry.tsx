@@ -1,158 +1,65 @@
-"use client";
-
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Button } from '@/components/ui/button'
 
 const ministries = [
   {
-    title: "Pleroma Fellowship",
-    slug: "pleroma",
-    image: "/quire.jpg",
+    title: "Spintex Fellowship",
+    image: "/vhh.jpg", // Updated to use vhh.jpg from public
     about: "Uplifting worship through music and praise.",
   },
   {
-    title: "FAITH Fellowship",
-    slug: "FAITH-fellowship",
-    image: "/faith.jpg",
-    about: "Empowering believers through prayer, study, and mutual support in faith.",
+    title: "Campus Fellowship",
+    image: "/campus.jpg", // Campus image moved to second container
+    about: "Guiding young hearts in faith and joy.",
   },
   {
     title: "Klagon Fellowship",
-    slug: "klagon",
-    image: "/vhh.jpg",
+    image: "/quire.jpg", // Added quire image as third image
     about: "Empowering students with spiritual growth.",
   },
   {
     title: "Nungua Fellowship",
-    slug: "nungua",
-    image: "/kyt.jpg",
+    image: "/kyt.jpg", // Added kyt.jpg as image for last container
     about: "Building community through shared faith.",
   },
 ];
 
 export default function Ministry() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useScrollAnimation('fadeInUp');
-  const cardsRef = useScrollAnimation('fadeInRight', 0.2);
-
-  // 🔒 Only track scroll on MOBILE
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    if (isDesktop) return;
-
-    const handleScroll = () => {
-      const cardWidth = container.firstElementChild?.clientWidth || 1;
-      const index = Math.round(container.scrollLeft / cardWidth);
-      setActiveIndex(index);
-    };
-
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToCard = (index: number) => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const cardWidth = container.firstElementChild?.clientWidth || 1;
-    container.scrollTo({
-      left: cardWidth * index,
-      behavior: "smooth",
-    });
-  };
-
   return (
-    <section
-      className="w-full py-12 flex flex-col items-center overflow-x-hidden"
-      style={{
-        background: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/sky me.webp') center/cover no-repeat`,
-      }}
-    >
-      {/* HEADER */}
-      <div className="w-full max-w-5xl px-4 sm:px-6 mb-10" ref={headerRef}>
-        <h2
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold"
-          style={{ fontFamily: '"Bebas Neue", sans-serif', color: "#1560BD" }}
-        >
+  <section
+    className="w-full min-h-[20vh] py-12 flex flex-col items-center justify-center"
+    style={{
+      background: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/sky me.webp') center/cover no-repeat`,
+      boxShadow: '0 0 40px 0 rgba(0,0,0,0.06)'
+    }}
+  >
+      <div className="w-full max-w-5xl flex flex-col items-start">
+  <h2 className="fellowship-header text-5xl lg:text-7xl font-bold text-foreground leading-tight text-balance" style={{ fontFamily: '"Bebas Neue", sans-serif', color: "#1560BD", position: 'relative' }}>
           Our Fellowship
         </h2>
-        <p className="text-white max-w-xl mt-4">
-          The church is a sanctuary where hearts gather to worship, heal, and grow
-          in faith. Through prayer, fellowship, and service, it becomes a living
-          testimony of God's grace and love.
-        </p>
+        <div className="flex flex-row items-start justify-center gap-[160px] mt-[10px] mb-10 w-full">
+          <div className="flex flex-row items-start">
+            <div className="h-full w-[4px] bg-red-600 rounded mr-6"></div>
+            <p className="text-lg text-white text-left max-w-xl ml-[170px]">
+              The church is a sanctuary where hearts gather to worship, heal, and grow in faith. Through prayer, fellowship, and service, it becomes a living testimony of God’s grace and love. Each gathering is a reminder that we are not alone—called together for purpose, peace, and transformation
+            </p>
+          </div>
+        </div>
       </div>
-
-      {/* CONTENT */}
-      <div className="w-full max-w-7xl" ref={cardsRef}>
-        <div
-          ref={scrollContainerRef}
-          className="
-            flex lg:grid
-            lg:grid-cols-4
-            gap-6
-            px-4
-            overflow-x-auto lg:overflow-visible
-            snap-x snap-mandatory
-            animate-fade-in-up-stagger
-          "
-        >
-          {ministries.map((ministry) => (
-            <div
-              key={ministry.title}
-              className="
-                bg-white rounded-xl shadow-md p-6
-                w-[280px] sm:w-[300px] lg:w-full
-                min-h-[380px]
-                flex-shrink-0 lg:flex-shrink
-                snap-center
-                transition-transform duration-300
-                hover:scale-105
-              "
-            >
-              <div className="h-40 rounded-lg overflow-hidden mb-4">
-                <img
-                  src={ministry.image}
-                  alt={ministry.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <h3 className="text-xl font-bold text-blue-900 mb-3 text-center">
-                {ministry.title}
-              </h3>
-
-              <p className="text-gray-700 text-center mb-4">
-                {ministry.about}
-              </p>
-
-              <Button asChild className="mx-auto block font-bold animate-bounce hover:animate-none hover:scale-105 transition-transform duration-200" style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}>
-                <Link href={`/fellowship/${ministry.slug}`}>
-                  Read More
-                </Link>
-              </Button>
-            </div>
-          ))}
-        </div>
-
-        {/* DOTS (MOBILE ONLY) */}
-        <div className="flex lg:hidden justify-center gap-2 mt-6">
-          {ministries.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => scrollToCard(index)}
-              className={`h-2 rounded-full transition-all ${
-                index === activeIndex ? "w-8 bg-blue-600" : "w-2 bg-white/50"
-              }`}
-            />
-          ))}
-        </div>
+      <div className="flex flex-row items-stretch justify-center gap-6 md:gap-8 w-full max-w-7xl px-4 md:px-6 overflow-x-auto">
+        {ministries.map((ministry, index) => (
+          <div key={ministry.title} className={`flex flex-col items-center bg-white rounded-xl shadow-md p-6 w-full sm:w-[300px] md:w-[340px] lg:w-[280px] xl:w-[320px] min-h-[360px] transform-style-preserve-3d ${index === 0 ? 'rotate-y-[10deg]' : index === 3 ? 'rotate-y-[-10deg]' : ''} hover:rotate-y-0 transition-all duration-300`}>
+            <img src={ministry.image} alt={ministry.title} className="h-40 w-full object-cover rounded-lg mb-4" />
+            <h3 className="text-2xl font-bold mb-3 text-blue-900 text-center">{ministry.title}</h3>
+            <p className="text-black-700 text-center mb-4 text-lg">{ministry.about}</p>
+            <Button asChild className="mt-auto px-6 py-2 rounded-md font-bold shadow hover:scale-105 transition-transform duration-200 inline-block text-center animate-bounce hover:animate-none">
+              <Link href={`/ministries/${ministry.title.toLowerCase().replace(' fellowship', '')}`}>
+                Read More
+              </Link>
+            </Button>
+          </div>
+        ))}
       </div>
     </section>
   );
