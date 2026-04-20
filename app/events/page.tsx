@@ -1,138 +1,344 @@
 'use client'
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 import Events from "@/components/Events"
 
 export default function EventsPage() {
+  const [heroReady, setHeroReady] = useState(false)
+
+  useEffect(() => {
+    const t = setTimeout(() => setHeroReady(true), 100)
+    return () => clearTimeout(t)
+  }, [])
+
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
 
-        .events-page {
-          --gold: #C9A84C;
-          --gold-light: #E8C97A;
-          --cream: #FAF7F2;
-          --ink: #1A1612;
-          --stone: #6B6057;
-          --divider: #E0D8CC;
-          font-family: 'DM Sans', sans-serif;
-          background-color: var(--cream);
+        * { box-sizing: border-box; }
+
+        .ep {
+          --blue:     #3A4FD8;
+          --blue-mid: #5068E8;
+          --blue-lt:  #6B83F5;
+          --gold:     #C9960A;
+          --gold-lt:  #F5C842;
+          --white:    #FFFFFF;
+          --ink:      #111827;
+          --muted:    #6B7280;
+          --divider:  #E9EBF8;
+          background: #fff;
           color: var(--ink);
+          font-family: 'Jost', sans-serif;
           min-height: 100vh;
         }
 
-        .events-display {
-          font-family: 'Cormorant Garamond', serif;
+        @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+        /* ═══════════════════════════════
+           HERO — white + blue ribbon
+        ═══════════════════════════════ */
+        .ep-hero {
+          position: relative;
+          width: 100%;
+          min-height: 70vh;
+          background: #fff;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
-        .events-hero-title {
+        /* Full-bleed ribbon SVG — same sweep as About hero */
+        .ep-hero-svg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        /* Text content */
+        .ep-hero-text {
+          position: relative;
+          z-index: 5;
+          padding: 6rem 0 4rem 6rem;
+          max-width: 620px;
+          opacity: 0;
+        }
+        .ep-hero-ready .ep-hero-text { animation: fadeUp 0.8s ease 0.15s forwards; }
+        @media(max-width:768px){ .ep-hero-text{ padding: 5rem 0 3rem 1.5rem; max-width:92vw; } }
+
+        .ep-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: .75rem;
+          font-size: .62rem;
+          font-weight: 600;
+          letter-spacing: .22em;
+          text-transform: uppercase;
+          color: var(--blue);
+          margin-bottom: 1.25rem;
+        }
+        .ep-eyebrow::before {
+          content: '';
+          display: inline-block;
+          width: 2rem; height: 2px;
+          background: var(--gold);
+        }
+
+        .ep-hero-title {
           font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(3.8rem, 8vw, 7.5rem);
+          font-weight: 700;
+          line-height: 0.92;
+          letter-spacing: -0.02em;
+          color: var(--ink);
+          margin-bottom: 1.5rem;
+        }
+        .ep-hero-title .t-blue { color: var(--blue); font-style: italic; }
+        .ep-hero-title .t-gold { color: var(--gold); }
+
+        .ep-hero-body {
+          font-size: 1rem;
+          line-height: 1.75;
+          color: var(--muted);
           font-weight: 300;
-          font-size: clamp(4.5rem, 12vw, 9rem);
-          letter-spacing: -0.03em;
-          line-height: 0.88;
+          max-width: 44ch;
+        }
+
+        /* Decorative right-side element on hero */
+        .ep-hero-deco {
+          position: absolute;
+          right: 6rem;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 3;
+          text-align: center;
+          opacity: 0;
+          pointer-events: none;
+        }
+        .ep-hero-ready .ep-hero-deco { animation: fadeIn 1s ease 0.7s forwards; }
+        @media(max-width:900px){ .ep-hero-deco { display: none; } }
+
+        .ep-hero-deco-num {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 9rem;
+          font-weight: 700;
+          line-height: 1;
+          color: var(--divider);
+          display: block;
+        }
+        .ep-hero-deco-label {
+          font-size: 0.62rem;
+          font-weight: 600;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--muted);
+        }
+
+        /* ═══════════════════════════════
+           EVENTS BODY SECTION
+        ═══════════════════════════════ */
+        .ep-body {
+          position: relative;
+          background: #F8F9FF;
+          overflow: hidden;
+          padding: 5rem 6rem 6rem;
+        }
+        @media(max-width:768px){ .ep-body{ padding: 3rem 1.5rem 4rem; } }
+
+        /* Ribbon echo in body section */
+        .ep-body-svg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        .ep-body-inner {
+          position: relative;
+          z-index: 1;
+        }
+
+        .ep-section-head {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          margin-bottom: 2.5rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1.5px solid var(--divider);
+        }
+
+        .ep-sec-label {
+          font-size: .62rem;
+          font-weight: 600;
+          letter-spacing: .22em;
+          text-transform: uppercase;
+          color: var(--blue);
+          display: flex;
+          align-items: center;
+          gap: .6rem;
+          margin-bottom: .75rem;
+        }
+        .ep-sec-label::before {
+          content: '';
+          display: inline-block;
+          width: 1.75rem; height: 2px;
+          background: var(--gold);
+        }
+
+        .ep-sec-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 2.4rem;
+          font-weight: 700;
+          line-height: 1.08;
           color: var(--ink);
         }
 
-        .events-hero-title em {
-          font-style: italic;
-          color: var(--gold);
-        }
-
-        .events-label-tag {
-          font-size: 0.7rem;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: var(--stone);
-          font-weight: 500;
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-        }
-        .events-label-tag::before {
-          content: '';
-          display: inline-block;
-          width: 1.5rem;
-          height: 1px;
-          background: var(--gold);
-        }
-
-        .events-divider {
-          height: 1px;
-          background: var(--divider);
-          border: none;
-          margin: 0;
-        }
-
-        .events-gold-bar {
-          height: 3px;
-          width: 4rem;
-          background: var(--gold);
-          margin-bottom: 2rem;
-        }
-
-        /* Decorative large background character */
-        .events-bg-char {
+        .ep-big-num {
           font-family: 'Cormorant Garamond', serif;
-          font-weight: 300;
-          font-size: 28vw;
-          color: rgba(201, 168, 76, 0.04);
-          position: absolute;
-          right: -2vw;
-          top: -4rem;
+          font-size: 5.5rem;
+          font-weight: 700;
+          color: var(--divider);
           line-height: 1;
-          pointer-events: none;
-          user-select: none;
-          z-index: 0;
+        }
+
+        /* Wrapper for the Events component — override any old cream styles */
+        .ep-events-wrap {
+          background: transparent;
+        }
+        .ep-events-wrap * {
+          --cream: #F8F9FF;
+          --divider: #E9EBF8;
+          --stone: #6B7280;
+          --gold: #C9960A;
+          --gold-light: #F5C842;
+          --ink: #111827;
         }
       `}</style>
 
-      <div className="events-page">
+      <div className="ep">
         <Navbar />
 
-        <main className="w-full px-6 lg:px-16 xl:px-24 mb-20">
+        {/* ══ HERO ══ */}
+        <section className={`ep-hero ${heroReady ? "ep-hero-ready" : ""}`}>
 
-          {/* ── Hero ── */}
-          <div className="relative pt-20 pb-16 border-b border-[var(--divider)] overflow-hidden">
-            <span className="events-bg-char" aria-hidden="true">E</span>
+          {/* Blue curved ribbon — same shape as About page hero */}
+          <svg
+            className="ep-hero-svg"
+            viewBox="0 0 1440 640"
+            preserveAspectRatio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="epRib" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#7B93F8" />
+                <stop offset="40%"  stopColor="#3A4FD8" />
+                <stop offset="100%" stopColor="#1E2D9E" />
+              </linearGradient>
+            </defs>
+            {/* Main ribbon body */}
+            <path
+              d="
+                M -100 520
+                Q  160 440,  420 400
+                Q  660 365,  870 320
+                Q 1080 275, 1300 215
+                L 1540 140
 
-            <div className="relative z-10">
-              <p className="events-label-tag mb-8">Hour of Grace Believers Ministry</p>
+                L 1540 200
+                L 1305 272
+                Q 1085 332, 875 378
+                Q 665 423, 430 460
+                Q  170 502, -100 582
+                Z
+              "
+              fill="url(#epRib)"
+            />
+            {/* Top highlight sheen */}
+            <path
+              d="
+                M -100 520
+                Q  160 440,  420 400
+                Q  660 365,  870 320
+                Q 1080 275, 1300 215
+                L 1540 140
+                L 1540 158
+                L 1302 232
+                Q 1082 292, 872 338
+                Q 662 383, 422 418
+                Q  162 458, -100 538
+                Z
+              "
+              fill="rgba(255,255,255,0.18)"
+            />
+          </svg>
 
-              <h1 className="events-hero-title mb-10">
-                Upcoming<br />
-                <em>Events</em>
-              </h1>
-
-              <p
-                className="text-[var(--stone)] text-lg max-w-lg leading-relaxed"
-                style={{ fontWeight: 300 }}
-              >
-                Come gather with us — for worship, fellowship, and spiritual growth.
-                Every event is an open door. You are welcome here.
-              </p>
-            </div>
+          {/* Decorative large number — right side, above the ribbon */}
+          <div className="ep-hero-deco">
+            <span className="ep-hero-deco-num">E</span>
+            <span className="ep-hero-deco-label">Events</span>
           </div>
 
-          {/* ── Events Component ── */}
-          <div className="pt-16">
-            <div className="relative mb-10">
-              <p className="events-label-tag mb-3">Schedule</p>
-              <h2 className="events-display text-4xl font-semibold text-[var(--ink)]">
-                What's On
-              </h2>
+          {/* Text */}
+          <div className="ep-hero-text">
+            <p className="ep-eyebrow">Hour of Grace Believers Ministry International</p>
+            <h1 className="ep-hero-title">
+              Upcoming<br />
+              <span className="t-blue">Church</span><br />
+              <span className="t-gold">Events</span>
+            </h1>
+            <p className="ep-hero-body">
+              Come gather with us — for worship, fellowship, and spiritual growth.
+              Every event is an open door. You are welcome here.
+            </p>
+          </div>
+        </section>
+
+
+        {/* ══ EVENTS BODY ══ */}
+        <section className="ep-body">
+
+          {/* Subtle ribbon echo */}
+          <svg
+            className="ep-body-svg"
+            viewBox="0 0 1440 500"
+            preserveAspectRatio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="epBodyRib" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#3A4FD8" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#3A4FD8" stopOpacity="0.03" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M-80 380 Q360 310 720 330 Q1080 350 1540 240 L1540 295 Q1080 405 720 385 Q360 365 -80 435 Z"
+              fill="url(#epBodyRib)"
+            />
+          </svg>
+
+          <div className="ep-body-inner">
+            <div className="ep-section-head">
+              <div>
+                <p className="ep-sec-label">Schedule</p>
+                <h2 className="ep-sec-title">What's On</h2>
+              </div>
+              <span className="ep-big-num">↓</span>
             </div>
 
-            <hr className="events-divider mb-12" />
-
-            {/* Events renders inside the same cream page — no wrapper box */}
-            <Events />
+            {/* Events component inherits the new palette */}
+            <div className="ep-events-wrap">
+              <Events />
+            </div>
           </div>
-
-        </main>
+        </section>
 
         <Footer />
       </div>

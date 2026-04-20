@@ -131,10 +131,10 @@ export default function Congregation() {
                 className="text-lg text-gray-800 leading-relaxed max-w-4xl mx-auto"
                 style={{ fontFamily: '"Poppins", sans-serif', fontWeight: 400 }}
               >
-                Our congregation is a vibrant community of over 500 members from all walks of life,
-                united in faith and service. With more than 25 active ministries and over 50 years of
-                serving our community, we continue to grow and make a positive impact in the lives of
-                those around us. Join us in our mission to spread God's love and grace to everyone.
+                Our congregation is a vibrant, welcoming community united in faith and service.
+                We gather regularly to worship, support one another, and share God's love with our
+                neighbors. Everyone is invited to experience fellowship, encouragement, and spiritual
+                growth with us.
               </p>
             </div>
           </div>
@@ -155,7 +155,7 @@ export default function Congregation() {
               for you here. Join us this Sunday.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/join">
+              <Link href="/contact">
                 <Button
                   size="lg"
                   className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 animate-bounce hover:animate-none"

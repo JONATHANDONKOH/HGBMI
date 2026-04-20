@@ -1,332 +1,606 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, MapPin, Heart, Star, BookOpen, Clock } from "lucide-react"
+import { Users, MapPin, Heart, BookOpen, Clock, Star } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 
 const fellowships = [
-  // First 4 fellowships match the ministry section on homepage
   {
     name: "Pleroma Fellowship",
     slug: "pleroma",
     location: "Lashibi",
-    address: "Lashibi, Accra",
     image: "/quire.jpg",
     description: "Uplifting worship through music and praise.",
-    whatsapp: "+233 271645202",
-    phone: "+233 271645202",
-    email: "spintex@hgbmi.org",
-    policies: "Open to all. Focus on worship and praise.",
     meetingDays: "Every Sunday, 9:00 AM",
-    teachings: ["Worship", "Music Ministry", "Praise"],
-    foundationSchool: {
-      time: "Saturdays, 10:00 AM - 12:00 PM",
-      location: "Spintex Hall"
-    },
-    googleMeetId: "abc-defg-hij"
+    num: "01",
   },
   {
     name: "Light Fellowship",
     slug: "light",
     location: "Accra Technical University",
-    address: "UPSA, Accra",
     image: "/attuu.jpeg",
     description: "Guiding young hearts in faith and joy.",
-    whatsapp: "+233 246148032",
-    phone: "+233 246148032",
-    email: "campus@hgbmi.org",
-    policies: "Open to students. Focus on youth ministry.",
     meetingDays: "Every Thursday, 6:00 PM",
-    teachings: ["Youth Ministry", "Faith Development", "Campus Outreach"],
-    foundationSchool: {
-      time: "Sundays, 2:00 PM - 4:00 PM",
-      location: "Campus Hall"
-    },
-    googleMeetId: "def-ghij-klm"
+    num: "02",
   },
   {
     name: "Klagon Fellowship",
     slug: "klagon",
     location: "Klagon",
-    address: "Klagon, Accra",
     image: "/vhh.jpg",
     description: "Empowering students with spiritual growth.",
-    whatsapp: "+233 201159482",
-    phone: "+233 201159482",
-    email: "klagon@hgbmi.org",
-    policies: "Open to all students. Focus on spiritual empowerment.",
     meetingDays: "Every Wednesday, 7:00 PM",
-    teachings: ["Spiritual Growth", "Student Ministry", "Academic Excellence"],
-    foundationSchool: {
-      time: "Saturdays, 9:00 AM - 11:00 AM",
-      location: "Klagon Hall"
-    },
-    googleMeetId: "ghi-jklm-nop"
+    num: "03",
   },
   {
     name: "Nungua Fellowship",
     slug: "nungua",
     location: "Nungua",
-    address: "Nungua, Accra",
     image: "/kyt.jpg",
     description: "Building community through shared faith.",
-    whatsapp: "+233 246148032",
-    phone: "+233 246148032",
-    email: "nungua@hgbmi.org",
-    policies: "Open to all. Focus on community building.",
     meetingDays: "Every Tuesday, 5:30 PM",
-    teachings: ["Community", "Fellowship", "Faith Building"],
-    foundationSchool: {
-      time: "Saturdays, 3:00 PM - 5:00 PM",
-      location: "Nungua Hall"
-    },
-    googleMeetId: "jkl-mnop-qrs"
+    num: "04",
   },
-  // Additional fellowships
   {
     name: "WorldLove Fellowship",
     slug: "youth-fellowship",
-    location: "university of proffessional studies",
-    address: "University of Proffessional Studies, Accra",
+    location: "University of Professional Studies",
     image: "/worldlove.jpg",
     description: "Spreading God's love to the world through vibrant community and spiritual growth.",
-    whatsapp: "+233 271645202",
-    phone: "+233 271645202",
-    email: "ekowdadzie1234@gmail.com",
-    policies: "Members must be between 18-35 years old. Regular attendance required.",
-    meetingDays: "Every Tuesday, 7:00 PM - 8:00pm",
-    teachings: ["Spiritual Growth", "Leadership Development", "Community Service"],
-    foundationSchool: {
-      time: "Saturdays, 10:00 AM - 12:00 PM",
-      location: "Campus Ministry Hall"
-    },
-    googleMeetId: "abc-defg-hij"
+    meetingDays: "Every Tuesday, 7:00 PM",
+    num: "05",
   },
   {
-    name: "FAITH  Fellowship",
+    name: "Faith Fellowship",
     slug: "FAITH-fellowship",
-    location: "Ghana communication Technology  University",
-    address: "HGBMI Main Church, Lashibi, Accra",
+    location: "Ghana Communication Technology University",
     image: "/faith.jpg",
     description: "Empowering believers through prayer, study, and mutual support in faith.",
-    whatsapp: "+233 209169568",
-    phone: "+233 209169568",
-    email: "aryeeaaron1360@gmail.com",
-    policies: "Open to all believers. Focus on spiritual empowerment and community.",
-    meetingDays: "Every Monday, :700 PM",
-    teachings: ["Foundation School"],
-    foundationSchool: {
-      time: "Sundays, 2:00 PM - 4:00 PM",
-      location: "Main Sanctuary"
-    },
-    googleMeetId: "def-ghij-klm"
+    meetingDays: "Every Monday, 7:00 PM",
+    num: "06",
   },
   {
     name: "Life Fellowship",
     slug: "Life-fellowship",
-    location: "university of professional studies",
-    address: "HGBMI Fellowship Hall, Accra",
+    location: "University of Professional Studies",
     image: "/life.jpg",
     description: "Experiencing abundant life in Christ through fellowship and biblical teachings.",
-    whatsapp: "+233 201159482",
-    phone: "+233 201159482",
-    email: "pkayrulestheworld@gmail.com",
-    policies: "Open to all. Emphasis on leadership and service.",
-    meetingDays: "Mondays, 7:00 PM,Tuesdays, 7:00 PM",
-    teachings: ["Biblical Manhood", "Leadership", "Family Responsibilities"],
-    foundationSchool: {
-      time: "Saturdays, 9:00 AM - 11:00 AM",
-      location: "Fellowship Hall"
-    },
-    googleMeetId: "ghi-jklm-nop"
+    meetingDays: "Mondays & Tuesdays, 7:00 PM",
+    num: "07",
   },
   {
     name: "Spirit's Fellowship",
     slug: "Spririt-fellowship",
-    location: "Accra Technical university",
-    address: "accra, Accra",
+    location: "Accra Technical University",
     image: "/spirit.jpg",
     description: "Filled with the Holy Spirit, nurturing hearts with God's love and faith-based activities.",
-    whatsapp: "+233 538746203",
-    phone: "+233 538746203",
-    email: "",
-    policies: ".",
-    meetingDays: "Every Tuesday, 5:30 PM ,Saturdays, 3:30 PM",
-    teachings: ["Bible Stories", "Christian Values", "Fun Activities"],
-    foundationSchool: {
-
-      location: "Kids Zone"
-    },
-    googleMeetId: "jkl-mnop-qrs"
+    meetingDays: "Tuesdays & Saturdays",
+    num: "08",
   },
+]
+
+const categories = [
+  { icon: Heart,    label: "Youth Fellowships", desc: "For young adults seeking spiritual growth and community" },
+  { icon: Users,    label: "Adult Groups",       desc: "Professional and family-focused fellowship communities" },
+  { icon: BookOpen, label: "Study Groups",       desc: "Bible study and spiritual development fellowships" },
+  { icon: Star,     label: "Special Interest",   desc: "Music, prayer, and ministry-focused fellowships" },
+]
+
+const whyItems = [
+  { icon: Clock,  label: "Regular Meetings",  desc: "Weekly gatherings for worship and fellowship" },
+  { icon: Users,  label: "Community Support", desc: "Build lasting relationships with fellow believers" },
+  { icon: Heart,  label: "Spiritual Growth",  desc: "Deepen your faith through study and prayer" },
 ]
 
 export default function FellowshipPage() {
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000ff 0%, #4e1bc5ff 100%)' }}>
-        {/* Natural Stars Background */}
-        <div className="absolute inset-0 pointer-events-none">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute animate-pulse animate-spin text-yellow-200 text-opacity-80"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                fontSize: `${Math.random() * 6 + 4}px`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${Math.random() * 2 + 2}s`,
-                opacity: Math.random() * 0.6 + 0.3,
-                transform: `rotate(${Math.random() * 360}deg)`,
-              }}
-            >
-              ⭐
-            </div>
-          ))}
-        </div>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
 
-        {/* Hero Section */}
-        <section className="relative min-h-[50vh] flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-br from-black/80 to-gray-900/60" />
-          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-              HGBMI Fellowships
+        * { box-sizing: border-box; }
+
+        .fp {
+          --blue:    #3A4FD8;
+          --blue-lt: #6B83F5;
+          --gold:    #C9960A;
+          --gold-lt: #F5C842;
+          --ink:     #111827;
+          --muted:   #6B7280;
+          --divider: #E9EBF8;
+          background: #fff;
+          color: var(--ink);
+          font-family: 'Jost', sans-serif;
+          min-height: 100vh;
+        }
+
+        @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+        /* ═══════ HERO ═══════ */
+        .fp-hero {
+          position: relative;
+          width: 100%;
+          min-height: 68vh;
+          background: #fff;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          animation: fadeUp .8s ease .1s both;
+        }
+        .fp-hero-svg {
+          position: absolute;
+          inset: 0; width: 100%; height: 100%;
+          pointer-events: none;
+        }
+        .fp-hero-text {
+          position: relative;
+          z-index: 5;
+          padding: 6rem 0 4rem 6rem;
+          max-width: 620px;
+        }
+        @media(max-width:768px){ .fp-hero-text{ padding: 5rem 0 3rem 1.5rem; max-width:92vw; } }
+
+        .fp-eyebrow {
+          display: flex; align-items: center; gap: .75rem;
+          font-size: .62rem; font-weight: 600;
+          letter-spacing: .22em; text-transform: uppercase;
+          color: var(--blue); margin-bottom: 1.25rem;
+        }
+        .fp-eyebrow::before {
+          content:''; display:inline-block;
+          width:2rem; height:2px; background:var(--gold);
+        }
+        .fp-hero-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(3.8rem,8vw,7.5rem);
+          font-weight: 700; line-height: .92;
+          letter-spacing: -.02em; color: var(--ink); margin-bottom: 1.5rem;
+        }
+        .fp-hero-title .t-blue { color:var(--blue); font-style:italic; }
+        .fp-hero-title .t-gold { color:var(--gold); }
+
+        .fp-hero-body {
+          font-size:1rem; line-height:1.75;
+          color:var(--muted); font-weight:300; max-width:44ch;
+        }
+        .fp-hero-deco {
+          position:absolute; right:6rem; top:50%;
+          transform:translateY(-50%);
+          z-index:3; pointer-events:none; text-align:center;
+          animation: fadeIn 1s ease .7s both;
+        }
+        @media(max-width:900px){ .fp-hero-deco{ display:none; } }
+        .fp-deco-num {
+          font-family:'Cormorant Garamond',serif;
+          font-size:9rem; font-weight:700;
+          color:var(--divider); line-height:1; display:block;
+        }
+        .fp-deco-lbl {
+          font-size:.62rem; font-weight:600;
+          letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
+        }
+
+        /* ═══════ SHARED SECTION UTILS ═══════ */
+        .fp-sec-label {
+          font-size:.62rem; font-weight:600;
+          letter-spacing:.22em; text-transform:uppercase;
+          color:var(--blue); display:flex; align-items:center;
+          gap:.6rem; margin-bottom:.75rem;
+        }
+        .fp-sec-label::before {
+          content:''; display:inline-block;
+          width:1.75rem; height:2px; background:var(--gold);
+        }
+        .fp-sec-title {
+          font-family:'Cormorant Garamond',serif;
+          font-size:2.4rem; font-weight:700;
+          line-height:1.08; color:var(--ink);
+        }
+        .fp-sec-head {
+          display:flex; align-items:flex-end;
+          justify-content:space-between;
+          margin-bottom:2.5rem; padding-bottom:1.5rem;
+          border-bottom:1.5px solid var(--divider);
+        }
+        .fp-big-num {
+          font-family:'Cormorant Garamond',serif;
+          font-size:5.5rem; font-weight:700;
+          color:var(--divider); line-height:1;
+        }
+
+        /* ═══════ FELLOWSHIP CARDS ═══════ */
+        .fp-cards-section {
+          position:relative;
+          background:#F8F9FF;
+          padding:5rem 6rem 6rem;
+          overflow:hidden;
+        }
+        @media(max-width:768px){ .fp-cards-section{ padding:3rem 1.5rem 4rem; } }
+
+        .fp-ribbon-bg {
+          position:absolute; inset:0;
+          width:100%; height:100%; pointer-events:none;
+        }
+
+        /* 4-column grid */
+        .fp-grid {
+          position:relative; z-index:1;
+          display:grid;
+          grid-template-columns:repeat(4,1fr);
+          gap:1.5px;
+          background:var(--divider);
+        }
+        @media(max-width:1100px){ .fp-grid{ grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:560px) { .fp-grid{ grid-template-columns:1fr; } }
+
+        /* Card */
+        .fp-card {
+          background:#fff;
+          display:flex; flex-direction:column;
+          align-items:center;
+          text-decoration:none; color:inherit;
+          padding:2.25rem 1.75rem 2rem;
+          position:relative; overflow:hidden;
+          transition:background .25s, transform .2s;
+          text-align:center;
+        }
+        .fp-card::after {
+          content:''; position:absolute;
+          bottom:0; left:0; width:0; height:3px;
+          background:var(--blue);
+          transition:width .35s ease;
+        }
+        .fp-card:hover::after { width:100%; }
+        .fp-card:hover { background:#F0F3FF; transform:translateY(-5px); }
+
+        /* Round portrait — big enough to see faces */
+        .fp-card-avatar {
+          width: 110px;
+          height: 110px;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 3px solid var(--blue);
+          margin-bottom: 1.25rem;
+          flex-shrink: 0;
+          box-shadow: 0 4px 20px rgba(58,79,216,0.18);
+          transition: border-color .25s, box-shadow .25s;
+          background: var(--divider);
+        }
+        .fp-card:hover .fp-card-avatar {
+          border-color: var(--gold);
+          box-shadow: 0 6px 28px rgba(201,150,10,0.22);
+        }
+        .fp-card-avatar img {
+          width:100%; height:100%;
+          object-fit:cover;
+          object-position:center top; /* push toward face */
+          display:block;
+          transition:transform .35s ease;
+        }
+        .fp-card:hover .fp-card-avatar img { transform:scale(1.07); }
+
+        .fp-card-num {
+          font-family:'Cormorant Garamond',serif;
+          font-size:1.1rem; font-weight:700;
+          color:var(--divider); line-height:1;
+          margin-bottom:.5rem;
+        }
+        .fp-card-name {
+          font-family:'Cormorant Garamond',serif;
+          font-size:1.3rem; font-weight:700;
+          color:var(--ink); line-height:1.2;
+          margin-bottom:.4rem;
+        }
+        .fp-card-location {
+          display:flex; align-items:center;
+          justify-content:center;
+          gap:.35rem;
+          font-size:.7rem; font-weight:500;
+          color:var(--blue); letter-spacing:.04em;
+          margin-bottom:.85rem;
+        }
+        .fp-card-desc {
+          font-size:.8rem; color:var(--muted);
+          line-height:1.65; font-weight:300;
+          margin-bottom:1rem;
+        }
+        .fp-card-meeting {
+          display:flex; align-items:center;
+          justify-content:center;
+          gap:.4rem;
+          font-size:.68rem; font-weight:500;
+          color:var(--muted); letter-spacing:.03em;
+          margin-bottom:1.25rem;
+        }
+        .fp-card-cta {
+          display:inline-flex; align-items:center;
+          gap:.5rem;
+          background:none;
+          border:1.5px solid var(--blue);
+          color:var(--blue);
+          font-size:.68rem; font-weight:600;
+          letter-spacing:.12em; text-transform:uppercase;
+          padding:.55rem 1.25rem;
+          text-decoration:none;
+          transition:background .2s, color .2s;
+        }
+        .fp-card:hover .fp-card-cta {
+          background:var(--blue); color:#fff;
+        }
+
+        /* ═══════ CATEGORIES ═══════ */
+        .fp-cat-section {
+          background:#fff;
+          padding:5rem 6rem;
+          overflow:hidden; position:relative;
+        }
+        @media(max-width:768px){ .fp-cat-section{ padding:3rem 1.5rem; } }
+
+        .fp-cat-grid {
+          position:relative; z-index:1;
+          display:grid;
+          grid-template-columns:repeat(4,1fr);
+          gap:1.5px; background:var(--divider);
+        }
+        @media(max-width:900px){ .fp-cat-grid{ grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:500px){ .fp-cat-grid{ grid-template-columns:1fr; } }
+
+        .fp-cat-card {
+          background:#fff; padding:2.5rem 2rem;
+          display:flex; flex-direction:column;
+          align-items:flex-start; gap:1rem;
+          position:relative; overflow:hidden;
+          transition:background .25s;
+        }
+        .fp-cat-card::before {
+          content:''; position:absolute;
+          top:0; left:0; width:3px; height:0;
+          background:var(--gold); transition:height .35s ease;
+        }
+        .fp-cat-card:hover::before { height:100%; }
+        .fp-cat-card:hover { background:#F8F9FF; }
+
+        .fp-cat-icon {
+          width:48px; height:48px; border-radius:2px;
+          background:var(--divider);
+          display:flex; align-items:center; justify-content:center;
+          color:var(--blue); transition:background .2s, color .2s;
+        }
+        .fp-cat-card:hover .fp-cat-icon { background:var(--blue); color:#fff; }
+
+        .fp-cat-label {
+          font-family:'Cormorant Garamond',serif;
+          font-size:1.35rem; font-weight:700; color:var(--ink);
+        }
+        .fp-cat-desc {
+          font-size:.82rem; color:var(--muted);
+          line-height:1.65; font-weight:300;
+        }
+
+        /* ═══════ JOIN ═══════ */
+        .fp-join-section {
+          position:relative; background:var(--blue);
+          padding:5rem 6rem; overflow:hidden;
+        }
+        @media(max-width:768px){ .fp-join-section{ padding:3rem 1.5rem; } }
+
+        .fp-join-ribbon {
+          position:absolute; inset:0;
+          width:100%; height:100%; pointer-events:none;
+        }
+        .fp-join-inner { position:relative; z-index:1; }
+
+        .fp-join-head {
+          display:flex; align-items:flex-end;
+          justify-content:space-between;
+          margin-bottom:3rem; padding-bottom:1.5rem;
+          border-bottom:1.5px solid rgba(255,255,255,0.15);
+        }
+        .fp-join-eyebrow {
+          font-size:.62rem; font-weight:600;
+          letter-spacing:.22em; text-transform:uppercase;
+          color:var(--gold-lt);
+          display:flex; align-items:center;
+          gap:.6rem; margin-bottom:.75rem;
+        }
+        .fp-join-eyebrow::before {
+          content:''; display:inline-block;
+          width:1.75rem; height:2px; background:var(--gold-lt);
+        }
+        .fp-join-title {
+          font-family:'Cormorant Garamond',serif;
+          font-size:clamp(2rem,4vw,3.2rem);
+          font-weight:700; line-height:1.05; color:#fff;
+        }
+        .fp-join-title em { font-style:italic; color:var(--gold-lt); }
+
+        .fp-join-big {
+          font-family:'Cormorant Garamond',serif;
+          font-size:5.5rem; font-weight:700;
+          color:rgba(255,255,255,0.1); line-height:1;
+        }
+
+        .fp-why-grid {
+          display:grid;
+          grid-template-columns:repeat(3,1fr);
+          gap:1.5px;
+          background:rgba(255,255,255,0.12);
+        }
+        @media(max-width:768px){ .fp-why-grid{ grid-template-columns:1fr; } }
+
+        .fp-why-card {
+          background:rgba(255,255,255,0.06);
+          padding:2.5rem 2rem;
+          display:flex; flex-direction:column; gap:1rem;
+          transition:background .25s;
+        }
+        .fp-why-card:hover { background:rgba(255,255,255,0.12); }
+
+        .fp-why-icon {
+          width:48px; height:48px; border-radius:2px;
+          background:rgba(201,150,10,0.2);
+          display:flex; align-items:center; justify-content:center;
+          color:var(--gold-lt);
+        }
+        .fp-why-label {
+          font-family:'Cormorant Garamond',serif;
+          font-size:1.35rem; font-weight:700; color:#fff;
+        }
+        .fp-why-desc {
+          font-size:.82rem; color:rgba(255,255,255,0.65);
+          line-height:1.65; font-weight:300;
+        }
+      `}</style>
+
+      <div className="fp">
+        <Navbar />
+
+        {/* ══ HERO ══ */}
+        <section className="fp-hero">
+          <svg className="fp-hero-svg" viewBox="0 0 1440 580" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="fpRib" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#7B93F8" />
+                <stop offset="40%"  stopColor="#3A4FD8" />
+                <stop offset="100%" stopColor="#1E2D9E" />
+              </linearGradient>
+            </defs>
+            <path d="M -100 460 Q 160 385, 420 345 Q 660 310, 870 268 Q 1080 228, 1300 168 L 1540 100 L 1540 158 L 1305 224 Q 1085 282, 875 325 Q 665 368, 430 406 Q 170 448, -100 522 Z" fill="url(#fpRib)" />
+            <path d="M -100 460 Q 160 385, 420 345 Q 660 310, 870 268 Q 1080 228, 1300 168 L 1540 100 L 1540 118 L 1302 185 Q 1082 245, 872 288 Q 662 330, 422 368 Q 162 408, -100 478 Z" fill="rgba(255,255,255,0.18)" />
+          </svg>
+
+          <div className="fp-hero-deco">
+            <span className="fp-deco-num">{String(fellowships.length).padStart(2,'0')}</span>
+            <span className="fp-deco-lbl">Fellowships</span>
+          </div>
+
+          <div className="fp-hero-text">
+            <p className="fp-eyebrow">Hour of Grace Believers Ministry International</p>
+            <h1 className="fp-hero-title">
+              Our<br />
+              <span className="t-blue">Fellowship</span><br />
+              <span className="t-gold">Communities</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-              Join our vibrant fellowship communities and grow in faith together. Discover your spiritual home
-              among our diverse groups dedicated to worship, learning, and service.
+            <p className="fp-hero-body">
+              Join our vibrant fellowship communities and grow in faith together —
+              discover your spiritual home among our diverse groups dedicated to
+              worship, learning, and service.
             </p>
           </div>
         </section>
 
-        {/* Fellowship Cards Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-                Our Fellowships
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Choose from our diverse fellowship communities, each offering unique opportunities for spiritual growth
-              </p>
+        {/* ══ FELLOWSHIP CARDS ══ */}
+        <section className="fp-cards-section">
+          <svg className="fp-ribbon-bg" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="fpBRib" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#3A4FD8" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#3A4FD8" stopOpacity="0.03" />
+              </linearGradient>
+            </defs>
+            <path d="M-80 380 Q360 310 720 330 Q1080 350 1540 240 L1540 295 Q1080 405 720 385 Q360 365 -80 435 Z" fill="url(#fpBRib)" />
+          </svg>
+
+          <div style={{ position:'relative', zIndex:1 }}>
+            <div className="fp-sec-head">
+              <div>
+                <p className="fp-sec-label">All Fellowships</p>
+                <h2 className="fp-sec-title">Our Communities</h2>
+              </div>
+              <span className="fp-big-num">{String(fellowships.length).padStart(2,'0')}</span>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
-              {fellowships.map((fellowship, index) => (
-                <Link key={index} href={`/fellowship/${fellowship.slug}`}>
-                  <Card className="bg-white border-2 border-gray-200 hover:border-[#2563eb] hover:shadow-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-2 cursor-pointer w-full max-w-sm">
-                    <CardHeader className="text-center">
-                      <div className="mx-auto mb-4 w-24 h-24 rounded-full overflow-hidden shadow-lg border-4 border-[#2563eb]">
-                        <img src={fellowship.image} alt={fellowship.name} className="w-full h-full object-cover" />
-                      </div>
-                      <CardTitle className="text-2xl text-[#1e3a8a]" style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: '400' }}>{fellowship.name}</CardTitle>
-                      <CardDescription className="flex items-center justify-center gap-2 text-gray-600">
-                        <MapPin className="h-4 w-4" />
-                        {fellowship.location}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-center">
-                      <p className="text-sm text-gray-700 mb-6">{fellowship.description}</p>
-                      <Button className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold shadow-lg animate-bounce hover:animate-none hover:scale-105 transition-all duration-200 rounded-full" style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}>
-                        Read More
-                        <Users className="ml-2 h-4 w-4" />
-                      </Button>
-                    </CardContent>
-                  </Card>
+            <div className="fp-grid">
+              {fellowships.map((f) => (
+                <Link key={f.slug} href={`/fellowship/${f.slug}`} className="fp-card">
+                  {/* Round avatar — object-position top to show faces */}
+                  <div className="fp-card-avatar">
+                    <img src={f.image} alt={f.name} />
+                  </div>
+
+                  <span className="fp-card-num">{f.num}</span>
+                  <p className="fp-card-name">{f.name}</p>
+                  <p className="fp-card-location">
+                    <MapPin size={11} />
+                    {f.location}
+                  </p>
+                  <p className="fp-card-desc">{f.description}</p>
+                  <p className="fp-card-meeting">
+                    <Clock size={11} />
+                    {f.meetingDays}
+                  </p>
+                  <span className="fp-card-cta">
+                    Learn More <Users size={12} />
+                  </span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Fellowship Types Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1e3a8a] mb-4" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-                Fellowship Categories
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Our fellowships cater to different age groups and interests, ensuring everyone finds their place
-              </p>
+        {/* ══ CATEGORIES ══ */}
+        <section className="fp-cat-section">
+          <svg className="fp-ribbon-bg" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="fpCRib" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stopColor="#3A4FD8" stopOpacity="0.06" />
+                <stop offset="100%" stopColor="#3A4FD8" stopOpacity="0.02" />
+              </linearGradient>
+            </defs>
+            <path d="M-80 300 Q360 240 720 258 Q1080 278 1540 175 L1540 228 Q1080 330 720 312 Q360 294 -80 352 Z" fill="url(#fpCRib)" />
+          </svg>
+
+          <div className="fp-sec-head" style={{ position:'relative', zIndex:1 }}>
+            <div>
+              <p className="fp-sec-label">Fellowship Types</p>
+              <h2 className="fp-sec-title">Categories</h2>
+            </div>
+            <span className="fp-big-num">04</span>
+          </div>
+
+          <div className="fp-cat-grid">
+            {categories.map(({ icon: Icon, label, desc }) => (
+              <div key={label} className="fp-cat-card">
+                <div className="fp-cat-icon"><Icon size={22} /></div>
+                <p className="fp-cat-label">{label}</p>
+                <p className="fp-cat-desc">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ══ JOIN ══ */}
+        <section className="fp-join-section">
+          <svg className="fp-join-ribbon" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <path d="M-80 310 Q360 250 720 268 Q1080 288 1540 185 L1540 240 Q1080 342 720 324 Q360 306 -80 364 Z" fill="rgba(255,255,255,0.05)" />
+          </svg>
+
+          <div className="fp-join-inner">
+            <div className="fp-join-head">
+              <div>
+                <p className="fp-join-eyebrow">Take the Next Step</p>
+                <h2 className="fp-join-title">
+                  Ready to Join a<br /><em>Fellowship?</em>
+                </h2>
+              </div>
+              <span className="fp-join-big">✝</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#1e3a8a] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-white" />
+            <div className="fp-why-grid">
+              {whyItems.map(({ icon: Icon, label, desc }) => (
+                <div key={label} className="fp-why-card">
+                  <div className="fp-why-icon"><Icon size={22} /></div>
+                  <p className="fp-why-label">{label}</p>
+                  <p className="fp-why-desc">{desc}</p>
                 </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Youth Fellowships</h3>
-                <p className="text-gray-600">For young adults seeking spiritual growth and community</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#2563eb] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Adult Groups</h3>
-                <p className="text-gray-600">Professional and family-focused fellowship communities</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#3b82f6] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookOpen className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Study Groups</h3>
-                <p className="text-gray-600">Bible study and spiritual development fellowships</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-[#60a5fa] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-[#1e3a8a] mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Special Interest</h3>
-                <p className="text-gray-600">Music, prayer, and ministry-focused fellowships</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Join Fellowship Section */}
-        <section className="py-16 bg-gradient-to-br from-[#1e3a8a] to-[#2563eb] text-white">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>
-              Ready to Join a Fellowship?
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Take the first step in your spiritual journey. Connect with like-minded believers and grow in faith together.
-            </p>
-
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 md:p-12">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="text-center">
-                  <Clock className="w-12 h-12 mx-auto mb-4 text-[#FCCB06]" />
-                  <h3 className="text-lg font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Regular Meetings</h3>
-                  <p className="text-sm opacity-90">Weekly gatherings for worship and fellowship</p>
-                </div>
-                <div className="text-center">
-                  <Users className="w-12 h-12 mx-auto mb-4 text-[#FCCB06]" />
-                  <h3 className="text-lg font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Community Support</h3>
-                  <p className="text-sm opacity-90">Build lasting relationships with fellow believers</p>
-                </div>
-                <div className="text-center">
-                  <Heart className="w-12 h-12 mx-auto mb-4 text-[#FCCB06]" />
-                  <h3 className="text-lg font-bold mb-2" style={{ fontFamily: '"Bebas Neue", sans-serif' }}>Spiritual Growth</h3>
-                  <p className="text-sm opacity-90">Deepen your faith through study and prayer</p>
-                </div>
-              </div>
-
-              
-            </div>
-          </div>
-        </section>
+        <Footer />
       </div>
-
-      <Footer />
     </>
   )
 }
-

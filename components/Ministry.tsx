@@ -103,7 +103,7 @@ export default function Ministry() {
               asChild
               className="mt-auto px-6 py-2 rounded-md font-bold shadow hover:scale-105 transition-transform duration-200 animate-bounce hover:animate-none"
             >
-              <Link href={`/ministries/${ministry.title.toLowerCase().replace(' fellowship', '')}`}>
+              <Link href="/fellowship">
                 Read More
               </Link>
             </Button>
