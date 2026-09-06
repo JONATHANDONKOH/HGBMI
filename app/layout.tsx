@@ -22,6 +22,8 @@ export default function RootLayout({
       <head>
         {/* Canonical tag tells Google that hgbmi.org is the official domain */}
         <link rel="canonical" href="https://hgbmi.org" />
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+        <link rel="alternate" type="application/xml" href="/sitemap.xml" />
         <link rel="icon" href="/church_loog-removebg-preview.png" type="image/png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
