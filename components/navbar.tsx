@@ -1,3 +1,4 @@
+```tsx
 "use client"
 
 import { useState } from "react"
@@ -11,12 +12,25 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Church, Calendar, Book, Phone, Info, Heart, Facebook, Youtube, Instagram, MapPin, LogOut, Users } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { useAuth } from "@/context/AuthContext"
-import { useRouter, usePathname } from "next/navigation"
-import Image from "next/image"
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import {
+  Menu,
+  Church,
+  Calendar,
+  Phone,
+  Info,
+  Heart,
+  Facebook,
+  Youtube,
+  Instagram,
+  MapPin,
+  Users,
+} from "lucide-react"
+import { usePathname } from "next/navigation"
 
 const navigationItems = [
   {
@@ -84,42 +98,47 @@ const socialMediaLinks = [
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const { user, signOut } = useAuth()
-  const router = useRouter()
   const pathname = usePathname()
-
-  const handleSignOut = async () => {
-    try {
-      await signOut()
-      router.push('/')
-    } catch (error) {
-      console.error('Sign out error:', error)
-    }
-  }
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      <div className={pathname.startsWith('/fellowship') ? '' : 'bg-[#000080]'} style={pathname.startsWith('/fellowship') ? { background: '#000080' } : {}}>
+
+      {/* Main Navigation */}
+      <div
+        className="bg-[#000080]"
+        style={
+          pathname.startsWith("/fellowship")
+            ? { background: "#000080" }
+            : {}
+        }
+      >
         <div className="container mx-auto px-4">
           <div className="flex h-24 items-center justify-between">
+
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2">
+            <Link
+              href="/"
+              className="flex items-center space-x-2"
+            >
               <div className="flex h-12 w-12 items-center justify-center text-white">
-                <img 
-                  src="/church loog.jpg" 
-                  alt="Church Logo" 
+                <img
+                  src="/church loog.jpg"
+                  alt="Church Logo"
                   className="h-10 w-30 object-contain"
                 />
               </div>
-              <span 
+
+              <span
                 className="text-[18px] text-white"
                 style={{
                   fontFamily: '"Bebas Neue", sans-serif',
-                  fontWeight: '400',
-                  fontStyle: 'normal'
+                  fontWeight: "400",
+                  fontStyle: "normal",
                 }}
               >
-                Hour of grace believers<br/> ministry international
+                Hour of grace believers
+                <br />
+                ministry international
               </span>
             </Link>
 
@@ -127,39 +146,26 @@ export function Navbar() {
             <div className="hidden lg:flex items-center space-x-4">
               <NavigationMenu>
                 <NavigationMenuList className="gap-6">
+
                   {navigationItems.map((item) => (
                     <NavigationMenuItem key={item.title}>
+
                       {item.hasDropdown ? (
                         <>
                           <NavigationMenuTrigger
-                            className={cn(
-                              "text-xl font-bold text-white bg-transparent hover:bg-white/10 data-[state=open]:bg-white/10",
-                            )}
+                            className="text-xl font-bold text-white bg-transparent hover:bg-white/10 data-[state=open]:bg-white/10"
                             style={{
                               fontFamily: '"Bebas Neue", sans-serif',
-                              fontWeight: '400',
-                              fontStyle: 'normal'
+                              fontWeight: "400",
+                              fontStyle: "normal",
                             }}
                           >
-                            {item.title === "Contact" ? (
-                              <>
-                                {item.title}
-                                <img 
-                                  src="/ghana-flag.jpg" 
-                                  alt="Ghana Flag" 
-                                  className="h-6 w-10 ml-2 rounded-sm inline-block" 
-                                />
-                              </>
-                            ) : (
-                              <>
-                                <item.icon className="mr-2 h-4 w-4" />
-                                {item.title}
-                              </>
-                            )}
+                            {item.title}
                           </NavigationMenuTrigger>
+
                           <NavigationMenuContent>
                             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                              {/* Add your dropdown items here */}
+                              {/* Add dropdown items here */}
                             </ul>
                           </NavigationMenuContent>
                         </>
@@ -167,84 +173,107 @@ export function Navbar() {
                         <NavigationMenuLink asChild>
                           <Link
                             href={item.href}
-                            className={cn(
-                              "nav-link group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-xl font-bold transition-colors focus:bg-white/10 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-white/10 data-[state=open]:bg-white/10 text-white hover:text-white relative",
-                            )}
+                            className="nav-link group inline-flex h-10 w-max items-center justify-center px-4 py-2 text-xl font-bold transition-colors focus:bg-white/10 focus:text-white focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-white/10 data-[state=open]:bg-white/10 text-white hover:text-white relative"
                             style={{
                               fontFamily: '"Bebas Neue", sans-serif',
-                              fontWeight: '400',
-                              fontStyle: 'normal'
+                              fontWeight: "400",
+                              fontStyle: "normal",
                             }}
                           >
                             <item.icon className="mr-2 h-4 w-4" />
+
                             {item.title}
+
                             {item.title === "Contact" && (
-                              <img 
-                                src="/ghana-flag.jpg" 
-                                alt="Ghana Flag" 
-                                className="h-6 w-10 ml-2 rounded-sm inline-block" 
+                              <img
+                                src="/ghana-flag.jpg"
+                                alt="Ghana Flag"
+                                className="h-6 w-10 ml-2 rounded-sm inline-block"
                               />
                             )}
                           </Link>
                         </NavigationMenuLink>
                       )}
+
                     </NavigationMenuItem>
                   ))}
+
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
 
             {/* Mobile Navigation */}
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild className="lg:hidden">
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 hover:text-white">
+            <Sheet
+              open={isOpen}
+              onOpenChange={setIsOpen}
+            >
+              <SheetTrigger
+                asChild
+                className="lg:hidden"
+              >
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/10 hover:text-white"
+                >
                   <Menu className="h-5 w-5" />
-                  <span className="sr-only">Toggle menu</span>
+                  <span className="sr-only">
+                    Toggle menu
+                  </span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px]"
+              >
                 <div className="flex flex-col space-y-4 mt-4">
+
+                  {/* Mobile Logo */}
                   <div className="flex items-center space-x-2 pb-4 border-b">
                     <div className="flex h-12 w-12 items-center justify-center text-primary">
-                      <img 
-                        src="/church_loog-removebg-preview.png" 
-                        alt="Church Logo" 
-                        className="h-7 w-7 object-contain" 
+                      <img
+                        src="/church_loog-removebg-preview.png"
+                        alt="Church Logo"
+                        className="h-7 w-7 object-contain"
                       />
                     </div>
-                    <span 
+
+                    <span
                       className="text-xl font-bold"
                       style={{
                         fontFamily: '"Bebas Neue", sans-serif',
-                        fontWeight: '400',
-                        fontStyle: 'normal'
+                        fontWeight: "400",
+                        fontStyle: "normal",
                       }}
                     >
                       HGBMI
                     </span>
                   </div>
 
+                  {/* Mobile Links */}
                   <nav className="flex flex-col space-y-2">
+
                     {navigationItems.map((item) => (
                       <div key={item.title}>
+
                         <Link
                           href={item.href}
-                          className={cn(
-                            "flex items-center space-x-3 px-3 py-2 text-base font-bold hover:bg-accent hover:text-accent-foreground transition-colors",
-                          )}
+                          className="flex items-center space-x-3 px-3 py-2 text-base font-bold hover:bg-accent hover:text-accent-foreground transition-colors"
                           style={{
                             fontFamily: '"Bebas Neue", sans-serif',
-                            fontWeight: '400',
-                            fontStyle: 'normal'
+                            fontWeight: "400",
+                            fontStyle: "normal",
                           }}
                           onClick={() => setIsOpen(false)}
                         >
                           <item.icon className="h-4 w-4" />
-                          <span 
+
+                          <span
                             style={{
                               fontFamily: '"Bebas Neue", sans-serif',
-                              fontWeight: '400',
-                              fontStyle: 'normal'
+                              fontWeight: "400",
+                              fontStyle: "normal",
                             }}
                           >
                             {item.title}
@@ -256,22 +285,28 @@ export function Navbar() {
                             {/* Add mobile dropdown items here */}
                           </div>
                         )}
+
                       </div>
                     ))}
+
                   </nav>
 
+                  {/* Social Media */}
                   <div className="border-t pt-4">
-                    <h3 
+
+                    <h3
                       className="text-base font-bold text-muted-foreground mb-3"
                       style={{
                         fontFamily: '"Bebas Neue", sans-serif',
-                        fontWeight: '400',
-                        fontStyle: 'normal'
+                        fontWeight: "400",
+                        fontStyle: "normal",
                       }}
                     >
                       Follow Us
                     </h3>
+
                     <div className="flex space-x-3">
+
                       {socialMediaLinks.map((social) => (
                         <Link
                           key={social.name}
@@ -285,39 +320,55 @@ export function Navbar() {
                           <social.icon className="h-5 w-5" />
                         </Link>
                       ))}
+
                     </div>
                   </div>
+
                 </div>
               </SheetContent>
             </Sheet>
+
           </div>
         </div>
       </div>
 
+      {/* Bottom Social Bar */}
       <div className="bg-[#000080] h-[40px] w-full flex items-center justify-between px-4">
+
         <div className="container mx-auto flex justify-between items-center w-full">
+
+          {/* Left side intentionally empty */}
           <div className="flex items-center space-x-2">
-            {user && (
-              <Button
-                onClick={handleSignOut}
-                variant="ghost"
-                size="sm"
-                className="text-white hover:text-white hover:bg-white/20 h-8 px-3"
-                style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400, fontStyle: 'normal' }}
-              >
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
-            )}
           </div>
+
+          {/* Social Icons */}
           <div className="flex items-center space-x-2">
+
             {socialMediaLinks.map((social) => {
-              let iconColor = "text-white hover:text-gray-300";
-              if (social.name === "Facebook") iconColor = "text-blue-400 hover:text-blue-300";
-              if (social.name === "YouTube") iconColor = "text-red-500 hover:text-red-400";
-              if (social.name === "Instagram") iconColor = "text-pink-500 hover:text-pink-400";
-              if (social.name === "Location") iconColor = "text-green-500 hover:text-green-400";
-              
+
+              let iconColor =
+                "text-white hover:text-gray-300"
+
+              if (social.name === "Facebook") {
+                iconColor =
+                  "text-blue-400 hover:text-blue-300"
+              }
+
+              if (social.name === "YouTube") {
+                iconColor =
+                  "text-red-500 hover:text-red-400"
+              }
+
+              if (social.name === "Instagram") {
+                iconColor =
+                  "text-pink-500 hover:text-pink-400"
+              }
+
+              if (social.name === "Location") {
+                iconColor =
+                  "text-green-500 hover:text-green-400"
+              }
+
               return (
                 <Link
                   key={social.name}
@@ -329,11 +380,15 @@ export function Navbar() {
                 >
                   <social.icon className="h-5 w-5" />
                 </Link>
-              );
+              )
             })}
+
           </div>
+
         </div>
       </div>
+
     </header>
   )
 }
+```
