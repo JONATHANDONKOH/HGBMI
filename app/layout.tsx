@@ -7,7 +7,11 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'HGBMI CHURCH WEBSITE',
-  description: 'Welcome to Hour of Grace Believers Ministry International',
+  description: 'Hour of Grace Believers Ministries International',
+  generator: 'HGBMI',
+  icons: {
+    icon: '/church_loog-removebg-preview.png'
+  },
 }
 
 export default function RootLayout({
@@ -18,6 +22,7 @@ export default function RootLayout({
       <head>
         {/* Canonical tag tells Google that hgbmi.org is the official domain */}
         <link rel="canonical" href="https://hgbmi.org" />
+        <link rel="icon" href="/church_loog-removebg-preview.png" type="image/png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

@@ -1,7 +1,6 @@
 "use client"
-import React, { useState, useEffect, FormEvent } from "react"
+import React, { useState, useEffect } from "react"
 import { Navbar } from "@/components/navbar"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from '@/components/ui/button'
 import Ministry from "@/components/Ministry"
 import Verse from "@/components/Verse"
@@ -11,99 +10,25 @@ import Congregation from "@/components/Congregation"
 import Events from "@/components/Events"
 import Give from "@/components/Give"
 import Footer from "@/components/Footer"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useScrollAnimation } from "@/hooks/useScrollAnimation"
 
-const books = [
-	{
-		id: 1,
-		title: "Grace & Faith",
-		about: "Discover the transformative power of God's grace in your daily walk. This inspiring book explores how faith can move mountains and bring peace to your heart.",
-		coverImage: "/grace-book-cover.jpg",
-		ctaText: "Read More"
-	},
-	{
-		id: 2,
-		title: "Leadership in Ministry",
-		about: "Learn essential leadership principles for effective ministry. Perfect for church leaders, small group facilitators, and anyone called to serve.",
-		coverImage: "/leadership-book-cover.png",
-		ctaText: "Buy Now"
-	},
-	{
-		id: 3,
-		title: "Spiritual Growth",
-		about: "A comprehensive guide to deepening your relationship with God through prayer, study, and community. Transform your spiritual journey today.",
-		coverImage: "/spiritual-book-cover.jpg",
-		ctaText: "Get Started"
-	},
-	{
-		id: 4,
-		title: "Prayer Power",
-		about: "Unlock the power of prayer in your life with practical steps and biblical wisdom.",
-		coverImage: "/prayer-book-cover.jpg",
-		ctaText: "Learn More"
-	},
-	{
-		id: 5,
-		title: "Praise & Worship",
-		about: "A guide to living a life of praise and worship every day.",
-		coverImage: "/praise-music-cover.jpg",
-		ctaText: "Sing Along"
-	},
-	{
-		id: 6,
-		title: "Teaching & Discipleship",
-		about: "Grow as a disciple and teacher in your faith journey.",
-		coverImage: "/discipleship-sermon-cover.jpg",
-		ctaText: "Start Learning"
-	}
-]
-
 export default function HomePage() {
-	const router = useRouter()
-	const { signUp, signIn, user } = useAuth()
 	const [currentSlide, setCurrentSlide] = useState(0)
 	const [isHovering, setIsHovering] = useState(false)
-	const [showLogin, setShowLogin] = useState(false)
-	const [bookstoreCurrentSlide, setBookstoreCurrentSlide] = useState(0)
 
 	// Animation refs
 	const heroTitleRef = useScrollAnimation('fadeInUp')
 	const heroSubtitleRef = useScrollAnimation('fadeInUp', 0.15)
 	const heroButtonsRef = useScrollAnimation('fadeInUp', 0.25)
-	const marqueeRef = useScrollAnimation('fadeInUp')
-	const bookstoreHeaderRef = useScrollAnimation('fadeInUp')
-	const bookstoreCardRef = useScrollAnimation('scaleIn', 0.2)
 
-	// Auto-play hero carousel
 	useEffect(() => {
 		if (isHovering) return
 		const interval = setInterval(() => {
-			setCurrentSlide((prev) => (prev + 1) % books.length)
+			setCurrentSlide((prev) => prev + 1)
 		}, 5000)
 		return () => clearInterval(interval)
 	}, [isHovering])
-
-	const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % books.length)
-	const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + books.length) % books.length)
-	const goToSlide = (index: number) => setCurrentSlide(index)
-
-	const bookstoreBooks = books.slice(0, 3)
-
-	const nextBookstoreSlide = () =>
-		setBookstoreCurrentSlide((prev) => (prev + 1) % bookstoreBooks.length)
-	const prevBookstoreSlide = () =>
-		setBookstoreCurrentSlide((prev) => (prev - 1 + bookstoreBooks.length) % bookstoreBooks.length)
-
-	// Auto-play bookstore carousel
-	useEffect(() => {
-		if (!user) return
-		const interval = setInterval(() => {
-			setBookstoreCurrentSlide((prev) => (prev + 1) % bookstoreBooks.length)
-		}, 5000)
-		return () => clearInterval(interval)
-	}, [user, bookstoreBooks.length])
 
 	return (
 		<div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #4A90E2 0%, #000000 50%, #4e1bc5 100%)' }}>
@@ -182,274 +107,7 @@ export default function HomePage() {
 				</div>
 			</div>
 
-			{/* Marquee Books Section */}
-			<div
-				ref={marqueeRef}
-				className="w-full overflow-hidden py-10 relative"
-				style={{ backgroundColor: 'black', marginTop: '-20px', zIndex: 10 }}
-			>
-				<div className="relative w-full" style={{ height: '120px' }}>
-					<div
-						className="marquee-track flex items-center gap-8 animate-marquee"
-						style={{ minWidth: '200%', width: 'max-content' }}
-					>
-						{[...books, ...books].map((book, idx) => (
-							<div
-								key={idx}
-								className="flex flex-col items-center min-w-[120px] p-2 rounded-lg shadow-md"
-								style={{ backgroundColor: 'black' }}
-							>
-								<img
-									src={book.coverImage}
-									alt={book.title}
-									className="h-24 w-16 object-cover rounded-md mb-2"
-								/>
-								<span className="text-sm font-bold bebas-neue-regular text-white text-center">
-									{book.title}
-								</span>
-							</div>
-						))}
-					</div>
-				</div>
-
-				<div className="w-full flex flex-col items-center justify-center mt-8">
-					{/* Animated Denim Blue Bar */}
-					<div className="w-full flex justify-center mb-6">
-						<div
-							className="h-1.5 w-3/4 rounded-full animate-denim-bar"
-							style={{ background: 'linear-gradient(90deg, #1560BD 0%, #1E90FF 100%)' }}
-						/>
-					</div>
-
-					{user ? (
-						/* Bookstore Card */
-						<div className="w-full max-w-7xl mx-auto px-4" ref={bookstoreCardRef}>
-							<h2
-								ref={bookstoreHeaderRef}
-								className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8"
-								style={{ color: 'white', fontFamily: '"Poppins", sans-serif', fontWeight: 700 }}
-							>
-								Bookstore
-							</h2>
-							<div className="relative px-4 sm:px-8 md:px-12 lg:px-16">
-								{/* Carousel Container */}
-								<div className="relative overflow-hidden min-h-[320px] sm:min-h-[350px] md:min-h-[380px] lg:min-h-[420px]">
-									<div
-										className="flex transition-transform duration-500 ease-in-out"
-										style={{ transform: `translateX(-${bookstoreCurrentSlide * 100}%)` }}
-									>
-										{bookstoreBooks.map((book) => (
-											<div
-												key={book.id}
-												className="w-full flex-shrink-0 flex justify-center px-2 sm:px-4"
-											>
-												<div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-full max-w-full sm:max-w-[600px] md:max-w-[700px] lg:max-w-[900px] h-full">
-													<div className="flex flex-col lg:flex-row h-full">
-														{/* Book Cover */}
-														<div className="w-full lg:w-[250px] xl:w-[300px] flex-shrink-0">
-															<div className="bg-gray-200 overflow-hidden h-[240px] sm:h-[260px] lg:h-full xl:h-[400px]">
-																<img
-																	src={book.coverImage}
-																	alt={book.title}
-																	className="w-full h-full object-cover"
-																/>
-															</div>
-														</div>
-														{/* Book Info */}
-														<div className="flex-1 flex flex-col justify-between p-3 sm:p-4 lg:p-6 xl:p-8">
-															<div>
-																<h3
-																	className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-2 lg:mb-4 text-gray-800 text-center lg:text-left"
-																	style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
-																>
-																	{book.title}
-																</h3>
-																<p
-																	className="hidden lg:block text-gray-600 text-sm sm:text-base lg:text-lg xl:text-xl mb-4 lg:mb-6 leading-relaxed"
-																	style={{ maxHeight: '180px', overflow: 'auto' }}
-																>
-																	{book.about}
-																</p>
-															</div>
-															<Button
-																className="w-full mt-2 lg:mt-0 text-sm sm:text-base lg:text-lg xl:text-xl py-2 lg:py-3"
-																style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
-															>
-																Buy
-															</Button>
-														</div>
-													</div>
-												</div>
-											</div>
-										))}
-									</div>
-								</div>
-
-								{/* Navigation Arrows */}
-								<button
-									onClick={prevBookstoreSlide}
-									className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 z-10"
-									aria-label="Previous book"
-								>
-									<ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-gray-800" />
-								</button>
-								<button
-									onClick={nextBookstoreSlide}
-									className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 z-10"
-									aria-label="Next book"
-								>
-									<ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 text-gray-800" />
-								</button>
-
-								{/* Carousel Indicators */}
-								<div className="flex justify-center gap-2 mt-6">
-									{bookstoreBooks.map((_, index) => (
-										<button
-											key={index}
-											onClick={() => setBookstoreCurrentSlide(index)}
-											className={`w-2 h-2 rounded-full transition-all duration-200 ${
-												index === bookstoreCurrentSlide ? 'bg-white w-8' : 'bg-white/50'
-											}`}
-											aria-label={`Go to slide ${index + 1}`}
-										/>
-									))}
-								</div>
-							</div>
-						</div>
-					) : (
-						/* Auth Forms — hidden */
-						<div style={{ display: 'none' }}>
-							<div
-								className="flex flex-col items-center justify-center w-full"
-								style={{
-									width: 'calc(100% - 20px)',
-									marginLeft: '10px',
-									marginRight: '10px',
-									minHeight: '140px',
-									boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
-									padding: '18px 0',
-								}}
-							>
-								<div className="flex gap-4 mb-6">
-									<Button
-										onClick={() => setShowLogin(false)}
-										className={`px-6 py-2 text-base ${!showLogin ? 'bg-blue-600' : 'bg-gray-400'}`}
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
-									>
-										Register
-									</Button>
-									<Button
-										onClick={() => setShowLogin(true)}
-										className={`px-6 py-2 text-base ${showLogin ? 'bg-blue-600' : 'bg-gray-400'}`}
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
-									>
-										Login
-									</Button>
-								</div>
-
-								{/* Register Form */}
-								<form
-									style={{
-										opacity: showLogin ? '0' : '1',
-										transition: 'opacity 0.3s ease-in-out',
-										display: showLogin ? 'none' : 'flex',
-									}}
-									onSubmit={async (e: FormEvent) => {
-										e.preventDefault()
-										const formData = new FormData(e.target as HTMLFormElement)
-										const email = formData.get('email') as string
-										const password = formData.get('password') as string
-										try {
-											await signUp(email, password)
-										} catch (error) {
-											console.error('Signup error:', error)
-										}
-									}}
-									className="flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-2xl sm:max-w-3xl justify-center items-center"
-								>
-									<input
-										type="text"
-										name="name"
-										placeholder="Name"
-										required
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
-									/>
-									<input
-										type="email"
-										name="email"
-										placeholder="Email"
-										required
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
-									/>
-									<input
-										type="password"
-										name="password"
-										placeholder="Password"
-										required
-										minLength={6}
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
-									/>
-									<Button
-										type="submit"
-										className="px-6 py-2 rounded-md text-base w-full sm:w-80 animate-bounce hover:animate-none"
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
-									>
-										Register
-									</Button>
-								</form>
-
-								{/* Login Form */}
-								<form
-									style={{
-										opacity: showLogin ? '1' : '0',
-										transition: 'opacity 0.3s ease-in-out',
-										display: showLogin ? 'flex' : 'none',
-									}}
-									onSubmit={async (e: FormEvent) => {
-										e.preventDefault()
-										const formData = new FormData(e.target as HTMLFormElement)
-										const email = formData.get('email') as string
-										const password = formData.get('password') as string
-										try {
-											await signIn(email, password)
-										} catch (error) {
-											console.error('Login error:', error)
-										}
-									}}
-									className="flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-2xl sm:max-w-3xl justify-center items-center"
-								>
-									<input
-										type="email"
-										name="email"
-										placeholder="Email"
-										required
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
-									/>
-									<input
-										type="password"
-										name="password"
-										placeholder="Password"
-										required
-										minLength={6}
-										className="px-3 py-2 rounded-md border border-sky-400 focus:outline-none focus:ring-2 focus:ring-blue-300 w-full sm:w-80 placeholder-white text-white bg-transparent"
-									/>
-									<Button
-										type="submit"
-										className="px-6 py-2 rounded-md text-base w-full sm:w-80 animate-bounce hover:animate-none"
-										style={{ fontFamily: '"Bebas Neue", sans-serif', fontWeight: 400 }}
-									>
-										Login
-									</Button>
-								</form>
-
-								<div className="mt-4 text-center w-full">
-									<span className="text-gray-600 text-sm">Sign up to purchase the book</span>
-								</div>
-							</div>
-						</div>
-					)}
-				</div>
-			</div>
+			<div className="w-full py-6" style={{ backgroundColor: 'black', marginTop: '-20px', zIndex: 10 }} />
 
 			{/* Verse Section */}
 			<div className="w-screen -ml-[calc((100vw-100%)/2)] py-6 md:py-8 lg:py-12 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-2xl shadow-xl overflow-hidden mb-4">

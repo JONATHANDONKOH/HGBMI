@@ -159,20 +159,6 @@
   animation: subtleShake 4s ease-in-out infinite;
 }
 
-/* Adding marquee animation for scrolling text */
-@keyframes marquee {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
 /* Updated navbar font class to use Wilton */
 .font-navbar {
   font-family: "Wilton", sans-serif;

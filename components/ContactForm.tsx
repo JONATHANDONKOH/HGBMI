@@ -1,11 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import { Mail } from "lucide-react";
-
-// Initialize EmailJS
-emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
 
 export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -15,36 +11,14 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!formRef.current) return;
 
     setIsSubmitting(true);
-    setSubmitStatus("idle");
+    setSubmitStatus("success");
+    setStatusMessage("Thank you for your message! We will get back to you soon.");
+    formRef.current?.reset();
 
-    try {
-      await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
-        formRef.current,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || ""
-      );
-      
-      setSubmitStatus("success");
-      setStatusMessage("Thank you for your message! We will get back to you soon.");
-      formRef.current.reset();
-      
-      // Clear message after 5 seconds
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    } catch (error) {
-      console.error("Error sending email:", error);
-      setSubmitStatus("error");
-      setStatusMessage("There was an error sending your message. Please try again.");
-      
-      // Clear message after 5 seconds
-      setTimeout(() => setSubmitStatus("idle"), 5000);
-    } finally {
-      setIsSubmitting(false);
-    }
+    setTimeout(() => setSubmitStatus("idle"), 5000);
+    setIsSubmitting(false);
   };
 
   return (

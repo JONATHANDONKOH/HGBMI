@@ -1,32 +1,3 @@
-@keyframes denim-bar-move {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-denim-bar {
-  background: linear-gradient(90deg, #1560BD 0%, #1E90FF 100%);
-  background-size: 200% 200%;
-  animation: denim-bar-move 2s linear infinite alternate;
-}
-@keyframes marquee-track {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.marquee-track {
-  animation: marquee-track 40s linear infinite;
-  will-change: transform;
-}
-  animation-play-state: running;
-
 @keyframes smoke-shadow {
   0% { 
     box-shadow: 0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(255,255,255,0.2); 

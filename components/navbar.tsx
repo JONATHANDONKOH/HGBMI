@@ -1,4 +1,3 @@
-```tsx
 "use client"
 
 import { useState } from "react"
@@ -336,7 +335,6 @@ export function Navbar() {
       <div className="bg-[#000080] h-[40px] w-full flex items-center justify-between px-4">
 
         <div className="container mx-auto flex justify-between items-center w-full">
-
           {/* Left side intentionally empty */}
           <div className="flex items-center space-x-2">
           </div>
@@ -391,4 +389,3 @@ export function Navbar() {
     </header>
   )
 }
-```
