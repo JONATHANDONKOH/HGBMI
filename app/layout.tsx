@@ -8,7 +8,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'HGBMI CHURCH WEBSITE',
-  generator: 'v0.app',
+  description: 'Welcome to HGBMI Church Website',
 }
 
 export default function RootLayout({
