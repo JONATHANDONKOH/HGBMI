@@ -7,7 +7,7 @@ import { DonationSticky } from '@/components/DonationSticky'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
+  title: 'HGBMI CHURCH WEBSITE',
   description: 'Created with v0',
   generator: 'v0.app',
 }
