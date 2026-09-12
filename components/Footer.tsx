@@ -2,6 +2,19 @@ import React from "react";
 import Link from "next/link";
 import { Facebook, Youtube, Instagram, MapPin, Phone, Mail, Church } from "lucide-react";
 
+function TikTokIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M16.3 3c.6 2 2.1 3.3 4.4 3.7v2.7c-1.5 0-2.8-.3-4.1-1.2v7.2c0 3.7-3 6.6-6.7 6.6s-6.7-3-6.7-6.6 3-6.7 6.7-6.7c.5 0 .9 0 1.3.1v2.9c-.4-.1-.8-.2-1.3-.2-2.1 0-3.8 1.7-3.8 3.8s1.7 3.8 3.8 3.8 3.8-1.7 3.8-3.8V3h2.7Z" />
+    </svg>
+  )
+}
+
 const socialMediaLinks = [
   {
     name: "Facebook",
@@ -15,8 +28,13 @@ const socialMediaLinks = [
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/hgbmi",
+    href: "https://www.instagram.com/hgbmi_gh/",
     icon: Instagram,
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@princeofosuhene7",
+    icon: TikTokIcon,
   },
   {
     name: "Location",
@@ -81,11 +99,11 @@ export default function Footer() {
               </div>
               <div>
                 <p className="font-semibold text-white mb-1">Wednesday</p>
-                <p className="text-gray-400">7:00 PM</p>
+                <p className="text-gray-400">6:00 PM</p>
               </div>
               <div>
                 <p className="font-semibold text-white mb-1">Friday</p>
-                <p className="text-gray-400">7:00 PM</p>
+                <p className="text-gray-400">6:00 PM</p>
               </div>
             </div>
           </div>
@@ -121,6 +139,7 @@ export default function Footer() {
                   if (social.name === "Facebook") iconColor = "text-blue-600 hover:text-blue-500";
                   if (social.name === "YouTube") iconColor = "text-red-600 hover:text-red-500";
                   if (social.name === "Instagram") iconColor = "text-pink-600 hover:text-pink-500";
+                  if (social.name === "TikTok") iconColor = "text-cyan-400 hover:text-cyan-300";
                   if (social.name === "Location") iconColor = "text-green-600 hover:text-green-500";
                   
                   return (

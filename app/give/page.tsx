@@ -3,321 +3,576 @@
 import React, { useEffect, useState } from "react"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
-import Give from "@/components/Give"
+import { Smartphone, Building2 } from "lucide-react"
 
 export default function GivePage() {
   const [heroReady, setHeroReady] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  const givingCategories = [
+    { img: "/mission work.webp", label: "Ministry & Outreach" },
+    { img: "/comm support.webp", label: "Community Support" },
+    { img: "/giveee.jpg", label: "Building & Facilities" },
+    { img: "/education support.webp", label: "Education Programs" },
+  ]
 
   useEffect(() => {
     const t = setTimeout(() => setHeroReady(true), 100)
     return () => clearTimeout(t)
   }, [])
 
+  // Track viewport width to know when to switch to carousel mode
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 640)
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
+
+  // Autoplay — only runs once we're in carousel (mobile) mode
+  useEffect(() => {
+    if (!isMobile) return
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % givingCategories.length)
+    }, 3500)
+    return () => clearInterval(interval)
+  }, [isMobile, givingCategories.length])
+
   return (
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap');
 
-        * { box-sizing: border-box; }
+        * {
+          box-sizing: border-box;
+        }
 
         .gp {
-          --blue:    #3A4FD8;
+          --blue: #3A4FD8;
           --blue-lt: #6B83F5;
-          --gold:    #C9960A;
+          --gold: #C9960A;
           --gold-lt: #F5C842;
-          --white:   #FFFFFF;
-          --ink:     #111827;
-          --muted:   #6B7280;
-          --divider: #E9EBF8;
-          background: #fff;
+          --white: #FFFFFF;
+          --cream: #FAF6EF;
+          --cream-deep: #F3EDE2;
+          --ink: #111827;
+          --muted: #111827;
+          --divider: #E8E1D4;
+          --card-border: #E8E1D4;
+
+          background: var(--cream);
           color: var(--ink);
           font-family: 'Jost', sans-serif;
           min-height: 100vh;
+          position: relative;
+          overflow: hidden;
         }
 
-        @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        /* ═══════════════════════════════
+           PHONE RINGING ANIMATION 📞
+        ═══════════════════════════════ */
+        @keyframes phoneRing {
+          0% { transform: rotate(0deg) scale(1); }
+          10% { transform: rotate(-15deg) scale(1.1); }
+          20% { transform: rotate(15deg) scale(1.1); }
+          30% { transform: rotate(-10deg) scale(1.05); }
+          40% { transform: rotate(10deg) scale(1.05); }
+          50% { transform: rotate(-5deg) scale(1); }
+          60% { transform: rotate(5deg) scale(1); }
+          70% { transform: rotate(0deg) scale(1); }
+          100% { transform: rotate(0deg) scale(1); }
+        }
+
+        @keyframes phonePulse {
+          0% { box-shadow: 0 0 0 0 rgba(201, 150, 10, 0.6); }
+          70% { box-shadow: 0 0 0 12px rgba(201, 150, 10, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(201, 150, 10, 0); }
+        }
+
+        .gp-pay-card:first-child .gp-pay-heading svg {
+          animation: phoneRing 2.4s ease-in-out infinite;
+        }
+
+        .ringing-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 0.62rem;
+          font-weight: 600;
+          color: var(--gold);
+          margin-left: 8px;
+        }
+
+        .ringing-badge::before {
+          content: '';
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--gold);
+          animation: phonePulse 1.6s ease-out infinite;
+        }
+
+        /* ═══════════════════════════════
+           SPARKLE ANIMATIONS
+        ═══════════════════════════════ */
+        .sparkle-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 9999;
+          overflow: hidden;
+        }
+
+        .sparkle {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          opacity: 0;
+          animation: sparkleFloat 5s infinite ease-in-out;
+        }
+
+        .sparkle-sm { width: 4px; height: 4px; }
+        .sparkle-lg { width: 8px; height: 8px; }
+
+        @keyframes sparkleFloat {
+          0% {
+            opacity: 0;
+            transform: translate(0, 0) scale(0) rotate(0deg);
+            background: radial-gradient(circle, #fff, #F5C842, #C9960A);
+            box-shadow: 0 0 20px #F5C842, 0 0 40px #C9960A;
+          }
+          15% {
+            opacity: 1;
+            transform: translate(30px, -40px) scale(1.8) rotate(60deg);
+            background: radial-gradient(circle, #fff, #6B83F5, #3A4FD8);
+            box-shadow: 0 0 25px #6B83F5, 0 0 50px #3A4FD8;
+          }
+          30% {
+            opacity: 0.9;
+            transform: translate(70px, -100px) scale(1.2) rotate(120deg);
+            background: radial-gradient(circle, #fff, #F5C842, #FF6B6B);
+            box-shadow: 0 0 30px #F5C842, 0 0 60px #FF6B6B;
+          }
+          45% {
+            opacity: 0.8;
+            transform: translate(120px, -170px) scale(1.6) rotate(180deg);
+            background: radial-gradient(circle, #fff, #6B83F5, #4ECDC4);
+            box-shadow: 0 0 25px #6B83F5, 0 0 50px #4ECDC4;
+          }
+          60% {
+            opacity: 0.6;
+            transform: translate(180px, -250px) scale(1) rotate(240deg);
+            background: radial-gradient(circle, #fff, #C9960A, #FF6B6B);
+            box-shadow: 0 0 35px #C9960A, 0 0 70px #FF6B6B;
+          }
+          80% {
+            opacity: 0.3;
+            transform: translate(240px, -320px) scale(0.6) rotate(300deg);
+            background: radial-gradient(circle, #fff, #4ECDC4, #3A4FD8);
+            box-shadow: 0 0 20px #4ECDC4, 0 0 40px #3A4FD8;
+          }
+          100% {
+            opacity: 0;
+            transform: translate(300px, -400px) scale(0) rotate(360deg);
+            background: radial-gradient(circle, #fff, #F5C842, #C9960A);
+            box-shadow: 0 0 20px #F5C842, 0 0 40px #C9960A;
+          }
+        }
+
+        .sparkle-twinkle { animation-name: sparkleTwinkle; animation-duration: 4s; }
+
+        @keyframes sparkleTwinkle {
+          0% {
+            opacity: 0;
+            transform: scale(0) rotate(0deg);
+            background: radial-gradient(circle, #fff, #F5C842, #C9960A);
+            box-shadow: 0 0 20px #F5C842, 0 0 40px #C9960A;
+          }
+          15% {
+            opacity: 1;
+            transform: scale(2) rotate(60deg);
+            background: radial-gradient(circle, #fff, #6B83F5, #3A4FD8);
+            box-shadow: 0 0 30px #6B83F5, 0 0 60px #3A4FD8;
+          }
+          30% {
+            opacity: 0.3;
+            transform: scale(0.5) rotate(120deg);
+            background: radial-gradient(circle, #fff, #FF6B6B, #C9960A);
+            box-shadow: 0 0 25px #FF6B6B, 0 0 50px #C9960A;
+          }
+          45% {
+            opacity: 1;
+            transform: scale(1.8) rotate(180deg);
+            background: radial-gradient(circle, #fff, #4ECDC4, #6B83F5);
+            box-shadow: 0 0 35px #4ECDC4, 0 0 70px #6B83F5;
+          }
+          60% {
+            opacity: 0.4;
+            transform: scale(0.7) rotate(240deg);
+            background: radial-gradient(circle, #fff, #F5C842, #FF6B6B);
+            box-shadow: 0 0 20px #F5C842, 0 0 40px #FF6B6B;
+          }
+          80% {
+            opacity: 0.8;
+            transform: scale(1.3) rotate(300deg);
+            background: radial-gradient(circle, #fff, #3A4FD8, #4ECDC4);
+            box-shadow: 0 0 30px #3A4FD8, 0 0 60px #4ECDC4;
+          }
+          100% {
+            opacity: 0;
+            transform: scale(0) rotate(360deg);
+            background: radial-gradient(circle, #fff, #C9960A, #F5C842);
+            box-shadow: 0 0 20px #C9960A, 0 0 40px #F5C842;
+          }
+        }
+
+        .sparkle-1 { left: 5%; top: 10%; animation-delay: 0s; }
+        .sparkle-2 { left: 15%; top: 30%; animation-delay: 0.8s; }
+        .sparkle-3 { left: 25%; top: 5%; animation-delay: 1.6s; }
+        .sparkle-4 { left: 35%; top: 45%; animation-delay: 2.4s; }
+        .sparkle-5 { left: 45%; top: 15%; animation-delay: 0.4s; }
+        .sparkle-6 { left: 55%; top: 55%; animation-delay: 1.2s; }
+        .sparkle-7 { left: 65%; top: 8%; animation-delay: 2.0s; }
+        .sparkle-8 { left: 75%; top: 35%; animation-delay: 2.8s; }
+        .sparkle-9 { left: 85%; top: 20%; animation-delay: 0.6s; }
+        .sparkle-10 { left: 92%; top: 50%; animation-delay: 1.4s; }
+        .sparkle-11 { left: 10%; top: 70%; animation-delay: 2.2s; }
+        .sparkle-12 { left: 30%; top: 80%; animation-delay: 0.2s; }
+        .sparkle-13 { left: 50%; top: 90%; animation-delay: 1.0s; }
+        .sparkle-14 { left: 70%; top: 75%; animation-delay: 1.8s; }
+        .sparkle-15 { left: 90%; top: 85%; animation-delay: 2.6s; }
+        .sparkle-16 { left: 20%; top: 60%; animation-delay: 0.5s; }
+        .sparkle-17 { left: 60%; top: 40%; animation-delay: 1.3s; }
+        .sparkle-18 { left: 80%; top: 65%; animation-delay: 2.1s; }
+        .sparkle-19 { left: 40%; top: 25%; animation-delay: 2.9s; }
+        .sparkle-20 { left: 95%; top: 10%; animation-delay: 0.7s; }
+
+        .sparkle-reverse { animation-direction: reverse; }
+        .sparkle-3, .sparkle-8, .sparkle-13, .sparkle-18 { animation-direction: reverse; }
+
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
 
         /* ═══════════════════════════════
            HERO
         ═══════════════════════════════ */
         .gp-hero {
           position: relative;
-          width: 100%;
-          min-height: 62vh;
-          background: #fff;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+          padding: 4rem 6rem 2.25rem;
+          background: var(--cream);
+          z-index: 1;
+          border-bottom: 1px solid var(--divider);
+        }
+        @media(max-width:768px) {
+          .gp-hero { padding: 3rem 1.5rem 1.75rem; }
         }
 
-        .gp-hero-svg {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
-        }
-
-        .gp-hero-text {
-          position: relative;
-          z-index: 5;
-          padding: 6rem 0 4rem 6rem;
-          max-width: 600px;
+        .gp-hero-inner {
+          max-width: 640px;
           opacity: 0;
         }
-        .gp-hero-ready .gp-hero-text { animation: fadeUp 0.8s ease 0.15s forwards; }
-        @media(max-width:768px){ .gp-hero-text{ padding: 5rem 0 3rem 1.5rem; max-width:92vw; } }
+        .gp-hero-ready .gp-hero-inner {
+          animation: fadeUp 0.6s ease 0.1s forwards;
+        }
 
         .gp-eyebrow {
           display: flex;
           align-items: center;
-          gap: .75rem;
-          font-size: .62rem;
+          gap: .6rem;
+          font-size: .6rem;
           font-weight: 600;
-          letter-spacing: .22em;
+          letter-spacing: .18em;
           text-transform: uppercase;
           color: var(--blue);
-          margin-bottom: 1.25rem;
+          margin-bottom: 0.9rem;
         }
         .gp-eyebrow::before {
           content: '';
           display: inline-block;
-          width: 2rem; height: 2px;
+          width: 1.5rem;
+          height: 2px;
           background: var(--gold);
         }
 
         .gp-hero-title {
           font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(3.8rem, 8vw, 7.5rem);
+          font-size: clamp(2.2rem, 4.6vw, 3.2rem);
           font-weight: 700;
-          line-height: 0.92;
-          letter-spacing: -0.02em;
+          line-height: 1.08;
+          letter-spacing: -0.01em;
           color: var(--ink);
-          margin-bottom: 1.5rem;
+          margin-bottom: 0.75rem;
         }
-        .gp-hero-title .t-blue { color: var(--blue); font-style: italic; }
-        .gp-hero-title .t-gold { color: var(--gold); }
+        .gp-hero-title .t-gold {
+          color: var(--gold);
+        }
 
         .gp-hero-body {
-          font-size: 1rem;
-          line-height: 1.75;
+          font-size: 0.92rem;
+          line-height: 1.65;
           color: var(--muted);
-          font-weight: 300;
-          max-width: 44ch;
-        }
-
-        /* Decorative right element */
-        .gp-hero-deco {
-          position: absolute;
-          right: 6rem;
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 3;
-          opacity: 0;
-          pointer-events: none;
-          text-align: center;
-        }
-        .gp-hero-ready .gp-hero-deco { animation: fadeIn 1s ease 0.7s forwards; }
-        @media(max-width:900px){ .gp-hero-deco{ display: none; } }
-
-        .gp-deco-symbol {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 9rem;
-          font-weight: 700;
-          line-height: 1;
-          color: var(--divider);
-          display: block;
-          margin-bottom: .5rem;
-        }
-        .gp-deco-label {
-          font-size: .62rem;
-          font-weight: 600;
-          letter-spacing: .2em;
-          text-transform: uppercase;
-          color: var(--muted);
+          font-weight: 400;
+          max-width: 52ch;
         }
 
         /* ═══════════════════════════════
-           SCRIPTURE STRIP — gold band
+           SCRIPTURE LINE
         ═══════════════════════════════ */
         .gp-strip {
           background: var(--gold);
-          padding: 2rem 6rem;
-          display: flex;
-          align-items: center;
-          gap: 2rem;
-          overflow: hidden;
+          padding: 0.85rem 6rem;
+          text-align: center;
           position: relative;
+          z-index: 1;
         }
-        @media(max-width:768px){ .gp-strip{ padding: 1.75rem 1.5rem; flex-direction: column; gap: 1rem; } }
-
-        .gp-strip-quote-mark {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 5rem;
-          color: rgba(255,255,255,0.25);
-          line-height: 1;
-          flex-shrink: 0;
-        }
+        @media(max-width:768px) { .gp-strip { padding: 0.85rem 1.5rem; } }
 
         .gp-strip-text {
           font-family: 'Cormorant Garamond', serif;
           font-style: italic;
-          font-size: clamp(1rem, 1.8vw, 1.35rem);
+          font-size: 0.96rem;
           color: #fff;
-          line-height: 1.55;
+          margin: 0;
         }
-
-        .gp-strip-ref {
-          display: block;
-          margin-top: .5rem;
+        .gp-strip-text span {
           font-family: 'Jost', sans-serif;
           font-style: normal;
-          font-size: .62rem;
+          font-size: 0.6rem;
           font-weight: 600;
-          letter-spacing: .16em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.7);
+          color: rgba(255,255,255,0.8);
+          margin-left: 0.6rem;
         }
 
         /* ═══════════════════════════════
-           GIVE SECTION
+           BODY
         ═══════════════════════════════ */
         .gp-body {
+          background: var(--cream-deep);
+          padding: 3rem 6rem 4rem;
           position: relative;
-          background: #F8F9FF;
-          padding: 5rem 6rem 6rem;
-          overflow: hidden;
+          z-index: 1;
         }
-        @media(max-width:768px){ .gp-body{ padding: 3rem 1.5rem 4rem; } }
+        @media(max-width:768px) { .gp-body { padding: 2.5rem 1.5rem 3rem; } }
 
-        .gp-body-svg {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
+        .gp-body-inner {
+          max-width: 900px;
+          margin: 0 auto;
         }
 
-        .gp-body-inner { position: relative; z-index: 1; }
-
-        .gp-section-head {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          margin-bottom: 2.5rem;
-          padding-bottom: 1.5rem;
-          border-bottom: 1.5px solid var(--divider);
-        }
-
-        .gp-sec-label {
-          font-size: .62rem;
+        .gp-sec-eyebrow {
+          font-size: .6rem;
           font-weight: 600;
-          letter-spacing: .22em;
+          letter-spacing: .16em;
           text-transform: uppercase;
-          color: var(--blue);
-          display: flex;
-          align-items: center;
-          gap: .6rem;
-          margin-bottom: .75rem;
-        }
-        .gp-sec-label::before {
-          content: '';
-          display: inline-block;
-          width: 1.75rem; height: 2px;
-          background: var(--gold);
+          color: var(--muted);
+          margin-bottom: 0.4rem;
         }
 
         .gp-sec-title {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 2.4rem;
+          font-size: 1.7rem;
           font-weight: 700;
-          line-height: 1.08;
           color: var(--ink);
+          margin-bottom: 1.25rem;
         }
 
-        .gp-big-sym {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 5.5rem;
-          font-weight: 700;
-          color: var(--divider);
-          line-height: 1;
+        /* ─── Categories — flexbox row on desktop, autoplay carousel on mobile ─── */
+        .gp-cat-row {
+          overflow: hidden;
+          margin-bottom: 1rem;
         }
 
-        /* Give component wrapper — white card */
-        .gp-give-wrap {
+        .gp-cat-track {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .gp-cat-item {
+          flex: 1 1 180px;
+          max-width: 240px;
+          text-align: left;
           background: #fff;
-          padding: 3rem;
+          border: 1px solid var(--card-border);
+          border-radius: 10px;
+          overflow: hidden;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
-        @media(max-width:768px){ .gp-give-wrap{ padding: 1.75rem 1.25rem; } }
+        .gp-cat-item:hover {
+          border-color: var(--blue-lt);
+          box-shadow: 0 4px 16px rgba(58, 79, 216, 0.08);
+        }
+
+        .gp-cat-img {
+          width: 100%;
+          aspect-ratio: 4 / 3;
+          object-fit: cover;
+          display: block;
+        }
+
+        .gp-cat-label {
+          font-size: 0.82rem;
+          font-weight: 500;
+          color: var(--ink);
+          padding: 0.75rem 0.9rem;
+        }
+
+        .gp-cat-dots {
+          display: none;
+          justify-content: center;
+          gap: 6px;
+          margin-bottom: 2rem;
+        }
+        .gp-cat-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--card-border);
+          transition: background 0.3s ease, width 0.3s ease;
+        }
+        .gp-cat-dot.active {
+          background: var(--gold);
+          width: 16px;
+          border-radius: 3px;
+        }
+
+        @media(max-width:640px) {
+          .gp-cat-track {
+            flex-wrap: nowrap;
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+          }
+          .gp-cat-item {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+          .gp-cat-dots {
+            display: flex;
+          }
+        }
+
+        /* ─── Payment methods — flexbox row, cards grow evenly ─── */
+        .gp-pay-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+          margin-bottom: 1.25rem;
+        }
+
+        .gp-pay-card {
+          flex: 1 1 260px;
+          background: #fff;
+          border: 1px solid var(--card-border);
+          border-radius: 10px;
+          padding: 1.5rem 1.6rem;
+        }
+
+        .gp-pay-heading {
+          display: flex;
+          align-items: center;
+          gap: 0.55rem;
+          font-size: 0.78rem;
+          font-weight: 600;
+          color: var(--ink);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-bottom: 1.1rem;
+          padding-bottom: 0.9rem;
+          border-bottom: 1px solid var(--divider);
+        }
+        .gp-pay-heading svg {
+          width: 17px;
+          height: 17px;
+          color: var(--gold);
+          flex-shrink: 0;
+        }
+
+        .gp-pay-row-label {
+          font-size: 0.68rem;
+          font-weight: 500;
+          color: var(--muted);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin: 0 0 0.15rem;
+        }
+
+        .gp-pay-value {
+          font-family: 'DM Mono', 'Courier New', monospace;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: var(--ink);
+          letter-spacing: 0.01em;
+          margin: 0 0 0.85rem;
+        }
+        .gp-pay-value:last-child { margin-bottom: 0; }
+
+        .gp-pay-line {
+          font-size: 0.88rem;
+          color: var(--ink);
+          font-weight: 600;
+          margin: 0 0 0.85rem;
+        }
+
+        .gp-pay-sub {
+          font-size: 0.74rem;
+          font-weight: 500;
+          color: var(--muted);
+          margin: -0.6rem 0 0.85rem;
+        }
+
+        .gp-ref-note {
+          font-size: 0.8rem;
+          line-height: 1.65;
+          color: var(--muted);
+          border-left: 2px solid var(--gold);
+          padding: 0 0 0 1rem;
+          margin-bottom: 3rem;
+        }
+        .gp-ref-note em { color: var(--ink); font-style: italic; font-weight: 500; }
       `}</style>
 
-      <div className="gp">
+      <div className={`gp ${heroReady ? "gp-hero-ready" : ""}`}>
+        {/* SPARKLE CONTAINER */}
+        <div className="sparkle-container">
+          <div className="sparkle sparkle-1 sparkle-sm"></div>
+          <div className="sparkle sparkle-3 sparkle-lg"></div>
+          <div className="sparkle sparkle-4 sparkle-sm"></div>
+          <div className="sparkle sparkle-5 sparkle-lg"></div>
+          <div className="sparkle sparkle-6 sparkle-sm"></div>
+          <div className="sparkle sparkle-8 sparkle-lg"></div>
+          <div className="sparkle sparkle-9 sparkle-sm"></div>
+          <div className="sparkle sparkle-10 sparkle-lg"></div>
+          <div className="sparkle sparkle-11 sparkle-sm"></div>
+          <div className="sparkle sparkle-13 sparkle-lg"></div>
+          <div className="sparkle sparkle-14 sparkle-sm"></div>
+          <div className="sparkle sparkle-15 sparkle-lg"></div>
+          <div className="sparkle sparkle-16 sparkle-sm"></div>
+          <div className="sparkle sparkle-18 sparkle-lg"></div>
+          <div className="sparkle sparkle-19 sparkle-sm"></div>
+          <div className="sparkle sparkle-20 sparkle-lg"></div>
+
+          <div className="sparkle sparkle-3 sparkle-reverse sparkle-lg"></div>
+          <div className="sparkle sparkle-8 sparkle-reverse sparkle-sm"></div>
+          <div className="sparkle sparkle-13 sparkle-reverse sparkle-lg"></div>
+          <div className="sparkle sparkle-18 sparkle-reverse sparkle-sm"></div>
+        </div>
+
         <Navbar />
 
-        {/* ══ HERO ══ */}
-        <section className={`gp-hero ${heroReady ? "gp-hero-ready" : ""}`}>
-
-          {/* Blue curved ribbon — same as all other pages */}
-          <svg
-            className="gp-hero-svg"
-            viewBox="0 0 1440 540"
-            preserveAspectRatio="xMidYMid slice"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="gpRib" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%"   stopColor="#7B93F8" />
-                <stop offset="40%"  stopColor="#3A4FD8" />
-                <stop offset="100%" stopColor="#1E2D9E" />
-              </linearGradient>
-            </defs>
-            <path
-              d="
-                M -100 430
-                Q  160 358,  420 318
-                Q  660 283,  870 242
-                Q 1080 202, 1300 148
-                L 1540 82
-                L 1540 140
-                L 1305 205
-                Q 1085 258, 875 300
-                Q 665 342, 430 378
-                Q  170 418, -100 490
-                Z
-              "
-              fill="url(#gpRib)"
-            />
-            {/* Sheen */}
-            <path
-              d="
-                M -100 430
-                Q  160 358,  420 318
-                Q  660 283,  870 242
-                Q 1080 202, 1300 148
-                L 1540 82 L 1540 100
-                L 1302 164 Q 1082 218, 872 260
-                Q 662 302, 422 336
-                Q  162 372, -100 448 Z
-              "
-              fill="rgba(255,255,255,0.18)"
-            />
-          </svg>
-
-          {/* Decorative right side */}
-          <div className="gp-hero-deco">
-            <span className="gp-deco-symbol">♡</span>
-            <span className="gp-deco-label">Give Generously</span>
-          </div>
-
-          {/* Text */}
-          <div className="gp-hero-text">
+        {/* HERO */}
+        <section className="gp-hero">
+          <div className="gp-hero-inner">
             <p className="gp-eyebrow">Hour of Grace Believers Ministry International</p>
             <h1 className="gp-hero-title">
-              Give<br />
-              <span className="t-blue">With a</span><br />
-              <span className="t-gold">Cheerful Heart</span>
+              Give With a <span className="t-gold">Cheerful Heart</span>
             </h1>
             <p className="gp-hero-body">
               Your generosity fuels the mission — supporting worship, outreach,
@@ -326,50 +581,86 @@ export default function GivePage() {
           </div>
         </section>
 
-        {/* ══ GOLD SCRIPTURE STRIP ══ */}
+        {/* SCRIPTURE LINE */}
         <div className="gp-strip">
-          <span className="gp-strip-quote-mark">"</span>
           <p className="gp-strip-text">
-            Each of you should give what you have decided in your heart to give, not reluctantly
-            or under compulsion, for God loves a cheerful giver.
-            <span className="gp-strip-ref">2 Corinthians 9:7</span>
+            "Each of you should give what you have decided in your heart to give,
+            not reluctantly or under compulsion, for God loves a cheerful giver."
+            <span>2 Corinthians 9:7</span>
           </p>
         </div>
 
-        {/* ══ GIVE SECTION ══ */}
+        {/* BODY */}
         <section className="gp-body">
-
-          {/* Ribbon echo */}
-          <svg
-            className="gp-body-svg"
-            viewBox="0 0 1440 500"
-            preserveAspectRatio="xMidYMid slice"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="gpBRib" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%"   stopColor="#3A4FD8" stopOpacity="0.08" />
-                <stop offset="100%" stopColor="#3A4FD8" stopOpacity="0.03" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M-80 380 Q360 310 720 330 Q1080 350 1540 240 L1540 295 Q1080 405 720 385 Q360 365 -80 435 Z"
-              fill="url(#gpBRib)"
-            />
-          </svg>
-
           <div className="gp-body-inner">
-            <div className="gp-section-head">
-              <div>
-                <p className="gp-sec-label">Support the Ministry</p>
-                <h2 className="gp-sec-title">Ways to Give</h2>
+            {/* Where Your Gift Goes */}
+            <div>
+              <p className="gp-sec-eyebrow">Impact</p>
+              <h2 className="gp-sec-title" style={{ fontSize: "1.3rem" }}>
+                Where Your Gift Goes
+              </h2>
+
+              <div className="gp-cat-row">
+                <div
+                  className="gp-cat-track"
+                  style={{
+                    transform: isMobile ? `translateX(-${activeSlide * 100}%)` : "none",
+                  }}
+                >
+                  {givingCategories.map(({ img, label }) => (
+                    <div key={label} className="gp-cat-item">
+                      <img src={img} alt={label} className="gp-cat-img" />
+                      <p className="gp-cat-label">{label}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <span className="gp-big-sym">♡</span>
+
+              <div className="gp-cat-dots">
+                {givingCategories.map((_, i) => (
+                  <span
+                    key={i}
+                    className={`gp-cat-dot ${i === activeSlide ? "active" : ""}`}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Give component in white card */}
-            <div className="gp-give-wrap">
-              <Give />
+            {/* Make a Donation */}
+            <div>
+              <p className="gp-sec-eyebrow">Payment Details</p>
+              <h2 className="gp-sec-title">Make a Donation</h2>
+
+              <div className="gp-pay-grid">
+                <div className="gp-pay-card">
+                  <p className="gp-pay-heading">
+                    <Smartphone size={17} />
+                    Mobile Money
+                    <span className="ringing-badge">Active</span>
+                  </p>
+                  <p className="gp-pay-row-label">Phone Number</p>
+                  <p className="gp-pay-value">0246 819 964</p>
+                  <p className="gp-pay-sub">Apostle Prince Ofosu Hene</p>
+                </div>
+
+                <div className="gp-pay-card">
+                  <p className="gp-pay-heading">
+                    <Building2 size={17} />
+                    Bank Transfer
+                  </p>
+                  <p className="gp-pay-row-label">Bank</p>
+                  <p className="gp-pay-line">Stanbic Bank</p>
+                  <p className="gp-pay-row-label">Account Number</p>
+                  <p className="gp-pay-value">9040002232337</p>
+                  <p className="gp-pay-sub">Prince Ofosu Hene</p>
+                </div>
+              </div>
+
+              <p className="gp-ref-note">
+                Please include the donation type in your reference — e.g.{" "}
+                <em>Tithe</em>, <em>Offering</em>, <em>Building Fund</em>, or{" "}
+                <em>Missions</em>.
+              </p>
             </div>
           </div>
         </section>

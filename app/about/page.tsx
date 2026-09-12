@@ -38,29 +38,33 @@ export default function AboutPage() {
     {
       icon: Church,
       title: "Faith",
-      description: "We believe in the power of faith to move mountains and transform lives.",
-      details: "Our faith is rooted in the teachings of Jesus Christ — through prayer, scripture, and community we witness His promises fulfilled.",
+      description: "Faith in Jesus Christ empowers the supernatural in our lives.",
+      details:
+        "In the Lord Jesus Christ and His legal and vital work in our life for our salvation, and it is that faith that causes us to do the supernatural.",
       num: "01",
     },
     {
       icon: Users,
       title: "Community",
-      description: "Building strong relationships and supporting one another in our spiritual journey.",
-      details: "We foster a welcoming environment where everyone feels valued through small groups, fellowship, and outreach.",
+      description: "The Gospel transforms society, not just individuals.",
+      details:
+        "We also believe the impact of the Gospel in relation to society, both in development and changing the environment for the betterment of society.",
       num: "02",
     },
     {
       icon: Heart,
       title: "Love",
-      description: "Showing God's love through acts of kindness and compassion in every season.",
-      details: "Love is at the core of our ministry — demonstrated through charitable works, counselling, and serving our community.",
+      description: "Love is our nature, rooted in God's perfect love for us.",
+      details:
+        "As the Scripture says, perfect love is found in God, for God so loved the world and gave us His only begotten Son. We as children of God are commanded to walk in love, and as such, love is our nature.",
       num: "03",
     },
     {
       icon: BookOpen,
       title: "Learning",
-      description: "Continuous growth through Bible study and Spirit-led education.",
-      details: "We offer Bible study, workshops, and seminars to deepen understanding of scripture and spiritual principles.",
+      description: "All wisdom flows from God through the Holy Spirit.",
+      details:
+        "All wisdom and knowledge comes from God, and the Holy Spirit, being our Teacher in this end time, we are submitted to His dealings and His operations.",
       num: "04",
     },
   ]
@@ -79,17 +83,23 @@ export default function AboutPage() {
           --gold:     #C9960A;
           --gold-lt:  #F5C842;
           --white:    #FFFFFF;
+          --cream:    #FAF6EF;
+          --cream-deep: #F3EDE2;
           --ink:      #111827;
-          --muted:    #6B7280;
-          --divider:  #E9EBF8;
-          background: #fff;
+          --muted:    #4B5563;
+          --divider:  #E8E1D4;
+          --border:   #D6CFC0;
+          background: var(--cream);
           color: var(--ink);
           font-family: 'Jost', sans-serif;
         }
 
         @keyframes fadeUp  { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
         @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
-        @keyframes float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        @keyframes floatTilt {
+          0%,100% { transform: translateY(0) rotateY(0deg) rotateX(0deg); }
+          50%     { transform: translateY(-12px) rotateY(7deg) rotateX(-4deg); }
+        }
 
         /* ═══════════════════════════════
            HERO
@@ -98,13 +108,12 @@ export default function AboutPage() {
           position: relative;
           width: 100%;
           min-height: 90vh;
-          background: #ffffff;
+          background: var(--cream);
           overflow: hidden;
           display: flex;
           flex-direction: column;
         }
 
-        /* Full-bleed SVG ribbon — same sweep as the image */
         .hero-svg {
           position: absolute;
           inset: 0;
@@ -113,7 +122,6 @@ export default function AboutPage() {
           pointer-events: none;
         }
 
-        /* Logo anchored to sit on the ribbon */
         .hero-logo {
           position: absolute;
           top: 50%;
@@ -121,21 +129,28 @@ export default function AboutPage() {
           transform: translate(-50%, -50%);
           z-index: 10;
           opacity: 0;
+          perspective: 1000px;
         }
         .hero-ready .hero-logo { animation: fadeIn 0.9s ease 0.55s forwards; }
         .hero-logo img {
-          width: 220px;
-          height: 220px;
+          width: 600px;
+          height: 800px;
           object-fit: contain;
-          filter: drop-shadow(0 16px 48px rgba(58,79,216,0.28)) drop-shadow(0 4px 20px rgba(0,0,0,0.16));
-          animation: float 4s ease-in-out 1.5s infinite;
+          opacity: 0.6;
+          filter: drop-shadow(0 8px 18px rgba(58,79,216,0.08)) drop-shadow(0 5px 10px rgba(17,24,39,0.05));
+          transform-style: preserve-3d;
+          animation: floatTilt 5s ease-in-out 1.5s infinite;
         }
         @media(max-width:768px){
-          .hero-logo { left:50%; top:72%; }
-          .hero-logo img { width:150px; height:150px; }
+          .hero-logo {
+            left: auto;
+            right: 3.5rem;
+            top: 2.75rem;
+            transform: none;
+          }
+          .hero-logo img { width: 200px; height: 267px; }
         }
 
-        /* Text block */
         .hero-text {
           position: relative;
           z-index: 5;
@@ -144,7 +159,7 @@ export default function AboutPage() {
           opacity: 0;
         }
         .hero-ready .hero-text { animation: fadeUp 0.8s ease 0.15s forwards; }
-        @media(max-width:768px){ .hero-text{padding:5rem 0 0 1.5rem;max-width:92vw;} }
+        @media(max-width:768px){ .hero-text{padding:2rem 0 0 1.5rem;max-width:52vw;} }
 
         .hero-eyebrow {
           display: flex;
@@ -179,8 +194,8 @@ export default function AboutPage() {
         .hero-body {
           font-size:1rem;
           line-height:1.75;
-          color:var(--muted);
-          font-weight:300;
+          color:var(--ink);
+          font-weight:400;
           max-width:40ch;
           margin-bottom:2rem;
         }
@@ -200,22 +215,33 @@ export default function AboutPage() {
           cursor:pointer;
           text-decoration:none;
           border-radius:2px;
-          transition:background .2s,transform .2s;
+          box-shadow: 0 8px 20px -8px rgba(58,79,216,0.55);
+          transition:background .2s,transform .2s, box-shadow .2s;
         }
-        .hero-cta:hover { background:#2535b8; transform:translateY(-2px); }
+        .hero-cta:hover { background:#2535b8; transform:translateY(-2px); box-shadow: 0 12px 26px -8px rgba(58,79,216,0.65); }
 
-        /* Stats row bottom */
         .hero-stats {
           position:relative;
           z-index:5;
           margin-top:auto;
           padding:2.5rem 6rem;
           display:flex;
-          gap:4rem;
+          gap:0;
+          border-top: 1.5px solid var(--border);
           opacity:0;
         }
         .hero-ready .hero-stats { animation:fadeUp .7s ease 1s forwards; }
-        @media(max-width:768px){ .hero-stats{padding:2rem 1.5rem;gap:2rem;flex-wrap:wrap;} }
+        @media(max-width:768px){ .hero-stats{padding:2rem 1.5rem;flex-wrap:wrap;} }
+
+        .stat-item {
+          padding: 0 3rem 0 0;
+          margin-right: 3rem;
+          border-right: 1.5px solid var(--border);
+        }
+        .stat-item:last-child { border-right: none; margin-right: 0; }
+        @media(max-width:768px){
+          .stat-item { padding: 0 1.5rem 0 0; margin-right: 1.5rem; }
+        }
 
         .stat-num {
           font-family:'Cormorant Garamond',serif;
@@ -227,12 +253,31 @@ export default function AboutPage() {
         }
         .stat-lbl {
           font-size:.68rem;
-          font-weight:500;
+          font-weight:600;
           letter-spacing:.1em;
           text-transform:uppercase;
-          color:var(--muted);
+          color:var(--ink);
           display:block;
           margin-top:.25rem;
+        }
+
+        /* Angled divider between sections */
+        .angle-divide {
+          position: relative;
+          height: 46px;
+          overflow: hidden;
+        }
+        .angle-divide::before {
+          content: '';
+          position: absolute;
+          left: -5%;
+          right: -5%;
+          top: 0;
+          height: 100%;
+          background: linear-gradient(90deg, var(--blue) 0%, var(--blue-mid) 50%, var(--gold) 100%);
+          transform: skewY(-2.2deg);
+          transform-origin: top left;
+          opacity: 0.9;
         }
 
         /* ═══════════════════════════════
@@ -240,19 +285,14 @@ export default function AboutPage() {
         ═══════════════════════════════ */
         .vision-section {
           position:relative;
-          background:#fff;
+          background: var(--cream);
           padding:6rem;
           overflow:hidden;
+          border-bottom: 1.5px solid var(--border);
         }
         @media(max-width:768px){ .vision-section{padding:3.5rem 1.5rem;} }
 
-        .vis-ribbon {
-          position:absolute;
-          inset:0;
-          width:100%;
-          height:100%;
-          pointer-events:none;
-        }
+        .vis-ribbon { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
 
         .vision-inner {
           position:relative;
@@ -297,12 +337,11 @@ export default function AboutPage() {
           font-style:italic;
           color:var(--ink);
           line-height:1.5;
-          padding-left:1.75rem;
-          border-left:3px solid var(--blue);
+          padding: 0.25rem 0 0.25rem 1.85rem;
+          border-left:4px solid var(--blue);
           position:relative;
         }
 
-        /* scroll anim */
         .anim {
           opacity:0;
           transform:translateY(22px);
@@ -313,13 +352,15 @@ export default function AboutPage() {
         .anim.d2 { transition-delay:.22s; }
 
         /* ═══════════════════════════════
-           VALUES
+           VALUES — WITH 3D DEPTH EFFECTS
         ═══════════════════════════════ */
         .values-section {
           position:relative;
-          background:#F8F9FF;
+          background: var(--cream-deep);
           padding:6rem;
           overflow:hidden;
+          border-bottom: 1.5px solid var(--border);
+          perspective: 1200px;
         }
         @media(max-width:768px){ .values-section{padding:3.5rem 1.5rem;} }
 
@@ -333,14 +374,14 @@ export default function AboutPage() {
           justify-content:space-between;
           margin-bottom:3rem;
           padding-bottom:1.5rem;
-          border-bottom:1.5px solid var(--divider);
+          border-bottom:2px solid var(--border);
         }
 
         .val-big-num {
           font-family:'Cormorant Garamond',serif;
           font-size:5.5rem;
           font-weight:700;
-          color:var(--divider);
+          color:var(--border);
           line-height:1;
         }
 
@@ -349,11 +390,35 @@ export default function AboutPage() {
           z-index:1;
           display:grid;
           grid-template-columns:repeat(4,1fr);
-          gap:1.5px;
-          background:var(--divider);
+          gap:1px;
+          background:var(--border);
+          border: 1.5px solid var(--border);
+          border-radius: 6px;
+          overflow: hidden;
+          box-shadow: 0 18px 40px -24px rgba(58,79,216,0.35);
+          transform-style: preserve-3d;
         }
         @media(max-width:900px){ .val-grid{grid-template-columns:repeat(2,1fr);} }
-        @media(max-width:500px){ .val-grid{grid-template-columns:1fr;} }
+        @media(max-width:500px){
+          .val-grid {
+            display: flex;
+            width: max-content;
+            min-width: 100%;
+            gap: 1rem;
+            overflow: hidden;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            animation: valueCarousel 18s linear infinite;
+            padding-bottom: 0.25rem;
+          }
+          .val-grid::-webkit-scrollbar { display: none; }
+        }
+
+        @keyframes valueCarousel {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-50% - 0.5rem)); }
+        }
 
         .val-card {
           background:#fff;
@@ -361,10 +426,27 @@ export default function AboutPage() {
           position:relative;
           overflow:hidden;
           opacity:0;
-          transform:translateY(18px);
-          transition:background .25s, transform .25s;
+          transform:translateY(18px) rotateX(0deg) rotateY(0deg) translateZ(0);
+          transition: background .25s, transform .45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .35s ease;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
+          will-change: transform;
         }
-        .val-card.in { animation:fadeUp .55s ease forwards; }
+        .val-card.in { 
+          animation: cardReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; 
+        }
+        
+        @keyframes cardReveal {
+          0% {
+            opacity: 0;
+            transform: translateY(30px) rotateX(8deg) rotateY(-5deg) translateZ(-40px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) rotateX(0deg) rotateY(0deg) translateZ(0);
+          }
+        }
+
         .val-card::after {
           content:'';
           position:absolute;
@@ -374,27 +456,97 @@ export default function AboutPage() {
           transition:width .35s ease;
         }
         .val-card:hover::after { width:100%; }
-        .val-card:hover { background:#F0F3FF; transform:translateY(-4px); }
+        
+        /* 3D hover effect — rotate on Y and X axes with Z translation */
+        .val-card:hover {
+          background:#F0F3FF;
+          transform: perspective(900px) 
+                     rotateX(6deg) 
+                     rotateY(-8deg) 
+                     translateZ(20px) 
+                     translateY(-6px);
+          box-shadow: 
+            0 20px 34px -18px rgba(58,79,216,0.4),
+            0 8px 20px -8px rgba(58,79,216,0.15),
+            -4px 4px 12px rgba(58,79,216,0.08);
+          z-index: 2;
+        }
+        
+        /* Different rotation for odd/even cards on hover for variety */
+        .val-card:nth-child(odd):hover {
+          transform: perspective(900px) 
+                     rotateX(6deg) 
+                     rotateY(8deg) 
+                     translateZ(20px) 
+                     translateY(-6px);
+        }
+        
+        .val-card:nth-child(2):hover {
+          transform: perspective(900px) 
+                     rotateX(-4deg) 
+                     rotateY(-8deg) 
+                     translateZ(20px) 
+                     translateY(-6px);
+        }
+        
+        .val-card:nth-child(4):hover {
+          transform: perspective(900px) 
+                     rotateX(-4deg) 
+                     rotateY(8deg) 
+                     translateZ(20px) 
+                     translateY(-6px);
+        }
+        @media(max-width:500px){
+          .val-card {
+            min-width: 78vw;
+            max-width: 78vw;
+            flex: 0 0 78vw;
+            border-radius: 18px;
+            padding: 1.5rem 1.2rem;
+            background: rgba(255,255,255,0.94);
+            box-shadow: 0 10px 30px rgba(58,79,216,0.08);
+          }
+        }
 
         .vc-num {
           font-family:'Cormorant Garamond',serif;
           font-size:3rem;
           font-weight:700;
-          color:var(--divider);
+          color:var(--border);
           line-height:1;
           display:block;
           margin-bottom:1.25rem;
+          transform: translateZ(10px);
         }
-        .vc-icon { color:var(--blue); margin-bottom:.85rem; }
+        .vc-icon { 
+          color:var(--blue); 
+          margin-bottom:.85rem;
+          transform: translateZ(15px);
+          display: block;
+        }
         .vc-title {
           font-family:'Cormorant Garamond',serif;
           font-size:1.45rem;
           font-weight:700;
           color:var(--ink);
           margin-bottom:.6rem;
+          transform: translateZ(12px);
         }
-        .vc-desc { font-size:.82rem; color:var(--muted); line-height:1.7; margin-bottom:.6rem; }
-        .vc-detail { font-size:.76rem; color:var(--muted); line-height:1.65; opacity:.8; }
+        .vc-desc { 
+          font-size:.84rem; 
+          color:var(--ink); 
+          font-weight: 400; 
+          line-height:1.7; 
+          margin-bottom:.6rem;
+          transform: translateZ(8px);
+        }
+        .vc-detail { 
+          font-size:.78rem; 
+          color:var(--muted); 
+          font-weight: 400; 
+          line-height:1.65;
+          transform: translateZ(5px);
+        }
 
         /* ═══════════════════════════════
            HISTORY
@@ -403,7 +555,7 @@ export default function AboutPage() {
           display:grid;
           grid-template-columns:1fr 1fr;
           min-height:560px;
-          background:#fff;
+          background: var(--cream);
           overflow:hidden;
         }
         @media(max-width:768px){
@@ -415,9 +567,12 @@ export default function AboutPage() {
           position:relative;
           z-index:2;
           padding:5.5rem 4rem 5.5rem 6rem;
-          background:#fff;
+          background: var(--cream);
+          border-right: 1.5px solid var(--border);
         }
-        @media(max-width:768px){ .hist-content{padding:3rem 1.5rem;} }
+        @media(max-width:768px){
+          .hist-content{padding:3rem 1.5rem; border-right: none; border-bottom: 1.5px solid var(--border);}
+        }
 
         .hist-eyebrow {
           font-size:.62rem;
@@ -448,10 +603,10 @@ export default function AboutPage() {
         .hist-title em { font-style:italic; color:var(--blue); }
 
         .hist-body {
-          font-size:.9rem;
+          font-size:.92rem;
           line-height:1.85;
-          color:var(--muted);
-          font-weight:300;
+          color:var(--ink);
+          font-weight:400;
           margin-bottom:1.25rem;
         }
 
@@ -460,10 +615,10 @@ export default function AboutPage() {
           opacity:0;
           overflow:hidden;
           transition:max-height .55s ease, opacity .4s ease .1s;
-          font-size:.9rem;
+          font-size:.92rem;
           line-height:1.85;
-          color:var(--muted);
-          font-weight:300;
+          color:var(--ink);
+          font-weight:400;
           margin-bottom:1.25rem;
         }
         .hist-extra.open { max-height:220px; opacity:1; }
@@ -484,14 +639,14 @@ export default function AboutPage() {
         }
         .hist-toggle:hover { background:var(--blue); color:#fff; }
 
-        /* Right visual: white bg + ribbon + logo */
         .hist-visual {
           position:relative;
-          background:#fff;
+          background: var(--cream);
           display:flex;
           align-items:center;
           justify-content:center;
           overflow:hidden;
+          perspective: 1200px;
         }
 
         .hist-svg {
@@ -509,13 +664,15 @@ export default function AboutPage() {
           flex-direction:column;
           align-items:center;
           gap:1.25rem;
+          transform-style: preserve-3d;
         }
         .hist-logo img {
           width:180px;
           height:180px;
           object-fit:contain;
-          filter:drop-shadow(0 12px 40px rgba(58,79,216,.24)) drop-shadow(0 4px 16px rgba(0,0,0,.13));
-          animation:float 4s ease-in-out infinite;
+          filter:drop-shadow(0 12px 40px rgba(58,79,216,.3)) drop-shadow(0 4px 16px rgba(0,0,0,.16));
+          transform-style: preserve-3d;
+          animation: floatTilt 5s ease-in-out infinite;
         }
         .hist-caption {
           font-family:'Cormorant Garamond',serif;
@@ -533,20 +690,14 @@ export default function AboutPage() {
         {/* ══ HERO ══ */}
         <section className={`hero ${heroReady ? "hero-ready" : ""}`}>
 
-          {/*
-            THE RIBBON — replicates the image exactly:
-            thick curved band sweeping from lower-left to upper-right,
-            with a gradient from lighter blue (left) to deep blue (right).
-          */}
           <svg className="hero-svg" viewBox="0 0 1440 780" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="hRib" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%"   stopColor="#7B93F8" />
+                <stop offset="0%"   stopColor="#5B76EC" />
                 <stop offset="40%"  stopColor="#3A4FD8" />
                 <stop offset="100%" stopColor="#1E2D9E" />
               </linearGradient>
             </defs>
-            {/* Main ribbon body */}
             <path
               d="
                 M -100 650
@@ -564,7 +715,6 @@ export default function AboutPage() {
               "
               fill="url(#hRib)"
             />
-            {/* Top-edge highlight (white sheen) */}
             <path
               d="
                 M -100 650
@@ -577,31 +727,27 @@ export default function AboutPage() {
                 Q 1085 383, 875 433
                 Q 665 483, 425 528
                 Q  163 578, -100 668
-                Z
               "
-              fill="rgba(255,255,255,0.18)"
+              fill="rgba(255,255,255,0.2)"
             />
           </svg>
 
-          {/* Logo on ribbon */}
           <div className="hero-logo">
             <img
-              src="/church_loog-removebg-preview.png"
+              src="/shadowangel.png"
               alt="Hour of Grace Believers Ministry International"
             />
           </div>
 
-          {/* Text — upper left, above the ribbon */}
           <div className="hero-text">
             <p className="hero-eyebrow">Hour of Grace Believers Ministry International</p>
             <h1 className="hero-title">
-              About<br />
-              <span className="t-blue">Our</span><br />
-              <span className="t-gold">Church</span>
+              Our<br />
+              <span className="t-blue">Vision</span>
             </h1>
             <p className="hero-body">
-              A community of faith dedicated to spreading God's love and grace —
-              welcoming people from every walk of life into His presence.
+              Bringing Men to the light of God's dear son through the demonstration
+              of Love and the Holy Spirit.
             </p>
             <a href="#vision" className="hero-cta">
               Discover Our Story
@@ -611,14 +757,13 @@ export default function AboutPage() {
             </a>
           </div>
 
-          {/* Stats row */}
           <div className="hero-stats">
             {[
               { num: "10+",  label: "Years of Ministry" },
               { num: "500+", label: "Lives Impacted" },
               { num: "52",   label: "Services Per Year" },
             ].map(s => (
-              <div key={s.label}>
+              <div className="stat-item" key={s.label}>
                 <span className="stat-num">{s.num}</span>
                 <span className="stat-lbl">{s.label}</span>
               </div>
@@ -626,10 +771,10 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <div className="angle-divide" />
 
         {/* ══ VISION ══ */}
         <section className="vision-section" id="vision">
-          {/* Subtle ribbon echo */}
           <svg className="vis-ribbon" viewBox="0 0 1440 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="vRib" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -639,23 +784,9 @@ export default function AboutPage() {
             </defs>
             <path d="M-80 300 Q360 240 720 260 Q1080 280 1540 175 L1540 230 Q1080 335 720 315 Q360 295 -80 355 Z" fill="url(#vRib)" />
           </svg>
-
-          <div className="vision-inner">
-            <div ref={vision.ref} className={`anim ${vision.visible ? "in" : ""}`}>
-              <p className="sec-label">Our Vision</p>
-              <h2 className="vision-heading">What<br />We Stand<br />For</h2>
-            </div>
-            <div className={`anim d2 ${vision.visible ? "in" : ""}`}>
-              <p className="vision-quote">
-                Bringing Men to the light of God's dear son through the demonstration
-                of Love and the Holy Spirit.
-              </p>
-            </div>
-          </div>
         </section>
 
-
-        {/* ══ VALUES ══ */}
+        {/* ══ VALUES — WITH 3D DEPTH ══ */}
         <section className="values-section">
           <svg className="val-ribbon" viewBox="0 0 1440 420" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -694,6 +825,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <div className="angle-divide" />
 
         {/* ══ HISTORY ══ */}
         <section className="history-section">
@@ -720,7 +852,6 @@ export default function AboutPage() {
             </button>
           </div>
 
-          {/* Right side: white + ribbon + logo — same motif as hero */}
           <div className="hist-visual">
             <svg className="hist-svg" viewBox="0 0 720 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
               <defs>

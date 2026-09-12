@@ -52,10 +52,11 @@ export default function MessagesPage() {
           --gold:    #C9960A;
           --gold-lt: #F5C842;
           --white:   #FFFFFF;
+          --cream:   #FAF6EF;
+          --cream-deep: #F3EDE2;
           --ink:     #111827;
-          --muted:   #6B7280;
-          --divider: #E9EBF8;
-          background: #fff;
+          --divider: #E8E1D4;
+          background: var(--cream);
           color: var(--ink);
           font-family: 'Jost', sans-serif;
           min-height: 100vh;
@@ -72,7 +73,7 @@ export default function MessagesPage() {
           position: relative;
           width: 100%;
           min-height: 68vh;
-          background: #fff;
+          background: var(--cream);
           overflow: hidden;
           display: flex;
           flex-direction: column;
@@ -130,7 +131,7 @@ export default function MessagesPage() {
         .mp-hero-body {
           font-size: 1rem;
           line-height: 1.75;
-          color: var(--muted);
+          color: var(--ink);
           font-weight: 300;
           max-width: 44ch;
           margin-bottom: 2rem;
@@ -180,7 +181,7 @@ export default function MessagesPage() {
           font-weight: 600;
           letter-spacing: .2em;
           text-transform: uppercase;
-          color: var(--muted);
+          color: var(--ink);
         }
 
         /* ═══════════════════════════════
@@ -188,7 +189,7 @@ export default function MessagesPage() {
         ═══════════════════════════════ */
         .mp-grid-section {
           position: relative;
-          background: #F8F9FF;
+          background: var(--cream-deep);
           padding: 5rem 6rem 6rem;
           overflow: hidden;
         }
@@ -397,7 +398,7 @@ export default function MessagesPage() {
           align-items: center;
           justify-content: space-between;
           font-size: .72rem;
-          color: var(--muted);
+          color: var(--ink);
           font-weight: 500;
           letter-spacing: .04em;
           text-transform: uppercase;
@@ -427,7 +428,7 @@ export default function MessagesPage() {
         .mp-empty {
           text-align: center;
           padding: 5rem 2rem;
-          color: var(--muted);
+          color: var(--ink);
         }
         .mp-empty-icon {
           font-size: 4rem;
@@ -440,6 +441,9 @@ export default function MessagesPage() {
           font-weight: 700;
           color: var(--ink);
           margin-bottom: .5rem;
+        }
+        .mp-empty p {
+          color: var(--ink);
         }
       `}</style>
 

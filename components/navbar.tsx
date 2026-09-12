@@ -31,6 +31,19 @@ import {
 } from "lucide-react"
 import { usePathname } from "next/navigation"
 
+function TikTokIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M16.3 3c.6 2 2.1 3.3 4.4 3.7v2.7c-1.5 0-2.8-.3-4.1-1.2v7.2c0 3.7-3 6.6-6.7 6.6s-6.7-3-6.7-6.6 3-6.7 6.7-6.7c.5 0 .9 0 1.3.1v2.9c-.4-.1-.8-.2-1.3-.2-2.1 0-3.8 1.7-3.8 3.8s1.7 3.8 3.8 3.8 3.8-1.7 3.8-3.8V3h2.7Z" />
+    </svg>
+  )
+}
+
 const navigationItems = [
   {
     title: "Home",
@@ -50,12 +63,6 @@ const navigationItems = [
     href: "/events",
     icon: Calendar,
     description: "Monday, Wednesday, and Sunday services",
-    hasDropdown: false,
-  },
-  {
-    title: "Fellowship",
-    href: "/fellowship",
-    icon: Users,
     hasDropdown: false,
   },
   {
@@ -85,8 +92,13 @@ const socialMediaLinks = [
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/stories/hgbmi_gh",
+    href: "https://www.instagram.com/hgbmi_gh/",
     icon: Instagram,
+  },
+  {
+    name: "TikTok",
+    href: "https://www.tiktok.com/@princeofosuhene7",
+    icon: TikTokIcon,
   },
   {
     name: "Location",
@@ -360,6 +372,11 @@ export function Navbar() {
               if (social.name === "Instagram") {
                 iconColor =
                   "text-pink-500 hover:text-pink-400"
+              }
+
+              if (social.name === "TikTok") {
+                iconColor =
+                  "text-cyan-400 hover:text-cyan-300"
               }
 
               if (social.name === "Location") {
