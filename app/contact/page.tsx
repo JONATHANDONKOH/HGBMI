@@ -3,14 +3,64 @@
 import React, { useEffect, useState } from "react"
 import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
+import emailjs from "@emailjs/browser"
 
 export default function ContactPage() {
   const [heroReady, setHeroReady] = useState(false)
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
 
   useEffect(() => {
     const t = setTimeout(() => setHeroReady(true), 100)
     return () => clearTimeout(t)
   }, [])
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    setForm((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (!form.name || !form.email || !form.message) {
+      setStatus("error")
+      return
+    }
+
+    setStatus("sending")
+
+    const templateParams = {
+      name: form.name,
+      email: form.email,
+      time: new Date().toLocaleString("en-GB", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }),
+      message: form.message,
+    }
+
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      setStatus("success")
+      setForm({ name: "", email: "", message: "" })
+    } catch (err) {
+      console.error("EmailJS error:", err)
+      setStatus("error")
+    }
+  }
 
   return (
     <>
@@ -43,9 +93,6 @@ export default function ContactPage() {
           50%     { transform: translateY(-12px) rotateY(7deg) rotateX(-4deg); }
         }
 
-        /* ═══════════════════════════════
-           HERO
-        ═══════════════════════════════ */
         .cp-hero {
           position: relative;
           width: 100%;
@@ -143,10 +190,6 @@ export default function ContactPage() {
           max-width: 44ch;
         }
 
-        /* ═══════════════════════════════
-           CARD SECTION — text + contacts on the left,
-           a raised white form card on the right
-        ═══════════════════════════════ */
         .cp-card-section {
           position: relative;
           background: var(--cream-deep);
@@ -178,7 +221,6 @@ export default function ContactPage() {
         }
         .cp-card-grid-solo .cp-form-card { width: 100%; max-width: 520px; }
 
-        /* ── Left: copy + contact rows ── */
         .cp-card-left { display: flex; flex-direction: column; gap: 1.75rem; }
 
         .cp-card-eyebrow {
@@ -262,7 +304,6 @@ export default function ContactPage() {
         }
         .cp-card-contact-row:hover .cp-card-contact-val { color: var(--blue); }
 
-        /* Scripture strip */
         .cp-card-scripture {
           margin-top: .75rem;
           padding: 1.25rem 1.5rem;
@@ -302,7 +343,6 @@ export default function ContactPage() {
           color: var(--gold-lt);
         }
 
-        /* ── Right: raised form card ── */
         .cp-form-card {
           position: relative;
           background: #fff;
@@ -370,6 +410,7 @@ export default function ContactPage() {
           box-shadow: 0 10px 22px -10px rgba(58,79,216,0.6);
         }
         .cp-form-submit:hover { background: #2535b8; transform: translateY(-2px); }
+        .cp-form-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
         .cp-form-submit-icon {
           width: 32px;
@@ -392,15 +433,21 @@ export default function ContactPage() {
         .cp-form-submit:hover .cp-form-submit-icon svg {
           animation-duration: .6s;
         }
+
+        .cp-form-status {
+          font-size: .82rem;
+          margin-top: 1rem;
+          font-weight: 500;
+        }
+        .cp-form-status-success { color: #1a7f37; }
+        .cp-form-status-error { color: #c0392b; }
       `}</style>
 
       <div className="cp">
         <Navbar />
 
-        {/* ══ HERO ══ */}
         <section className={`cp-hero ${heroReady ? "cp-hero-ready" : ""}`}>
 
-          {/* Blue curved ribbon */}
           <svg
             className="cp-hero-svg"
             viewBox="0 0 1440 540"
@@ -500,10 +547,8 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* ══ CARD SECTION ══ */}
         <section className="cp-card-section">
 
-          {/* Subtle ribbon echo */}
           <svg
             className="cp-card-svg"
             viewBox="0 0 1440 500"
@@ -520,43 +565,67 @@ export default function ContactPage() {
           </svg>
 
           <div className="cp-card-grid cp-card-grid-solo">
-            {/* Right — form card */}
-            <form className="cp-form-card" onSubmit={(e) => e.preventDefault()}>
+            <form className="cp-form-card" onSubmit={handleSubmit}>
               <div className="cp-form-field">
                 <label className="cp-form-label" htmlFor="cp-name">Name</label>
-                <input className="cp-form-input" id="cp-name" name="name" type="text" placeholder="Jane Smith" />
+                <input
+                  className="cp-form-input"
+                  id="cp-name"
+                  name="name"
+                  type="text"
+                  placeholder="Jane Smith"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
               <div className="cp-form-field">
                 <label className="cp-form-label" htmlFor="cp-email">Email</label>
-                <input className="cp-form-input" id="cp-email" name="email" type="email" placeholder="jane@name.com" />
-              </div>
-
-              <div className="cp-form-field">
-                <label className="cp-form-label" htmlFor="cp-reason">How Can We Help?</label>
-                <select className="cp-form-select" id="cp-reason" name="reason" defaultValue="">
-                  <option value="" disabled>Select...</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="prayer">Prayer Request</option>
-                  <option value="volunteer">Volunteering</option>
-                  <option value="visit">Planning A Visit</option>
-                  <option value="other">Other</option>
-                </select>
+                <input
+                  className="cp-form-input"
+                  id="cp-email"
+                  name="email"
+                  type="email"
+                  placeholder="jane@name.com"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
               <div className="cp-form-field">
                 <label className="cp-form-label" htmlFor="cp-message">Message</label>
-                <textarea className="cp-form-textarea" id="cp-message" name="message" placeholder="Type your message" />
+                <textarea
+                  className="cp-form-textarea"
+                  id="cp-message"
+                  name="message"
+                  placeholder="Type your message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                />
               </div>
 
-              <button className="cp-form-submit" type="submit">
+              <button className="cp-form-submit" type="submit" disabled={status === "sending"}>
                 <span className="cp-form-submit-icon">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </span>
-                Send Message
+                {status === "sending" ? "Sending..." : "Send Message"}
               </button>
+
+              {status === "success" && (
+                <p className="cp-form-status cp-form-status-success">
+                  Message sent — we'll be in touch soon.
+                </p>
+              )}
+              {status === "error" && (
+                <p className="cp-form-status cp-form-status-error">
+                  Something went wrong. Please try again or email us directly.
+                </p>
+              )}
             </form>
 
           </div>

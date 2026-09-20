@@ -21,7 +21,7 @@ export default function PastorSection() {
           position: relative;
           background: #06030c;
           overflow: hidden;
-          min-height: 640px;
+          min-height: 92vh;
           display: flex;
           flex-direction: column;
         }
@@ -57,10 +57,10 @@ export default function PastorSection() {
         .ps-photo img {
           height: 100%;
           width: auto;
-          max-width: 60%;
+          max-width: 92%;
           object-fit: cover;
           object-position: top center;
-          opacity: 0.96;
+          opacity: 1;
         }
         @media(max-width:900px){
           .ps-photo img { max-width: 100%; opacity: 0.3; }
@@ -172,7 +172,7 @@ export default function PastorSection() {
         <div className="ps-bg" />
 
         <div className="ps-photo">
-          <img src="/myp.png" alt="Apostle Prince Ofosuhene" />
+          <img src="/Pappy.png" alt="Apostle Prince Ofosuhene" />
         </div>
 
         <div className="ps-inner">

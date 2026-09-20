@@ -26,6 +26,21 @@ const sampleMediaFiles: MediaFile[] = [
   { id: '9', title: 'The Perseverance of Faith', type: 'audio', url: '/audio/THE PERSEVERANCE OF FAITH 23-11-2025 hgbmi.mp3', duration: '55:00' },
 ]
 
+// Simple inline Telegram brand icon (lucide-react has no Telegram icon)
+function TelegramIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M21.94 3.64c.26.19.4.51.36.83l-2.66 15.4c-.09.53-.65.83-1.14.62l-4.6-1.9-2.32 2.28c-.28.28-.72.28-1.02.02-.15-.13-.24-.32-.24-.52l.02-3.86 8.06-7.7c.13-.13.02-.36-.16-.32L7.9 13.4l-3.98-1.24c-.55-.17-.6-.94-.07-1.18L20.9 3.5c.34-.15.75-.1 1.04.14z" />
+    </svg>
+  )
+}
+
 export default function MessagesPage() {
   const [playingId, setPlayingId] = useState<string | null>(null)
   const [isMuted, setIsMuted]     = useState(false)
@@ -137,6 +152,13 @@ export default function MessagesPage() {
           margin-bottom: 2rem;
         }
 
+        .mp-hero-actions {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          flex-wrap: wrap;
+        }
+
         .mp-mute-btn {
           display: inline-flex;
           align-items: center;
@@ -154,6 +176,29 @@ export default function MessagesPage() {
           transition: background .2s, transform .2s;
         }
         .mp-mute-btn:hover { background: #2535b8; transform: translateY(-2px); }
+
+        .mp-telegram-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: .6rem;
+          background: transparent;
+          color: var(--ink);
+          font-size: .75rem;
+          font-weight: 600;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          padding: .85rem 2rem;
+          border: 1.5px solid var(--gold);
+          cursor: pointer;
+          border-radius: 2px;
+          transition: background .2s, color .2s, transform .2s;
+          text-decoration: none;
+        }
+        .mp-telegram-btn:hover {
+          background: var(--gold);
+          color: #fff;
+          transform: translateY(-2px);
+        }
 
         /* Decorative headphone icon — right side above ribbon */
         .mp-hero-deco {
@@ -182,6 +227,72 @@ export default function MessagesPage() {
           letter-spacing: .2em;
           text-transform: uppercase;
           color: var(--ink);
+        }
+
+        /* ═══════════════════════════════
+           TELEGRAM CALLOUT
+        ═══════════════════════════════ */
+        .mp-telegram-banner {
+          position: relative;
+          background: var(--blue);
+          padding: 2.5rem 6rem;
+        }
+        @media(max-width:768px){ .mp-telegram-banner{ padding: 2rem 1.5rem; } }
+
+        .mp-telegram-banner-inner {
+          display: flex;
+          align-items: center;
+          gap: 1.75rem;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        @media(max-width:768px){
+          .mp-telegram-banner-inner{ flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+        }
+
+        .mp-telegram-banner-icon {
+          flex-shrink: 0;
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background: rgba(255,255,255,0.14);
+          border: 1.5px solid rgba(255,255,255,0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+        }
+
+        .mp-telegram-banner-text { flex: 1; }
+
+        .mp-telegram-banner-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #fff;
+          margin-bottom: .35rem;
+        }
+
+        .mp-telegram-banner-body {
+          font-size: .88rem;
+          font-weight: 300;
+          line-height: 1.6;
+          color: rgba(255,255,255,0.88);
+          max-width: 56ch;
+        }
+
+        .mp-telegram-banner .mp-telegram-btn {
+          flex-shrink: 0;
+          border-color: var(--gold-lt);
+          color: #fff;
+          background: var(--gold);
+        }
+        .mp-telegram-banner .mp-telegram-btn:hover {
+          background: #b3860a;
+          color: #fff;
+        }
+        @media(max-width:768px){
+          .mp-telegram-banner .mp-telegram-btn{ width: 100%; justify-content: center; }
         }
 
         /* ═══════════════════════════════
@@ -517,15 +628,42 @@ export default function MessagesPage() {
               Listen to inspiring sermons and teachings from our church community.
               Click on any message to start listening.
             </p>
-            <button className="mp-mute-btn" onClick={toggleMute}>
-              {isMuted
-                ? <><VolumeX size={16} /> Unmute All</>
-                : <><Volume2 size={16} /> Mute All</>
-              }
-            </button>
+            <div className="mp-hero-actions">
+              <button className="mp-mute-btn" onClick={toggleMute}>
+                {isMuted
+                  ? <><VolumeX size={16} /> Unmute All</>
+                  : <><Volume2 size={16} /> Mute All</>
+                }
+              </button>
+            </div>
           </div>
         </section>
 
+        {/* ══ TELEGRAM CALLOUT ══ */}
+        <section className="mp-telegram-banner">
+          <div className="mp-telegram-banner-inner">
+            <div className="mp-telegram-banner-icon">
+              <TelegramIcon size={26} />
+            </div>
+            <div className="mp-telegram-banner-text">
+              <p className="mp-telegram-banner-title">More Messages on Telegram</p>
+              <p className="mp-telegram-banner-body">
+                Our full library of sermons and teachings is shared regularly on Telegram.
+                Join our channel to stay updated with every new message.
+              </p>
+            </div>
+            {/* TODO: replace href with the ministry's Telegram channel/group link */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mp-telegram-btn"
+              aria-label="Join our Telegram channel"
+            >
+              <TelegramIcon size={16} /> Join Our Telegram
+            </a>
+          </div>
+        </section>
 
         {/* ══ GRID ══ */}
         <section className="mp-grid-section">
