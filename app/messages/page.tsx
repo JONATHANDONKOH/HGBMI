@@ -652,9 +652,8 @@ export default function MessagesPage() {
                 Join our channel to stay updated with every new message.
               </p>
             </div>
-            {/* TODO: replace href with the ministry's Telegram channel/group link */}
             <a
-              href="#"
+              href="https://t.me/HGBMIGH"
               target="_blank"
               rel="noopener noreferrer"
               className="mp-telegram-btn"

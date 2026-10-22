@@ -133,7 +133,7 @@ export function Navbar() {
             >
               <div className="flex h-12 w-12 items-center justify-center text-white">
                 <img
-                  src="/hgggg.png"
+                  src="/church%20loog.jpg"
                   alt="Church Logo"
                   className="h-10 w-30 object-contain"
                 />
@@ -244,7 +244,7 @@ export function Navbar() {
                   <div className="flex items-center space-x-2 pb-4 border-b">
                     <div className="flex h-12 w-12 items-center justify-center text-primary">
                       <img
-                        src="/hgggg.png"
+                        src="/church%20loog.jpg"
                         alt="Church Logo"
                         className="h-7 w-7 object-contain"
                       />
