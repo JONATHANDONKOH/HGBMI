@@ -5,27 +5,35 @@ import { Navbar } from "@/components/navbar"
 import Footer from "@/components/Footer"
 
 /* ═══════════════════════════════════════════
-   EDIT YOUR UPCOMING EVENT HERE
-   - Put allnievent.jpeg inside /public
-   - date: ISO format, e.g. "2026-11-28T21:00:00" (leave "" to hide countdown)
+   MOST RECENT EVENT (now a past event)
+   - Image lives in /public
 ═══════════════════════════════════════════ */
 const EVENT = {
   image: "/allnievent.jpeg",
   title: "Event Title",
-  tagline: "Come expecting a move of God — worship, the Word, and fellowship.",
-  date: "2026-10-23T22:00:00",
+  tagline: "A powerful time of worship, the Word, and fellowship. Thank you to everyone who joined us.",
   dateLabel: "23 October 2026",
   timeLabel: "10:00 PM",
   venue: "Hour of Grace Believers Ministry International",
   category: "Fellowship",
-  mapLink: "",
 }
 
-type TimeLeft = { d: number; h: number; m: number; s: number }
+/* ═══════════════════════════════════════════
+   MORE PAST EVENTS — add new ones to this list
+═══════════════════════════════════════════ */
+const PAST_EVENTS = [
+  {
+    image: "/alabi.jpeg",
+    alt: "Past church event — moment of worship and fellowship",
+    tag: "Past Event",
+    title: "Grace In",
+    accent: "Gathering",
+    text: "A look back at a recent moment of worship and fellowship — the community coming together in faith, joy, and unity. Every gathering here is a testimony of God's grace.",
+  },
+]
 
 export default function EventsPage() {
   const [ready, setReady] = useState(false)
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
   const [isVisible, setIsVisible] = useState({
     story: false,
     image: false,
@@ -41,30 +49,6 @@ export default function EventsPage() {
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 100)
     return () => clearTimeout(t)
-  }, [])
-
-  /* Countdown */
-  useEffect(() => {
-    if (!EVENT.date) return
-    const target = new Date(EVENT.date).getTime()
-    if (isNaN(target)) return
-
-    const tick = () => {
-      const diff = target - Date.now()
-      if (diff <= 0) {
-        setTimeLeft({ d: 0, h: 0, m: 0, s: 0 })
-        return
-      }
-      setTimeLeft({
-        d: Math.floor(diff / 86400000),
-        h: Math.floor((diff / 3600000) % 24),
-        m: Math.floor((diff / 60000) % 60),
-        s: Math.floor((diff / 1000) % 60),
-      })
-    }
-    tick()
-    const id = setInterval(tick, 1000)
-    return () => clearInterval(id)
   }, [])
 
   useEffect(() => {
@@ -103,8 +87,6 @@ export default function EventsPage() {
       if (pastRef.current) observer.unobserve(pastRef.current)
     }
   }, [])
-
-  const pad = (n: number) => String(n).padStart(2, "0")
 
   return (
     <>
@@ -815,7 +797,7 @@ export default function EventsPage() {
 
         <Navbar />
 
-        {/* ══ TOP: UPCOMING EVENT STORY + FLYER ══ */}
+        {/* ══ TOP: MOST RECENT EVENT (NOW PAST) STORY + FLYER ══ */}
         <section className="ep-main">
           {/* Story panel */}
           <div
@@ -825,7 +807,7 @@ export default function EventsPage() {
             <div className="ep-story-inner">
               <p className="ep-eyebrow">Hour of Grace Believers Ministry International</p>
               <h1 className="ep-title">
-                Upcoming <span className="t-blue">Event</span><br />
+                Past <span className="t-blue">Event</span><br />
                 <span className="t-gold">{EVENT.title}</span>
               </h1>
               <p className="ep-desc">{EVENT.tagline}</p>
@@ -833,30 +815,9 @@ export default function EventsPage() {
               <div className="ep-notice">
                 <span className="ep-notice-dot" />
                 <span className="ep-notice-text">
-                  <b>You&apos;re invited</b> — we would love to have you join us.
+                  <b>Stay tuned</b> — our next event will be announced soon.
                 </span>
               </div>
-
-              {timeLeft && (
-                <div className="ep-countdown" aria-label="Countdown to event">
-                  <div className="ep-count-box">
-                    <span className="ep-count-num">{pad(timeLeft.d)}</span>
-                    <span className="ep-count-label">Days</span>
-                  </div>
-                  <div className="ep-count-box">
-                    <span className="ep-count-num">{pad(timeLeft.h)}</span>
-                    <span className="ep-count-label">Hours</span>
-                  </div>
-                  <div className="ep-count-box">
-                    <span className="ep-count-num">{pad(timeLeft.m)}</span>
-                    <span className="ep-count-label">Mins</span>
-                  </div>
-                  <div className="ep-count-box">
-                    <span className="ep-count-num">{pad(timeLeft.s)}</span>
-                    <span className="ep-count-label">Secs</span>
-                  </div>
-                </div>
-              )}
 
               <div className="ep-meta">
                 <div className="ep-meta-item">
@@ -869,7 +830,7 @@ export default function EventsPage() {
                 </div>
                 <div className="ep-meta-item">
                   <span className="ep-meta-label">Status</span>
-                  <span className="ep-meta-value">Upcoming</span>
+                  <span className="ep-meta-value">Past Event</span>
                 </div>
               </div>
 
@@ -877,16 +838,6 @@ export default function EventsPage() {
                 <a href="#event-details" className="ep-btn ep-btn-primary">
                   Event Details
                 </a>
-                {EVENT.mapLink && (
-                  <a
-                    href={EVENT.mapLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ep-btn ep-btn-ghost"
-                  >
-                    Get Directions
-                  </a>
-                )}
               </div>
             </div>
           </div>
@@ -919,12 +870,12 @@ export default function EventsPage() {
               <path d="M0 0 L34 0 L6 700 L0 700 Z" fill="rgba(255,255,255,0.22)" />
             </svg>
 
-            <span className="ep-frame-ribbon">Upcoming Event</span>
+            <span className="ep-frame-ribbon">Past Event</span>
 
             <div className="ep-flyer">
               <img
                 src={EVENT.image}
-                alt={`${EVENT.title} — upcoming event flyer`}
+                alt={`${EVENT.title} — past event flyer`}
                 className="ep-flyer-img"
               />
             </div>
@@ -937,12 +888,13 @@ export default function EventsPage() {
           ref={detailRef}
           className={`ep-detail scroll-animate ${isVisible.detail ? "visible" : ""}`}
         >
-          <p className="ep-detail-label">Save The Date</p>
+          <p className="ep-detail-label">Event Recap</p>
           <h2 className="ep-detail-title">Event Details</h2>
           <p className="ep-detail-text">
-            Join the family of Hour of Grace Believers Ministry International for a
-            time of worship, the Word, and fellowship. Bring a friend, come with
-            expectation, and be part of what God is doing.
+            The family of Hour of Grace Believers Ministry International came
+            together for a time of worship, the Word, and fellowship. Thank you
+            to everyone who joined us — we look forward to gathering with you
+            again soon.
           </p>
 
           <div className="ep-cards">
@@ -991,25 +943,20 @@ export default function EventsPage() {
           <p className="ep-detail-label">Gathered Moments</p>
           <h2 className="ep-detail-title">A Look Back</h2>
 
-          <div className="ep-past-card">
-            <div className="ep-past-media">
-              <img
-                src="/alabi.jpeg"
-                alt="Past church event — moment of worship and fellowship"
-              />
-              <span className="ep-past-tag">Past Event</span>
+          {PAST_EVENTS.map((ev) => (
+            <div className="ep-past-card" key={ev.title + ev.accent}>
+              <div className="ep-past-media">
+                <img src={ev.image} alt={ev.alt} />
+                <span className="ep-past-tag">{ev.tag}</span>
+              </div>
+              <div className="ep-past-body">
+                <h3 className="ep-past-title">
+                  {ev.title} <span>{ev.accent}</span>
+                </h3>
+                <p className="ep-past-text">{ev.text}</p>
+              </div>
             </div>
-            <div className="ep-past-body">
-              <h3 className="ep-past-title">
-                Grace In <span>Gathering</span>
-              </h3>
-              <p className="ep-past-text">
-                A look back at a recent moment of worship and fellowship — the
-                community coming together in faith, joy, and unity. Every
-                gathering here is a testimony of God&apos;s grace.
-              </p>
-            </div>
-          </div>
+          ))}
         </section>
 
         <Footer />
